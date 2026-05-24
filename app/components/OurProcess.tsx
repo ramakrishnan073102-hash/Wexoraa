@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+// 1. FIXED: Imported Variants from framer-motion
+import { motion, Variants } from "framer-motion";
 import { Box } from "lucide-react";
 
 /* ─────────────────────────────────────────
@@ -39,11 +40,15 @@ const PROCESS_STEPS = [
 ───────────────────────────────────────── */
 function LetterScrollAnimation({ text }: { text: string }): React.ReactElement {
   const words = text.split(" ");
-  const container = {
+  
+  // 2. FIXED: Explicitly typed as Variants
+  const container: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.03, delayChildren: 0.1 } },
   };
-  const child = {
+  
+  // 3. FIXED: Explicitly typed as Variants
+  const child: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 12, stiffness: 100 } },
   };
@@ -66,13 +71,10 @@ function LetterScrollAnimation({ text }: { text: string }): React.ReactElement {
 ───────────────────────────────────────── */
 export default function OurProcessSection(): React.ReactElement {
   return (
-    // 1. OUTER WRAPPER: Set to clean White color
     <section className="relative w-full bg-white p-4 sm:p-6 md:p-10 overflow-hidden font-['Manrope',_sans-serif]">
       
-      {/* 2. TOTAL SECTION BOX: MODIFIED to use Wexoraa Secondary Dark (#222629) */}
       <div className="w-full bg-[#222629] rounded-[40px] md:rounded-[60px] py-20 md:py-32 px-6 border-2 border-dashed border-white/10 relative overflow-hidden">
         
-        {/* Soft Ambient Primary Green Glow inside the dark container */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#86C232]/10 blur-[140px] rounded-full pointer-events-none" />
 
         <div className="max-w-[1200px] mx-auto relative z-10">
@@ -87,7 +89,6 @@ export default function OurProcessSection(): React.ReactElement {
               <Box size={14} strokeWidth={2.5} /> Our Process
             </motion.div>
             
-            {/* Header typography set to clean white over the dark background container */}
             <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-white leading-[1.2] tracking-tight max-w-3xl mx-auto">
               <LetterScrollAnimation text="Seamless Process and Great Results." />
             </h2>
@@ -115,7 +116,6 @@ export default function OurProcessSection(): React.ReactElement {
                     transition={{ duration: 0.5, delay: index * 0.2 }}
                     className="flex justify-center w-full relative z-20 mb-4 md:mb-0"
                   >
-                    {/* Shadow mask matches the main dark box background color #222629 */}
                     <span className="bg-[#111316] border border-[#474B4F]/50 text-[#86C232] text-[0.85rem] font-extrabold px-8 py-2.5 rounded-full tracking-wide shadow-[0_0_0_8px_#222629]">
                       {step.step}
                     </span>
