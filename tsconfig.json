@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "tailwind.config.ts", "postcss.config.js"  ],
+, "tailwind.config.ts", "postcss.config.js", "app/history/page.js", "app/servicess/page.js"  ],
   "exclude": ["node_modules"]
 }

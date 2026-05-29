@@ -10,10 +10,11 @@ import Footer from "./components/Footer";
 
 
 
+
 export default function Home() {
   return (
     <>
-      <Navbar />
+   {/*    <Navbar /> */}
       <HeroSection />
       <Marquee />
        <MoreServiceSection />
@@ -21,7 +22,9 @@ export default function Home() {
         <OurProcess />
         <ChooseBest />
         <TestimonialSection/>
-        <Footer />
+       {/*  <Footer /> */}
+       
+       
      
      
      

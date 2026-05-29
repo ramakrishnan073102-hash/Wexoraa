@@ -17,11 +17,7 @@ interface MegaCol  { title: string; links: NavChild[]; }
 const NAV_ITEMS: NavItem[] = [
   {
     label: "Home", href: "/",
-    children: [
-      { label: "Home Creative",  href: "/" },
-      { label: "Home Agency",    href: "/" },
-      { label: "Home Corporate", href: "/" },
-    ],
+  
   },
   { label: "Pages", href: "#", mega: true },
   {
@@ -61,9 +57,9 @@ const MEGA_COLS: MegaCol[] = [
       { label: "About Us",          href: "/about" },
       { label: "Our History",       href: "/history",         badge: { text: "HOT", color: "#ef4444" } },
       { label: "Team",              href: "/team" },
-      { label: "Team Details",      href: "/team-details" },
+      { label: "Team Details",      href: "/teamdetails" },
       { label: "Careers",           href: "/careers",         badge: { text: "New", color: "#86C232" } },
-      { label: "Careers Details",   href: "/careers-details" },
+      { label: "Careers Details",   href: "/careersdetails" },
       { label: "Pricing Plan",      href: "/pricing" },
       { label: "Feedbacks",         href: "/feedbacks" },
       { label: "Faq",               href: "/faq" },
@@ -73,8 +69,8 @@ const MEGA_COLS: MegaCol[] = [
   {
     title: "Other pages",
     links: [
-      { label: "Services",          href: "/services" },
-      { label: "Service Details",   href: "/service-details" },
+      { label: "Services",          href: "/navservices" },
+      { label: "Service Details",   href: "servicedetails" },
       { label: "Portfolios",        href: "/portfolio" },
       { label: "Portfolio Details", href: "/portfolio-details" },
       { label: "Error 404",         href: "/404" },
@@ -367,7 +363,8 @@ export default function Navbar(): React.ReactElement {
                         <div className="bg-[#222629] border border-[#474B4F] rounded-[16px] p-2 shadow-[0_24px_64px_rgba(0,0,0,0.65)]" style={{ backdropFilter: "blur(30px)" }}>
                           {item.children!.map((child, idx) => (
                             <div key={child.label}>
-                              <Link href={child.href} className="dd-link flex items-center justify-between px-3.5 py-3 rounded-[12px] text-[0.875rem] font-bold text-[#6B6E70] hover:text-[#86C232] hover:bg-[#86C232]/[0.05] transition-colors duration-200 whitespace-nowrap group">
+                              {/* ADDED onClick={() => setActiveMenu(null)} */}
+                              <Link href={child.href} onClick={() => setActiveMenu(null)} className="dd-link flex items-center justify-between px-3.5 py-3 rounded-[12px] text-[0.875rem] font-bold text-[#6B6E70] hover:text-[#86C232] hover:bg-[#86C232]/[0.05] transition-colors duration-200 whitespace-nowrap group">
                                 <span className="flex items-center gap-2.5">
                                   <span className="dd-dot w-1.5 h-1.5 rounded-full bg-[#86C232] opacity-0 flex-shrink-0 scale-50 transition-[opacity,transform] duration-200" />
                                   {child.label}
@@ -391,7 +388,8 @@ export default function Navbar(): React.ReactElement {
                             {item.children!.map((child) => {
                               const Icon = child.icon;
                               return (
-                                <Link key={child.label} href={child.href} className="dd-link flex items-start gap-3 px-3.5 py-3.5 rounded-[14px] hover:bg-[#86C232]/[0.07] transition-colors duration-200 group">
+                                /* ADDED onClick={() => setActiveMenu(null)} */
+                                <Link key={child.label} href={child.href} onClick={() => setActiveMenu(null)} className="dd-link flex items-start gap-3 px-3.5 py-3.5 rounded-[14px] hover:bg-[#86C232]/[0.07] transition-colors duration-200 group">
                                   <span className="flex-shrink-0 w-9 h-9 rounded-[10px] flex items-center justify-center bg-[#474B4F]/30 border border-[#474B4F]/60 text-[#86C232] group-hover:bg-[#86C232]/15 group-hover:border-[#86C232]/30 transition-all duration-200">
                                     {Icon && <Icon size={16} strokeWidth={1.8} />}
                                   </span>
@@ -405,7 +403,8 @@ export default function Navbar(): React.ReactElement {
                           </div>
                           <div className="mt-2 pt-2.5 border-t border-[#474B4F]/60 px-2 flex items-center justify-between">
                             <span className="text-[0.78rem] font-semibold text-[#6B6E70]">Explore all services</span>
-                            <Link href="/services" className="flex items-center gap-1.5 text-[0.78rem] font-bold text-[#86C232] hover:underline">View all <ArrowRight size={12} strokeWidth={2.5} /></Link>
+                            {/* ADDED onClick={() => setActiveMenu(null)} */}
+                            <Link href="/services" onClick={() => setActiveMenu(null)} className="flex items-center gap-1.5 text-[0.78rem] font-bold text-[#86C232] hover:underline">View all <ArrowRight size={12} strokeWidth={2.5} /></Link>
                           </div>
                         </div>
                       </div>
@@ -419,7 +418,8 @@ export default function Navbar(): React.ReactElement {
                               <div className="text-[1.0rem] font-extrabold text-white mb-5 pb-3 border-b border-[#474B4F]">{col.title}</div>
                               <div className="flex flex-col gap-0.5">
                                 {col.links.map((lnk) => (
-                                  <Link key={lnk.label} href={lnk.href} className="mega-link flex items-center justify-between text-[0.875rem] font-semibold text-[#6B6E70] px-3 py-[9px] rounded-xl hover:text-[#86C232] hover:bg-[#86C232]/[0.06] transition-colors duration-200 gap-1.5">
+                                  /* ADDED onClick={() => setActiveMenu(null)} */
+                                  <Link key={lnk.label} href={lnk.href} onClick={() => setActiveMenu(null)} className="mega-link flex items-center justify-between text-[0.875rem] font-semibold text-[#6B6E70] px-3 py-[9px] rounded-xl hover:text-[#86C232] hover:bg-[#86C232]/[0.06] transition-colors duration-200 gap-1.5">
                                     <span className="flex items-center gap-2">
                                       <span className="mega-dot w-1.5 h-1.5 rounded-full bg-[#86C232] opacity-0 flex-shrink-0 scale-50 transition-[opacity,transform] duration-200" />
                                       {lnk.label}
