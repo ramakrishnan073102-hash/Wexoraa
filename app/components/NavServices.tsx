@@ -29,6 +29,7 @@ const SERVICES_DATA = [
     title: "Business Strategy Consultant",
     desc: "A powerful combination of data-driven insights and innovative approaches. We work closely with you to develop strategy.",
     icon: Target,
+    href: "/page1"
   },
   {
     id: 2,

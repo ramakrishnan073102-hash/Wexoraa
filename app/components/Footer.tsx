@@ -23,7 +23,7 @@ const FOOTER_LINKS = {
     { label: "Development Hub",     href: "#" },
   ],
   resources: [
-    { label: "Contact us",   href: "#" },
+    { label: "Contact us",   href: "/contact" },
     { label: "Team Member",  href: "#" },
     { label: "Recognitions", href: "#" },
     { label: "Careers",      href: "#", badge: "NEW" },

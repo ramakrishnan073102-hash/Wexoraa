@@ -70,7 +70,7 @@ const MEGA_COLS: MegaCol[] = [
     title: "Other pages",
     links: [
       { label: "Services",          href: "/navservices" },
-      { label: "Service Details",   href: "servicedetails" },
+      { label: "Service Details",   href: "/page1" },
       { label: "Portfolios",        href: "/portfolio" },
       { label: "Portfolio Details", href: "/portfolio-details" },
       { label: "Error 404",         href: "/404" },
