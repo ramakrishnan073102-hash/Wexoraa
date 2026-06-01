@@ -76,7 +76,7 @@ const MEGA_COLS: MegaCol[] = [
       { label: "Error 404",         href: "/404" },
       { label: "Blog Grid",         href: "/bloggrid",    badge: { text: "New", color: "#86C232" } },
       { label: "Blog Standard",     href: "/readblog" },
-      { label: "Blog Sidebar",      href: "/blogrightslider" },
+      { label: "Blog Sidebar",      href: "/blogrightsidebar" },
       { label: "Blog Details",      href: "/blogpage1" },
       { label: "Term & Conditions", href: "/termsandconditions" },
     ],
