@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { 
@@ -15,13 +15,12 @@ import {
   Briefcase,
   TrendingUp,
   Cpu,
-  MapPin,
   ChevronsRight
 } from "lucide-react";
 import Marquee from "../components/Marquee"; // Adjust path as needed
 
 /* ──────────────────────────────────────────────────────────
-   SERVICES DATA (9 Items for Pagination: 6 on Pg1, 3 on Pg2)
+   SERVICES DATA (With Individual Links)
 ────────────────────────────────────────────────────────── */
 const SERVICES_DATA = [
   {
@@ -36,48 +35,56 @@ const SERVICES_DATA = [
     title: "Customer Experience Solutions",
     desc: "Customer Experience Solutions are designed to enhance every touchpoint of your customer journey, from first interaction.",
     icon: PieChart,
+    href: "/page2"
   },
   {
     id: 3,
     title: "Sustainability and Consulting",
     desc: "Provide tailored strategies that not only drive long-term value but also build trust with stakeholders, investors.",
     icon: Layers,
+    href: "pag3"
   },
   {
     id: 4,
     title: "Training and Development",
     desc: "Training and Development Programs designed to empower employees with the skills, knowledge, and tools.",
     icon: Briefcase,
+    href: "page4"
   },
   {
     id: 5,
     title: "IT Support & Maintenance",
     desc: "In today's dynamic business environment, to know to success lies strategic planning and operationals business success execution.",
     icon: Cpu,
+    href: "page5"
   },
   {
     id: 6,
     title: "Marketing Strategy Campaigns",
     desc: "In today's dynamic business environment, to know to success lies strategic planning and operationals business success execution.",
     icon: TrendingUp,
+    href: "page6"
   },
   {
     id: 7,
     title: "Financial Advisory Services",
     desc: "Comprehensive financial planning and risk management strategies to ensure long-term stability and growth for your business.",
     icon: PieChart,
+    href: ""
   },
   {
     id: 8,
     title: "Operational Efficiency",
     desc: "Streamline your business operations to reduce costs, improve productivity, and maximize overall output across departments.",
     icon: Layers,
+    href: ""
   },
   {
     id: 9,
     title: "Digital Transformation",
     desc: "Integrate cutting-edge digital technology into all areas of your business to fundamentally change how you operate and deliver value.",
     icon: Target,
+    href: "#"
   },
 ];
 
@@ -244,41 +251,43 @@ export default function ServicesPage(): React.ReactElement {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="group flex flex-col bg-white rounded-[24px] border border-[#474B4F]/10 p-8 lg:p-10 transition-colors duration-300 hover:bg-[#86C232] shadow-[0_5px_20px_rgba(34,38,41,0.03)] hover:shadow-[0_20px_40px_rgba(134,194,50,0.2)]"
+                  className="h-full"
                 >
-                  
-                  {/* Top Icon Circle */}
-                  <div className="w-[72px] h-[72px] rounded-full bg-[#86C232]/10 flex items-center justify-center text-[#86C232] mb-8 transition-colors duration-300 group-hover:bg-white group-hover:text-[#86C232]">
-                    <Icon size={32} strokeWidth={1.5} />
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-xl lg:text-[1.35rem] font-extrabold text-[#222629] mb-4 transition-colors duration-300 group-hover:text-white leading-tight">
-                    {service.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-[15px] font-medium text-[#6B6E70] leading-[1.8] mb-10 transition-colors duration-300 group-hover:text-white/90">
-                    {service.desc}
-                  </p>
-
-                  {/* ── ERROR-FREE, EXACT HOVER "LEARN MORE" BUTTON ── */}
-                  {/* By using nested groups (group and group/btn) we avoid custom CSS arbitrary variants completely */}
+                  {/* ENTIRE CARD IS A LINK */}
                   <Link 
-                    href="#" 
-                    className="group/btn flex items-center gap-2 text-[15px] font-extrabold text-[#222629] transition-colors duration-300 group-hover:text-white mt-auto w-fit"
+                    href={service.href} 
+                    className="group flex flex-col h-full bg-white rounded-[24px] border border-[#474B4F]/10 p-8 lg:p-10 transition-colors duration-300 hover:bg-[#86C232] shadow-[0_5px_20px_rgba(34,38,41,0.03)] hover:shadow-[0_20px_40px_rgba(134,194,50,0.2)] outline-none"
                   >
-                    Learn More 
-                    {/* Circle & Arrow icon */}
-                    <span className="flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 bg-transparent text-[#222629] group-hover:bg-[#222629] group-hover:text-white">
-                      <ArrowRight 
-                        size={18} 
-                        strokeWidth={2.5} 
-                        className="-rotate-45 transition-transform duration-300 group-hover/btn:rotate-0" 
-                      />
-                    </span>
-                  </Link>
+                    
+                    {/* Top Icon Circle */}
+                    <div className="w-[72px] h-[72px] rounded-full bg-[#86C232]/10 flex items-center justify-center text-[#86C232] mb-8 transition-colors duration-300 group-hover:bg-white group-hover:text-[#86C232]">
+                      <Icon size={32} strokeWidth={1.5} />
+                    </div>
 
+                    {/* Title */}
+                    <h3 className="text-xl lg:text-[1.35rem] font-extrabold text-[#222629] mb-4 transition-colors duration-300 group-hover:text-white leading-tight">
+                      {service.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-[15px] font-medium text-[#6B6E70] leading-[1.8] mb-10 transition-colors duration-300 group-hover:text-white/90">
+                      {service.desc}
+                    </p>
+
+                    {/* Learn More (Div wrapper so it animates securely inside the Link) */}
+                    <div className="flex items-center gap-2 text-[15px] font-extrabold text-[#222629] transition-colors duration-300 group-hover:text-white mt-auto w-fit">
+                      Learn More 
+                      {/* Circle & Arrow icon */}
+                      <span className="flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 bg-transparent text-[#222629] group-hover:bg-[#222629] group-hover:text-white">
+                        <ArrowRight 
+                          size={18} 
+                          strokeWidth={2.5} 
+                          className="-rotate-45 transition-transform duration-300 group-hover:rotate-0" 
+                        />
+                      </span>
+                    </div>
+
+                  </Link>
                 </motion.div>
               );
             })}
@@ -493,7 +502,7 @@ export default function ServicesPage(): React.ReactElement {
       {/* ════════════════════════════════════════════════════
           4. PRICING PLAN SECTION
       ════════════════════════════════════════════════════ */}
-     <section className="w-full max-w-[1300px] mx-auto px-5 sm:px-6 lg:px-8 mb-12 md:mb-16">
+      <section className="w-full max-w-[1300px] mx-auto px-5 sm:px-6 lg:px-8 mb-12 md:mb-16">
         
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-20">
@@ -600,7 +609,6 @@ export default function ServicesPage(): React.ReactElement {
         </div>
 
       </section>
-     
 
       {/* ════════════════════════════════════════════════════
           5. PARTNER LOGOS MARQUEE

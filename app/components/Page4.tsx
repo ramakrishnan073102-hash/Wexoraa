@@ -21,8 +21,8 @@ const SIDEBAR_SERVICES = [
   { name: "Customer Experience", href: "/page2" },
   { name: "ESG Consulting",      href: "/page3" },
   { name: "Training Programs",   href: "/page4", active: true },
-  { name: "IT Support",          href: "/services/5" },
-  { name: "Marketing Strategy",  href: "/services/6" },
+  { name: "IT Support",          href: "/page5" },
+  { name: "Marketing Strategy",  href: "/page6" },
 ];
 
 const CHECKLIST = [
@@ -148,51 +148,46 @@ export default function Page4(): React.ReactElement {
       {/* ════════════════════════════════════════
           1. HERO
       ════════════════════════════════════════ */}
-      <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-12 md:mb-20">
-        <div className="relative w-full max-w-[1400px] mx-auto h-[320px] md:h-[420px] lg:h-[480px] rounded-[12px] flex items-center justify-center overflow-hidden">
-          {/* BG image */}
-          <div
+      <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-16 md:mb-24">
+        <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[32px] md:rounded-[10px] flex items-center justify-center overflow-hidden shadow-sm">
+          
+          <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80')",
-            }}
+            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80')" }}
           />
-          {/* Dark teal overlay */}
-          <div className="absolute inset-0 z-10 bg-[#1a3a35]/88" />
-
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#222629]/95 via-[#222629]/85 to-[#61892F]/60 mix-blend-multiply" />
+          
           <div className="relative z-20 flex flex-col items-center text-center px-4 w-full">
-            <motion.h1
-              initial={{ opacity: 0, y: 22 }}
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="text-3xl md:text-5xl lg:text-[3.5rem] font-extrabold text-white mb-6 tracking-tight leading-tight"
+              transition={{ duration: 0.6 }}
+              className="text-4xl md:text-5xl lg:text-[4rem] font-extrabold text-white mb-6 tracking-tight leading-tight"
             >
-              Training Development Programs
+             Training Development Programs
             </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.18 }}
-              className="flex items-center gap-1.5 sm:gap-2 text-[14px] font-medium text-white/75 bg-[#222629]/50 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/10 w-fit"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex items-center gap-1.5 sm:gap-2 text-[14px] sm:text-[15px] font-medium text-white/80 bg-[#222629]/50 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 w-fit"
             >
               <Link href="/" className="flex items-center gap-1.5 hover:text-[#86C232] transition-colors">
-                <Home size={15} className="text-[#86C232]" /> Home
+                <Home size={16} className="text-[#86C232]" /> Home
               </Link>
-              <ChevronRight size={15} className="text-white/40" />
+              <ChevronRight size={16} className="text-[#6B6E70]" />
               <Link href="/services" className="hover:text-[#86C232] transition-colors">
                 Services
               </Link>
-              <ChevronRight size={15} className="text-white/40" />
-              <span className="text-white font-bold truncate max-w-[180px] sm:max-w-[260px]">
-                Training Development Prog...
+              <ChevronRight size={16} className="text-[#6B6E70]" />
+              <span className="text-white font-bold truncate max-w-[160px] sm:max-w-[240px]">
+               Training Development Programs
               </span>
             </motion.div>
           </div>
         </div>
       </section>
-
       {/* ════════════════════════════════════════
           2. TWO-COLUMN LAYOUT
       ════════════════════════════════════════ */}

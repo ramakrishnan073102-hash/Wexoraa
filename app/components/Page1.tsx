@@ -21,8 +21,8 @@ const SIDEBAR_SERVICES = [
   { name: "Customer Experience", active: false, href: "/page2" },
   { name: "ESG Consulting", active: false, href: "/page3" },
   { name: "Training Programs", active: false, href: "/page4" },
-  { name: "IT Support", active: false, href: "/services/it-support" },
-  { name: "Marketing Strategy", active: false, href: "/services/marketing-strategy" },
+  { name: "IT Support", active: false, href: "/page5" },
+  { name: "Marketing Strategy", active: false, href: "/page6" },
 ];
 
 const CHECKLIST = [
