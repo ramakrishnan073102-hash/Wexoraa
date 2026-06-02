@@ -15,20 +15,20 @@ import {
 ───────────────────────────────────────────── */
 const FOOTER_LINKS = {
   services: [
-    { label: "Customer Experience", href: "#" },
-    { label: "Training Programs",   href: "#" },
-    { label: "Business Strategy",   href: "#" },
-    { label: "Training Program",    href: "#" },
-    { label: "ESG Consulting",      href: "#" },
-    { label: "Development Hub",     href: "#" },
+    { label: "Customer Experience", href: "/page1" },
+    { label: "Training Programs",   href: "/page2" },
+    { label: "Business Strategy",   href: "/page3" },
+    { label: "Training Program",    href: "/page4" },
+    { label: "ESG Consulting",      href: "/page5" },
+    { label: "Development Hub",     href: "page6" },
   ],
   resources: [
     { label: "Contact us",   href: "/contact" },
-    { label: "Team Member",  href: "#" },
-    { label: "Recognitions", href: "#" },
-    { label: "Careers",      href: "#", badge: "NEW" },
-    { label: "News",         href: "#" },
-    { label: "Feedback",     href: "#" },
+    { label: "Team Member",  href: "/team" },
+    { label: "Recognitions", href: "/" },
+    { label: "Careers",      href: "/careers", badge: "NEW" },
+    { label: "News",         href: "/readblog" },
+    { label: "Feedback",     href: "/faq" },
   ],
 };
 
