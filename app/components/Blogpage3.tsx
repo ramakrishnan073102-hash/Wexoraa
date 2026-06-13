@@ -172,7 +172,7 @@ export default function Blogpage3(): React.ReactElement {
          1. HERO SECTION
       ════════════════════════════════════════ */}
       <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-12 md:mb-20">
-        <div className="relative w-full max-w-[1400px] mx-auto h-[320px] md:h-[420px] lg:h-[480px] rounded-[32px] md:rounded-[12px] flex items-center justify-center overflow-hidden shadow-sm">
+        <div className="relative w-full max-w-[1400px] mx-auto h-[320px] md:h-[420px] lg:h-[480px] rounded-[32px] md:rounded-[15px][12px] flex items-center justify-center overflow-hidden shadow-sm">
           <div
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: "url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=80')" }}

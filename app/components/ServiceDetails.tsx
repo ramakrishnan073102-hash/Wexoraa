@@ -87,7 +87,7 @@ export default function ServicesDetailsPage(): React.ReactElement {
           1. HERO SECTION (BOXY DESIGN)
       ════════════════════════════════════════════════════ */}
       <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-16 md:mb-24">
-        <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[32px] md:rounded-[40px] flex items-center justify-center overflow-hidden shadow-sm">
+        <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[15px] md:rounded-[15px][40px] flex items-center justify-center overflow-hidden shadow-sm">
           
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -141,7 +141,7 @@ export default function ServicesDetailsPage(): React.ReactElement {
             className="lg:col-span-8 flex flex-col gap-10"
           >
             {/* Top Image */}
-            <div className="w-full h-[400px] md:h-[500px] rounded-[32px] overflow-hidden shadow-sm">
+            <div className="w-full h-[400px] md:h-[500px] rounded-[15px] overflow-hidden shadow-sm">
               <img 
                 src="https://images.unsplash.com/photo-1556761175-5973dc0f32b7?auto=format&fit=crop&w=1200&q=80" 
                 alt="Business Strategy" 

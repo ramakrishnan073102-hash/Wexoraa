@@ -7,6 +7,7 @@ import OurProcess from "./components/OurProcess"
 import ChooseBest from "./components/ChooseTheBest";
 import TestimonialSection from "./components/TestimonialSection"
 import Footer from "./components/Footer";
+import Homeabout from "./components/HomeAbout"
 
 
 
@@ -18,11 +19,12 @@ export default function Home() {
       <HeroSection />
       <Marquee />
        <MoreServiceSection />
+       <Homeabout />
         <PortfolioSection />
         <OurProcess />
         <ChooseBest />
         <TestimonialSection/>
-       {/*  <Footer /> */}
+      {/*   <Footer />  */}
        
        
      

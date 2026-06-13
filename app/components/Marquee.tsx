@@ -3,9 +3,23 @@
 import React from "react";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-const PARTNERS: string[] = [
-  "Monceau", "Coudac", "Flomodia", "Influence4You",
-  "Weglot", "TSE Energy", "TechCorp", "Nexus",
+const TECH_STACK = [
+  { name: "React.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  { name: "Next.js", src: "https://cdn.worldvectorlogo.com/logos/next-js.svg" },
+  { name: "HTML5", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+  { name: "CSS3", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+  { name: "Tailwind CSS", src: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" },
+  { name: "Nest.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg" },
+  { name: "Node.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+  { name: "Express.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+  { name: "Git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+  { name: "GitHub", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+  { name: "React Native", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  { name: "MongoDB", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+  { name: "PostgreSQL", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+  { name: "MySQL", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+  { name: "Postman", src: "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" },
+  { name: "Razorpay", src: "https://upload.wikimedia.org/wikipedia/commons/8/89/Razorpay_logo.svg" },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -21,7 +35,7 @@ export default function MarqueeSection(): React.ReactElement {
           100% { transform: translateX(-50%); }
         }
         .marquee-track {
-          animation: marquee-scroll 30s linear infinite;
+          animation: marquee-scroll 45s linear infinite;
         }
       `}</style>
 
@@ -43,21 +57,29 @@ export default function MarqueeSection(): React.ReactElement {
 
         {/* ── Scrolling track ── */}
         <div className="marquee-track flex w-max">
-          {[...PARTNERS, ...PARTNERS].map((partner, index) => (
+          {[...TECH_STACK, ...TECH_STACK].map((tech, index) => (
             <div
               key={index}
               className={[
-                "flex-shrink-0 w-[240px] h-[90px] mr-8",
-                "flex items-center justify-center",
+                "flex-shrink-0 min-w-[200px] px-7 h-[85px] mr-6",
+                "flex items-center justify-center gap-4",
                 "rounded-2xl border",
                 /* White theme card styles */
                 "bg-[#f4f4f6] border-[#e5e7eb]",
-                "text-[#474B4F] text-[1.25rem] font-bold tracking-[0.05em]",
                 "transition-all duration-300 ease-in-out",
-                "hover:bg-[#86C232]/10 hover:text-[#222629] hover:border-[#86C232]/30",
+                "hover:bg-[#86C232]/10 hover:border-[#86C232]/30 group cursor-default",
               ].join(" ")}
             >
-              {partner}
+              {/* Tech Logo */}
+              <img 
+                src={tech.src} 
+                alt={`${tech.name} logo`} 
+                className="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300 ease-out" 
+              />
+              {/* Tech Name */}
+              <span className="text-[#474B4F] text-[1.15rem] font-bold tracking-[0.03em] group-hover:text-[#222629] transition-colors duration-300">
+                {tech.name}
+              </span>
             </div>
           ))}
         </div>
@@ -73,24 +95,13 @@ export default function MarqueeSection(): React.ReactElement {
           <div className="text-center z-[20] pointer-events-none">
             <h2
               className={[
-                "font-bold text-[#222629] leading-[1.6]",
+                "font-extrabold text-[#222629] leading-[1.5]",
                 "text-[1.75rem] md:text-[2.25rem]",
               ].join(" ")}
             >
-              Join Over{" "}
-              <span
-                className={[
-                  "inline-block bg-[#86C232] text-white",
-                  "px-4 py-1 rounded-full font-extrabold align-middle mx-2",
-                  "text-[1.5rem] md:text-[1.8rem]",
-                  "shadow-[0_4px_14px_rgba(134,194,50,0.3)]",
-                ].join(" ")}
-              >
-                30+
-              </span>
+              Technologies Work with here{" "}
               <br />
-              Companies with{" "}
-              <span className="text-[#86C232]">Wexoraa</span> Here
+              <span className="text-[#86C232]">Wexoraa</span> 
             </h2>
           </div>
         </div>

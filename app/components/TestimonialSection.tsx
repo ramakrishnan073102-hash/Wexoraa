@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
@@ -51,33 +51,20 @@ const ITEMS_COUNT = TESTIMONIALS.length;
 /* ─────────────────────────────────────────
    LETTER ANIMATION
 ───────────────────────────────────────── */
-function LetterScrollAnimation({
-  text,
-}: {
-  text: string;
-}): React.ReactElement {
+function LetterScrollAnimation({ text }: { text: string }): React.ReactElement {
   const words = text.split(" ");
 
   const container = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.03,
-        delayChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.03, delayChildren: 0.1 },
     },
   };
 
   const child = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
@@ -114,7 +101,7 @@ export default function TestimonialSection(): React.ReactElement {
   const viewportRef = useRef<HTMLDivElement>(null);
 
   /* ─────────────────────────────────────────
-      MEASURE WIDTH
+      MEASURE EXACT WIDTH
   ───────────────────────────────────────── */
   useEffect(() => {
     const measure = () => {
@@ -143,7 +130,7 @@ export default function TestimonialSection(): React.ReactElement {
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setActiveIndex((prev) => prev + 1);
-    }, 3000);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, [isHovered, cardWidth]);
@@ -174,31 +161,34 @@ export default function TestimonialSection(): React.ReactElement {
   const realIndex = activeIndex % ITEMS_COUNT;
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#f4f4f6] py-16 md:py-24 lg:py-32 font-['Manrope',_sans-serif]">
-      <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+    <section className="relative w-full overflow-hidden bg-white py-16 md:py-24 lg:py-32 font-['Manrope',_sans-serif]">
+      
+      {/* Soft Ambient Glow in the background */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#86C232]/10 blur-[120px] rounded-full pointer-events-none" />
+
+      {/* SYMMETRICAL 50/50 GRID */}
+      <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-end relative z-10">
+        
         {/* ─────────────────────────────────────────
-            LEFT CONTENT
+            LEFT COLUMN (Heading + Image)
         ───────────────────────────────────────── */}
-        <div className="lg:col-span-5 flex flex-col">
+        <div className="flex flex-col w-full">
           {/* Heading */}
-          <h2 className="text-[2.2rem] sm:text-[2.8rem] md:text-5xl lg:text-[3.2rem] font-extrabold leading-[1.15] tracking-tight text-[#222629] mb-8 md:mb-10">
+          <h2 className="text-[2.2rem] sm:text-[2.8rem] md:text-5xl lg:text-[3.2rem] font-extrabold leading-[1.15] tracking-tight text-[#222629] mb-8 md:mb-10 drop-shadow-sm">
             <LetterScrollAnimation text="Hear from Our" />
             <br />
-            {/* Added color wrapper for "Customer." */}
             <span className="text-[#86C232]">
               <LetterScrollAnimation text="Customer." />
             </span>
           </h2>
 
-          {/* Image */}
+          {/* EXACT SIZED IMAGE CONTAINER */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{
-              duration: 0.7,
-            }}
-            className="relative w-full h-[320px] sm:h-[400px] lg:h-[500px] rounded-[24px] overflow-hidden"
+            transition={{ duration: 0.7 }}
+            className="relative w-full h-[400px] lg:h-[460px] rounded-[28px] overflow-hidden shadow-[0_8px_32px_rgba(34,38,41,0.05)] border-[1.5px] border-[#EAF0ED]"
           >
             <img
               src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80"
@@ -206,34 +196,36 @@ export default function TestimonialSection(): React.ReactElement {
               className="w-full h-full object-cover"
             />
 
-            {/* Rating Badge */}
-            <div className="absolute bottom-0 right-0 bg-[#86C232] text-white p-4 sm:p-6 rounded-tl-[24px] border-t-[6px] border-l-[6px] border-[#f4f4f6]">
-              <div className="text-4xl sm:text-6xl font-black leading-none">
+            {/* Glossy Rating Badge */}
+            <div className="absolute bottom-0 right-0 bg-white/60 backdrop-blur-xl p-4 sm:p-6 rounded-tl-[24px] border-t-[1.5px] border-l-[1.5px] border-white/80 shadow-[-8px_-8px_32px_rgba(0,0,0,0.05)]">
+              <div className="text-4xl sm:text-6xl font-black leading-none text-[#86C232] drop-shadow-sm">
                 4.9
               </div>
 
               <div className="flex gap-1 my-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} fill="#fff" strokeWidth={0} />
+                  <Star key={i} size={16} fill="#86C232" strokeWidth={0} />
                 ))}
               </div>
 
-              <p className="text-xs sm:text-sm font-semibold text-white/90">
+              <p className="text-xs sm:text-sm font-extrabold text-[#222629]">
                 (80+ Clients Reviews)
               </p>
             </div>
           </motion.div>
+
+          {/* Invisible spacer to match the height of the dots on the right side */}
+          <div className="h-2.5 mt-6 sm:mt-8 hidden lg:block" />
         </div>
 
         {/* ─────────────────────────────────────────
-            RIGHT SLIDER — SHOWING SINGLE CARD
+            RIGHT COLUMN (Slider)
         ───────────────────────────────────────── */}
-        <div
-          className="lg:col-span-7 relative w-full overflow-hidden"
-          ref={viewportRef}
-        >
+        <div className="flex flex-col w-full overflow-hidden">
+          
           <div
             className="w-full"
+            ref={viewportRef}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -249,64 +241,56 @@ export default function TestimonialSection(): React.ReactElement {
               {EXTENDED_TESTIMONIALS.map((item, index) => (
                 <div
                   key={`${item.id}-${index}`}
-                  style={{
-                    width: `${cardWidth}px`,
-                  }}
-                  className="
-                    flex-shrink-0
-                    flex flex-col
-                    bg-[#222629]     /* <-- UPDATED CARD BACKGROUND */
-                    rounded-[12px]
-                    border border-white/10
-                    shadow-[0_8px_24px_rgba(0,0,0,0.05)]
-                    hover:shadow-[0_14px_35px_rgba(0,0,0,0.15)]
-                    transition-all duration-300
-                    p-6 sm:p-8 md:p-10 lg:p-12
-                    min-h-[350px]
-                    sm:min-h-[400px]
-                    lg:h-[500px]
-                  "
+                  style={{ width: `${cardWidth}px` }}
+                  className="flex-shrink-0"
                 >
-                  {/* Quote Icon */}
-                  <div className="mb-5 text-[#86C232]">
-                    <svg
-                      width="46"
-                      height="46"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M9.983 18L9.983 10.609C9.983 4.905 6.235 1.038 1 0L0 2.151C2.433 3.068 4 5.789 4 8H0V18H9.983ZM24 18L24 10.609C24 4.905 20.252 1.038 15 0L14.004 2.151C16.437 3.068 18 5.789 18 8H14.017V18H24Z" />
-                    </svg>
-                  </div>
+                  {/* EXACT SIZED GLOSSY CARD COMPONENT */}
+                  <div className="flex flex-col relative p-8 md:p-10 rounded-[28px] overflow-hidden bg-gradient-to-br from-[#86C232]/10 to-[#222629]/[0.03] backdrop-blur-xl border border-[#86C232]/20 shadow-[0_8px_32px_rgba(34,38,41,0.05)] w-full h-[400px] lg:h-[460px]">
+                    
+                    {/* Inner Glossy Sheen */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#86C232]/5 via-transparent to-transparent pointer-events-none z-0" />
 
-                  {/* Text (Updated to white/80 for visibility) */}
-                  <p className="text-white/80 text-[0.95rem] sm:text-[1rem] lg:text-[1.05rem] leading-[1.9] font-medium flex-grow">
-                    {item.quote}
-                  </p>
+                    {/* Quote Icon */}
+                    <div className="relative z-10 mb-5 text-[#86C232] drop-shadow-sm">
+                      <svg
+                        width="46"
+                        height="46"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M9.983 18L9.983 10.609C9.983 4.905 6.235 1.038 1 0L0 2.151C2.433 3.068 4 5.789 4 8H0V18H9.983ZM24 18L24 10.609C24 4.905 20.252 1.038 15 0L14.004 2.151C16.437 3.068 18 5.789 18 8H14.017V18H24Z" />
+                      </svg>
+                    </div>
 
-                  {/* User */}
-                  <div className="flex items-center gap-4 mt-8">
-                    <img
-                      src={item.avatar}
-                      alt={item.name}
-                      className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover"
-                    />
+                    {/* Text */}
+                    <p className="relative z-10 text-[#474B4F] text-[0.95rem] sm:text-[1rem] lg:text-[1.05rem] leading-[1.9] font-medium flex-grow">
+                      {item.quote}
+                    </p>
 
-                    <div>
-                      {/* Name (Updated to white for visibility) */}
-                      <h4 className="text-white text-[1rem] sm:text-[1.1rem] font-extrabold">
-                        {item.name}
-                      </h4>
+                    {/* User */}
+                    <div className="relative z-10 flex items-center gap-4 mt-8">
+                      <img
+                        src={item.avatar}
+                        alt={item.name}
+                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-[2px] border-white shadow-sm"
+                      />
 
-                      <div className="flex items-center gap-3 mt-1">
-                        {/* Role (Updated to white/60 for visibility) */}
-                        <p className="text-white/60 text-sm font-medium">
-                          {item.role}
-                        </p>
+                      <div>
+                        {/* Name */}
+                        <h4 className="text-[#222629] text-[1rem] sm:text-[1.1rem] font-extrabold">
+                          {item.name}
+                        </h4>
 
-                        <span className="w-7 h-[3px] rounded-full bg-[#86C232]" />
+                        <div className="flex items-center gap-3 mt-1">
+                          {/* Role */}
+                          <p className="text-[#6B6E70] text-sm font-semibold">
+                            {item.role}
+                          </p>
+                          <span className="w-7 h-[3px] rounded-full bg-[#86C232]" />
+                        </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
               ))}
@@ -314,7 +298,7 @@ export default function TestimonialSection(): React.ReactElement {
           </div>
 
           {/* Dots */}
-          <div className="flex gap-2 mt-4 sm:mt-6 pl-1">
+          <div className="flex gap-2 mt-6 sm:mt-8 justify-center lg:justify-start">
             {TESTIMONIALS.map((_, index) => (
               <button
                 key={index}
@@ -322,12 +306,14 @@ export default function TestimonialSection(): React.ReactElement {
                 className={`h-2.5 rounded-full transition-all duration-500 ${
                   realIndex === index
                     ? "w-8 bg-[#86C232]"
-                    : "w-2.5 bg-[#474B4F]/20 hover:bg-[#474B4F]/40"
+                    : "w-2.5 bg-[#86C232]/20 hover:bg-[#86C232]/40"
                 }`}
               />
             ))}
           </div>
+
         </div>
+
       </div>
     </section>
   );

@@ -53,6 +53,7 @@ const PORTFOLIO_ITEMS = [
   },
 ];
 
+// Triplicate the array to allow for infinite looping
 const EXTENDED_ITEMS = [...PORTFOLIO_ITEMS, ...PORTFOLIO_ITEMS, ...PORTFOLIO_ITEMS];
 const ITEMS_COUNT = PORTFOLIO_ITEMS.length;
 
@@ -63,60 +64,76 @@ export default function PortfolioSection(): React.ReactElement {
   const [isHovered, setIsHovered] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  /* ── CALCULATE EXACT CARD WIDTH + GAP ── */
+  /* ── EXACT SLIDE WIDTH CALCULATION ── */
   useEffect(() => {
     const measure = () => {
       if (trackRef.current && trackRef.current.children.length > 1) {
         const firstCard = trackRef.current.children[0] as HTMLElement;
         const secondCard = trackRef.current.children[1] as HTMLElement;
+        // Total width includes the card width + the gap
         setSlideWidth(secondCard.offsetLeft - firstCard.offsetLeft);
       }
     };
     
     measure();
     window.addEventListener("resize", measure);
-    setTimeout(measure, 100);
+    // Timeout ensures images/styles load before measuring
+    setTimeout(measure, 200); 
     
     return () => window.removeEventListener("resize", measure);
   }, []);
 
-  /* ── CONTINUOUS SMOOTH SLIDE INTERVAL ── */
+  /* ── AUTOMATIC CONTINUOUS SLIDING ── */
   useEffect(() => {
+    // Pause if user is hovering or if we haven't calculated widths yet
     if (isHovered || slideWidth === 0) return;
 
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setActiveIndex((prev) => prev + 1);
-    }, 3500); 
+    }, 3000); // Slides every 3 seconds
 
     return () => clearInterval(interval);
   }, [isHovered, slideWidth]);
 
-  /* ── INVISIBLE RESET (THE INFINITE LOOP TRICK) ── */
+  /* ── SEAMLESS INFINITE LOOP RESET ── */
   useEffect(() => {
+    // When we reach the start of the 3rd set of items
     if (activeIndex === ITEMS_COUNT * 2) {
       const timeout = setTimeout(() => {
+        // 1. Turn off animation
         setIsTransitioning(false); 
+        // 2. Teleport back to the 2nd set (visually identical)
         setActiveIndex(ITEMS_COUNT); 
-        
+        // 3. Turn animation back on
         setTimeout(() => setIsTransitioning(true), 50);
-      }, 800); 
+      }, 800); // 800ms matches the CSS transition duration below
       
       return () => clearTimeout(timeout);
     }
-  }, [activeIndex]);
+    
+    // When we scroll backward past the start of the 2nd set
+    if (activeIndex === ITEMS_COUNT - 1 && !isHovered) {
+         const timeout = setTimeout(() => {
+            setIsTransitioning(false); 
+            setActiveIndex((ITEMS_COUNT * 2) - 1); 
+            setTimeout(() => setIsTransitioning(true), 50);
+          }, 800); 
+          return () => clearTimeout(timeout);
+    }
+  }, [activeIndex, isHovered]);
 
   const handleDotClick = (index: number) => {
     setIsTransitioning(true);
     setActiveIndex(ITEMS_COUNT + index);
   };
 
+  // Determine the true logical index (0 to 5) for the pagination dots
   const realIndex = activeIndex % ITEMS_COUNT;
 
   return (
     <section 
       id="portfolio"
-      // MODIFIED: Changed background color to solid white
       className="relative bg-white py-[120px] overflow-hidden w-full font-['Manrope',_sans-serif]"
     >
       
@@ -137,7 +154,6 @@ export default function PortfolioSection(): React.ReactElement {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          // MODIFIED: Inverted header base color text from white to dark secondary color
           className="text-[clamp(2.2rem,5vw,3.8rem)] font-extrabold text-[#222629] leading-[1.1] tracking-[-0.03em]"
         >
           Breaking Boundaries,<br />
@@ -160,22 +176,17 @@ export default function PortfolioSection(): React.ReactElement {
           ref={trackRef}
           style={{ 
             transform: `translateX(-${activeIndex * slideWidth}px)`,
-            transition: isTransitioning ? "transform 1s cubic-bezier(0.25, 1, 0.5, 1)" : "none" 
+            // 800ms transition matches the teleport timeout above
+            transition: isTransitioning ? "transform 800ms cubic-bezier(0.25, 1, 0.5, 1)" : "none" 
           }}
         >
           {EXTENDED_ITEMS.map((item, index) => {
-            const isActive = activeIndex === index;
+            // Note: The scale-[0.95] logic was completely removed so every card stays the same size
             return (
               <Link
                 key={`${item.id}-${index}`}
                 href={item.href}
-                className={`group/card flex-none w-[320px] lg:w-[400px] h-[460px] lg:h-[520px] rounded-[24px] relative overflow-hidden cursor-pointer no-underline transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  isActive ? "scale-100 opacity-100" : "scale-[0.95] opacity-60 hover:scale-100 hover:opacity-100"
-                }`}
-                onClick={() => { 
-                  setActiveIndex(index); 
-                  setIsTransitioning(true); 
-                }}
+                className="group/card flex-none w-[350px] lg:w-[420px] h-[460px] lg:h-[520px] rounded-[24px] relative overflow-hidden cursor-pointer no-underline opacity-100"
               >
                 <img 
                   src={item.img} 
@@ -183,13 +194,8 @@ export default function PortfolioSection(): React.ReactElement {
                   className="w-full h-full object-cover transition-transform duration-[1500ms] ease-out group-hover/card:scale-[1.08]" 
                 />
                 
-                {/* ── RESPONSIVE OVERLAY STYLE ── */}
-                {/* UNCHANGED: Retained dark masking overlay state strictly on active/hovered cards so text/arrow contrasts beautifully */}
-                <div className={`absolute inset-0 flex flex-col justify-center items-center p-[40px] text-center transition-all duration-500 z-10 ${
-                  isActive 
-                    ? "bg-[#111316]/65 lg:bg-[#111316]/20 lg:group-hover/card:bg-[#111316]/75" 
-                    : "bg-[#111316]/40 lg:bg-transparent lg:group-hover/card:bg-[#111316]/75"
-                }`}>
+                {/* ── OVERLAY STYLE ── */}
+                <div className="absolute inset-0 flex flex-col justify-center items-center p-[40px] text-center transition-all duration-500 z-10 bg-[#111316]/40 lg:bg-transparent lg:group-hover/card:bg-[#111316]/75">
                   
                   {/* Content Wrapper */}
                   <div className="flex flex-col items-center transition-all duration-500 opacity-100 lg:opacity-0 lg:group-hover/card:opacity-100 lg:translate-y-4 lg:group-hover/card:translate-y-0">
@@ -226,7 +232,6 @@ export default function PortfolioSection(): React.ReactElement {
           <div
             key={index}
             onClick={() => handleDotClick(index)}
-            // MODIFIED: Changed unselected dot backgrounds from translucent white to translucent dark for perfect visibility against the new light section theme
             className={`h-[8px] rounded-full cursor-pointer transition-all duration-500 ${
               realIndex === index ? "w-[35px] bg-[#86C232]" : "w-[8px] bg-[#222629]/20 hover:bg-[#222629]/40"
             }`}

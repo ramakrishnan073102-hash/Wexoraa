@@ -15,10 +15,7 @@ interface MegaCol  { title: string; links: NavChild[]; }
 
 // ─── Nav Data ─────────────────────────────────────────────────────────────────
 const NAV_ITEMS: NavItem[] = [
-  {
-    label: "Home", href: "/",
-  
-  },
+  { label: "Home", href: "/" },
   { label: "Pages", href: "#", mega: true },
   {
     label: "Services", href: "/services",
@@ -172,8 +169,8 @@ function MobileAccordion({
 
 // ─── Main Navbar ──────────────────────────────────────────────────────────────
 export default function Navbar(): React.ReactElement {
-  const [scrolled,      setScrolled]      = useState<boolean>(false);
-  const [hidden,        setHidden]        = useState<boolean>(false);
+  const [scrolled,       setScrolled]      = useState<boolean>(false);
+  const [hidden,         setHidden]        = useState<boolean>(false);
   const [sidePanelOpen, setSidePanelOpen] = useState<boolean>(false);
   const [mobileOpen,    setMobileOpen]    = useState<boolean>(false);
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
@@ -295,7 +292,7 @@ export default function Navbar(): React.ReactElement {
         .demo-card:hover .demo-overlay { opacity:1; }
       `}</style>
 
-      {/* ══ NAVBAR WRAPPER ══ */}
+      {/* ══ NAVBAR WRAPPER (GLOSSY BLUR EFFECT) ══ */}
       <div
         className={[
           "fixed z-[1000] flex justify-center pointer-events-none",
@@ -307,20 +304,20 @@ export default function Navbar(): React.ReactElement {
         <div
           className={[
             "relative pointer-events-auto w-full flex items-center justify-between",
-            "rounded-2xl px-2.5 py-2 gap-1.5 md:px-4 md:py-2.5 md:gap-4",
-            "border transition-[background,box-shadow,border-color] duration-300",
+            "rounded-[24px] px-2.5 py-2 md:px-4 md:py-2.5 gap-1.5 md:gap-4",
+            "border border-white/10 transition-all duration-400",
             scrolled
-              ? "bg-[#1a1e21]/85 border-[#474B4F] shadow-[0_10px_40px_rgba(0,0,0,0.4)]"
-              : "bg-[#1a1e21]/60 border-[#474B4F]/50",
+              ? "bg-[#222629]/75 shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
+              : "bg-white/[0.06] shadow-sm",
           ].join(" ")}
           style={{
             fontFamily: "'Manrope', sans-serif",
-            backdropFilter: "blur(100px) saturate(250%)",
-            WebkitBackdropFilter: "blur(100px) saturate(250%)",
+            backdropFilter: "blur(24px) saturate(150%)",
+            WebkitBackdropFilter: "blur(24px) saturate(150%)",
           }}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0 group overflow-hidden">
+          <Link href="/" className="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0 group overflow-hidden pl-2">
             <img
               src="/img/logo.png" alt="Wexoraa"
               className="h-5 sm:h-7 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
@@ -348,23 +345,23 @@ export default function Navbar(): React.ReactElement {
                     onMouseLeave={() => hasAny && scheduleClose()}
                   >
                     {hasAny ? (
-                      <button className={["flex items-center gap-1 px-3.5 py-1.5 text-sm font-semibold bg-transparent border-none cursor-pointer rounded-full transition-colors duration-200 whitespace-nowrap", isOpen ? "text-[#86C232] bg-[#86C232]/[0.08]" : "text-white/85 hover:text-[#86C232] hover:bg-[#86C232]/[0.08]"].join(" ")}>
+                      <button className={["flex items-center gap-1 px-3.5 py-1.5 text-sm font-semibold bg-transparent border-none cursor-pointer rounded-full transition-colors duration-200 whitespace-nowrap", isOpen ? "text-[#86C232] bg-[#86C232]/[0.08]" : "text-white/85 hover:text-[#86C232] hover:bg-white/10"].join(" ")}>
                         {item.label}
                         <ChevronDown size={13} className="nav-chevron opacity-60" data-open={isOpen ? "true" : "false"} />
                       </button>
                     ) : (
-                      <Link href={item.href} className="flex items-center gap-1 px-3.5 py-1.5 text-sm font-semibold text-white/85 rounded-full hover:text-[#86C232] hover:bg-[#86C232]/[0.08] transition-colors duration-200 whitespace-nowrap">
+                      <Link href={item.href} className="flex items-center gap-1 px-3.5 py-1.5 text-sm font-semibold text-white/85 rounded-full hover:text-[#86C232] hover:bg-white/10 transition-colors duration-200 whitespace-nowrap">
                         {item.label}
                       </Link>
                     )}
 
+                    {/* GLOSSY DROPDOWNS */}
                     {hasDD && !isServices && (
-                      <div className="js-dropdown absolute top-full left-0 min-w-[240px] z-[200] pt-2" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
-                        <div className="bg-[#222629] border border-[#474B4F] rounded-[16px] p-2 shadow-[0_24px_64px_rgba(0,0,0,0.65)]" style={{ backdropFilter: "blur(30px)" }}>
+                      <div className="js-dropdown absolute top-full left-0 min-w-[240px] z-[200] pt-4" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
+                        <div className="bg-[#222629]/85 border border-white/10 rounded-[16px] p-2 shadow-[0_24px_64px_rgba(0,0,0,0.4)]" style={{ backdropFilter: "blur(24px) saturate(150%)" }}>
                           {item.children!.map((child, idx) => (
                             <div key={child.label}>
-                              {/* ADDED onClick={() => setActiveMenu(null)} */}
-                              <Link href={child.href} onClick={() => setActiveMenu(null)} className="dd-link flex items-center justify-between px-3.5 py-3 rounded-[12px] text-[0.875rem] font-bold text-[#6B6E70] hover:text-[#86C232] hover:bg-[#86C232]/[0.05] transition-colors duration-200 whitespace-nowrap group">
+                              <Link href={child.href} onClick={() => setActiveMenu(null)} className="dd-link flex items-center justify-between px-3.5 py-3 rounded-[12px] text-[0.875rem] font-bold text-white/70 hover:text-white hover:bg-white/5 transition-colors duration-200 whitespace-nowrap group">
                                 <span className="flex items-center gap-2.5">
                                   <span className="dd-dot w-1.5 h-1.5 rounded-full bg-[#86C232] opacity-0 flex-shrink-0 scale-50 transition-[opacity,transform] duration-200" />
                                   {child.label}
@@ -374,7 +371,7 @@ export default function Navbar(): React.ReactElement {
                                   <ArrowRight size={11} strokeWidth={2.5} />
                                 </span>
                               </Link>
-                              {idx < item.children!.length - 1 && <div className="h-px bg-[#474B4F]/60 mx-3" />}
+                              {idx < item.children!.length - 1 && <div className="h-px bg-white/10 mx-3" />}
                             </div>
                           ))}
                         </div>
@@ -382,28 +379,26 @@ export default function Navbar(): React.ReactElement {
                     )}
 
                     {hasDD && isServices && (
-                      <div className="js-dropdown absolute top-full left-0 w-[480px] z-[200] pt-2" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
-                        <div className="bg-[#222629] border border-[#474B4F] rounded-[20px] p-3 shadow-[0_24px_64px_rgba(0,0,0,0.65)]" style={{ backdropFilter: "blur(30px)" }}>
+                      <div className="js-dropdown absolute top-full left-0 w-[480px] z-[200] pt-4" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
+                        <div className="bg-[#222629]/85 border border-white/10 rounded-[20px] p-3 shadow-[0_24px_64px_rgba(0,0,0,0.4)]" style={{ backdropFilter: "blur(24px) saturate(150%)" }}>
                           <div className="grid grid-cols-2 gap-1">
                             {item.children!.map((child) => {
                               const Icon = child.icon;
                               return (
-                                /* ADDED onClick={() => setActiveMenu(null)} */
-                                <Link key={child.label} href={child.href} onClick={() => setActiveMenu(null)} className="dd-link flex items-start gap-3 px-3.5 py-3.5 rounded-[14px] hover:bg-[#86C232]/[0.07] transition-colors duration-200 group">
-                                  <span className="flex-shrink-0 w-9 h-9 rounded-[10px] flex items-center justify-center bg-[#474B4F]/30 border border-[#474B4F]/60 text-[#86C232] group-hover:bg-[#86C232]/15 group-hover:border-[#86C232]/30 transition-all duration-200">
+                                <Link key={child.label} href={child.href} onClick={() => setActiveMenu(null)} className="dd-link flex items-start gap-3 px-3.5 py-3.5 rounded-[14px] hover:bg-white/5 transition-colors duration-200 group">
+                                  <span className="flex-shrink-0 w-9 h-9 rounded-[10px] flex items-center justify-center bg-white/5 border border-white/10 text-[#86C232] group-hover:bg-[#86C232]/15 group-hover:border-[#86C232]/30 transition-all duration-200">
                                     {Icon && <Icon size={16} strokeWidth={1.8} />}
                                   </span>
                                   <span className="flex flex-col gap-0.5 min-w-0">
-                                    <span className="text-[0.8rem] font-bold text-white group-hover:text-[#86C232] transition-colors duration-200 leading-tight">{child.label}</span>
-                                    {child.desc && <span className="text-[0.72rem] font-medium leading-snug" style={{ color: "rgba(107,110,112,0.9)" }}>{child.desc}</span>}
+                                    <span className="text-[0.8rem] font-bold text-white/90 group-hover:text-white transition-colors duration-200 leading-tight">{child.label}</span>
+                                    {child.desc && <span className="text-[0.72rem] font-medium leading-snug text-white/50">{child.desc}</span>}
                                   </span>
                                 </Link>
                               );
                             })}
                           </div>
-                          <div className="mt-2 pt-2.5 border-t border-[#474B4F]/60 px-2 flex items-center justify-between">
-                            <span className="text-[0.78rem] font-semibold text-[#6B6E70]">Explore all services</span>
-                            {/* ADDED onClick={() => setActiveMenu(null)} */}
+                          <div className="mt-2 pt-2.5 border-t border-white/10 px-2 flex items-center justify-between">
+                            <span className="text-[0.78rem] font-semibold text-white/50">Explore all services</span>
                             <Link href="/services" onClick={() => setActiveMenu(null)} className="flex items-center gap-1.5 text-[0.78rem] font-bold text-[#86C232] hover:underline">View all <ArrowRight size={12} strokeWidth={2.5} /></Link>
                           </div>
                         </div>
@@ -411,15 +406,14 @@ export default function Navbar(): React.ReactElement {
                     )}
 
                     {isMega && (
-                      <div className="js-mega absolute top-full left-1/2 w-[1050px] max-w-[calc(100vw-4rem)] z-[200] pt-2" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
-                        <div className="bg-[#222629] border border-[#474B4F] rounded-[24px] p-8 shadow-[0_30px_80px_rgba(0,0,0,0.7)] grid grid-cols-[1fr_1fr_1fr_280px] gap-8" style={{ backdropFilter: "blur(100px)" }}>
+                      <div className="js-mega absolute top-full left-1/2 w-[1050px] max-w-[calc(100vw-4rem)] z-[200] pt-4" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
+                        <div className="bg-[#222629]/85 border border-white/10 rounded-[24px] p-8 shadow-[0_30px_80px_rgba(0,0,0,0.5)] grid grid-cols-[1fr_1fr_1fr_280px] gap-8" style={{ backdropFilter: "blur(24px) saturate(150%)" }}>
                           {MEGA_COLS.map((col) => (
                             <div key={col.title}>
-                              <div className="text-[1.0rem] font-extrabold text-white mb-5 pb-3 border-b border-[#474B4F]">{col.title}</div>
+                              <div className="text-[1.0rem] font-extrabold text-white mb-5 pb-3 border-b border-white/10">{col.title}</div>
                               <div className="flex flex-col gap-0.5">
                                 {col.links.map((lnk) => (
-                                  /* ADDED onClick={() => setActiveMenu(null)} */
-                                  <Link key={lnk.label} href={lnk.href} onClick={() => setActiveMenu(null)} className="mega-link flex items-center justify-between text-[0.875rem] font-semibold text-[#6B6E70] px-3 py-[9px] rounded-xl hover:text-[#86C232] hover:bg-[#86C232]/[0.06] transition-colors duration-200 gap-1.5">
+                                  <Link key={lnk.label} href={lnk.href} onClick={() => setActiveMenu(null)} className="mega-link flex items-center justify-between text-[0.875rem] font-semibold text-white/70 px-3 py-[9px] rounded-xl hover:text-white hover:bg-white/5 transition-colors duration-200 gap-1.5">
                                     <span className="flex items-center gap-2">
                                       <span className="mega-dot w-1.5 h-1.5 rounded-full bg-[#86C232] opacity-0 flex-shrink-0 scale-50 transition-[opacity,transform] duration-200" />
                                       {lnk.label}
@@ -431,11 +425,11 @@ export default function Navbar(): React.ReactElement {
                               </div>
                             </div>
                           ))}
-                          <div className="rounded-[20px] p-6 flex flex-col relative overflow-hidden bg-[#111316] border border-[#474B4F] shadow-xl">
+                          <div className="rounded-[20px] p-6 flex flex-col relative overflow-hidden bg-white/5 border border-white/10 shadow-xl">
                             <div className="relative z-10">
                               <h3 className="text-4xl font-extrabold text-white leading-[1.1] mb-2">Modern</h3>
-                              <p className="text-[0.9rem] mb-6 text-[#e2e2e2] font-semibold tracking-wide">Home Makeover</p>
-                              <a href="tel:+8321890640" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-[0.85rem] font-bold border-2 rounded-full transition-all hover:bg-[#86C232] hover:text-[#111316] border-[#86C232] text-[#86C232]">
+                              <p className="text-[0.9rem] mb-6 text-white/80 font-semibold tracking-wide">Home Makeover</p>
+                              <a href="tel:+8321890640" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-[0.85rem] font-bold border-2 rounded-full transition-all hover:bg-[#86C232] hover:text-[#222629] border-[#86C232] text-[#86C232]">
                                 <Phone size={14} strokeWidth={2.5} /> +8 (321) 890-640
                               </a>
                             </div>
@@ -463,12 +457,12 @@ export default function Navbar(): React.ReactElement {
                 <ArrowRight size={14} strokeWidth={2.5} className="transition-transform duration-[400ms] ease-[cubic-bezier(0.65,0,0.35,1)] -rotate-45 [.tp:hover_&]:rotate-0" />
               </span>
             </Link>
-            <button className="hidden lg:flex w-11 h-11 items-center justify-center text-[#6B6E70] hover:text-[#86C232] transition-colors" onClick={() => setSidePanelOpen(true)}>
+            <button className="hidden lg:flex w-11 h-11 items-center justify-center text-white/70 hover:text-white transition-colors" onClick={() => setSidePanelOpen(true)}>
               <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
               </svg>
             </button>
-            <button className="flex lg:hidden w-[34px] h-[34px] sm:w-11 sm:h-11 items-center justify-center text-[#6B6E70] hover:text-[#86C232] transition-colors" onClick={() => setMobileOpen(true)}>
+            <button className="flex lg:hidden w-[34px] h-[34px] sm:w-11 sm:h-11 items-center justify-center text-white/70 hover:text-white transition-colors" onClick={() => setMobileOpen(true)}>
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
               </svg>

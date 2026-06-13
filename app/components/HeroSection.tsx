@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight, MoveDown } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, ArrowDown } from "lucide-react";
 
 // ─── Slide images ─────────────────────────────────────────────────────────────
 const SLIDES: string[] = [
@@ -16,22 +16,15 @@ const EXPLORE_LABEL = "Explore More * Explore More * Explore More * ";
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function HeroSection(): React.ReactElement {
-  const [current,     setCurrent]     = useState<number>(0);
-  const [vis,         setVis]         = useState<boolean>(false);
-  const [rotation,    setRotation]    = useState<number>(0);
+  const [current, setCurrent] = useState<number>(0);
+  const [vis, setVis] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
-  const [textKey,     setTextKey]     = useState<number>(0);
+  const [textKey, setTextKey] = useState<number>(0);
 
   // Initial page reveal
   useEffect(() => {
     const t = setTimeout(() => setVis(true), 100);
     return () => clearTimeout(t);
-  }, []);
-
-  // Rotate "Explore More" ring
-  useEffect(() => {
-    const id = setInterval(() => setRotation((r) => r + 0.38), 16);
-    return () => clearInterval(id);
   }, []);
 
   // Auto-advance slides
@@ -107,11 +100,11 @@ export default function HeroSection(): React.ReactElement {
       `}</style>
 
       {/* ══════════════════════════════════════════
-          OUTER SHELL
+         OUTER SHELL
       ══════════════════════════════════════════ */}
       <div
         className={[
-          "w-full min-h-screen bg-white flex flex-col", // <-- CHANGED TO bg-white
+          "w-full min-h-screen bg-white flex flex-col",
           "p-3 md:p-[22px]",
           "[font-family:'Inter',system-ui,sans-serif]",
           "transition-opacity duration-700 ease-in",
@@ -125,7 +118,7 @@ export default function HeroSection(): React.ReactElement {
         <div
           className={[
             "relative flex-1 overflow-hidden",
-            "rounded-[20px] md:rounded-[28px]",
+            "rounded-[20px] md:rounded-[15px]",
             "border border-[#474B4F] bg-[#222629]",
             "min-h-[calc(100vh-24px)] md:min-h-[calc(100vh-44px)]",
           ].join(" ")}
@@ -330,59 +323,45 @@ export default function HeroSection(): React.ReactElement {
           </div>
 
           {/* ══════════════════════════════════════════
-              EXPLORE MORE ROTATING BADGE
+              EXPLORE MORE ROTATING BADGE (Glassmorphism Added)
           ══════════════════════════════════════════ */}
           <div
             className={[
-              "absolute z-[12] w-[148px] h-[148px] cursor-pointer",
-              "bottom-6 right-6 md:bottom-8 md:right-11",
-              "origin-bottom-right transition-transform duration-300 ease-in-out",
-              "scale-[0.65] sm:scale-[0.75] lg:scale-100",
+              "absolute z-[12] cursor-pointer group",
+              "bottom-6 right-6 md:bottom-12 md:right-12",
+              "w-[120px] h-[120px] md:w-[150px] md:h-[150px]",
+              "rounded-full bg-[#222629]/40 backdrop-blur-md border border-white/10", // <-- Background blur added back here
+              "flex items-center justify-center",
+              "transition-all duration-500 hover:scale-105 hover:bg-[#222629]/60",
             ].join(" ")}
             onClick={() =>
               window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
             }
           >
-            {/* Rotating SVG text ring */}
+            {/* Rotating SVG text ring (Uses Tailwind animate-spin) */}
             <svg
-              viewBox="0 0 148 148"
-              className="absolute inset-0 w-full h-full"
-              style={{ transform: `rotate(${rotation}deg)` }}
+              viewBox="0 0 160 160"
+              className="absolute inset-0 w-full h-full pointer-events-none animate-[spin_12s_linear_infinite]"
             >
               <defs>
                 <path
-                  id="ep"
-                  d="M 74,74 m -50,0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0"
+                  id="textPath"
+                  d="M 80, 80 m -58, 0 a 58,58 0 1,1 116,0 a 58,58 0 1,1 -116,0"
                 />
               </defs>
               <text
-                style={{
-                  fontSize: "11.5px",
-                  fill: "#6B6E70",
-                  fontWeight: 600,
-                  letterSpacing: "2px",
-                }}
+                className="fill-white font-medium uppercase tracking-[0.16em]"
+                style={{ fontSize: "11.5px" }}
               >
-                <textPath href="#ep">{EXPLORE_LABEL}</textPath>
+                <textPath href="#textPath" startOffset="0" textLength="364" lengthAdjust="spacing">
+                  {EXPLORE_LABEL}
+                </textPath>
               </text>
             </svg>
 
-            {/* Centre icon — hover handled via group */}
-            <div
-              className={[
-                "group",
-                "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
-                "w-11 h-11 rounded-full",
-                "bg-[#474B4F] border border-[#6B6E70]",
-                "flex items-center justify-content",
-                "transition-all duration-[280ms]",
-                "hover:bg-[#86C232] hover:border-[#86C232] hover:scale-110",
-              ].join(" ")}
-            >
-              <MoveDown
-                size={18}
-                className="text-white group-hover:text-[#222629] transition-colors duration-[280ms] m-auto"
-              />
+            {/* Static Centre Arrow */}
+            <div className="absolute inset-0 flex items-center justify-center transition-transform duration-500 group-hover:translate-y-2 pointer-events-none">
+              <ArrowDown size={44} strokeWidth={1} className="text-white" />
             </div>
           </div>
 
