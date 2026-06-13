@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -52,6 +52,12 @@ function RevealImage({ src, alt, progress, range }: { src: string; alt: string; 
   );
 }
 
+// Custom Types to fix strict-mode TS errors
+type ParsedElement = 
+  | { type: 'space'; content: string }
+  | { type: 'word'; content: string }
+  | { type: 'img'; src: string; alt: string };
+
 // 3. The Main Heading Component
 function FullScrollRevealHeading() {
   const containerRef = useRef<HTMLHeadingElement>(null);
@@ -68,15 +74,16 @@ function FullScrollRevealHeading() {
     { type: 'text', content: " through trust and innovation and shared for success industries Experts." }
   ];
 
-  const elements: any[] = [];
+  const elements: ParsedElement[] = [];
+  
   headingChunks.forEach(chunk => {
-    if (chunk.type === 'text') {
+    if (chunk.type === 'text' && chunk.content) {
       const tokens = chunk.content.match(/\S+|\s+/g) || [];
       tokens.forEach(token => {
         if (token.trim() === '') elements.push({ type: 'space', content: token });
         else elements.push({ type: 'word', content: token });
       });
-    } else {
+    } else if (chunk.type === 'img' && chunk.src && chunk.alt) {
       elements.push({ type: 'img', src: chunk.src, alt: chunk.alt });
     }
   });
@@ -95,7 +102,7 @@ function FullScrollRevealHeading() {
         if (el.type === 'space') {
            return el.content.split('').map((char: string, cIdx: number) => {
               const start = globalIdx / totalItems;
-              const end = start + 0.15; // Extended overlap range
+              const end = start + 0.15; 
               globalIdx++;
               return <RevealCharacter key={`s-${elIdx}-${cIdx}`} char={char} progress={scrollYProgress} range={[start, end]} />;
            });
@@ -104,7 +111,7 @@ function FullScrollRevealHeading() {
              <span key={`w-${elIdx}`} className="inline-block whitespace-nowrap">
                {el.content.split('').map((char: string, cIdx: number) => {
                   const start = globalIdx / totalItems;
-                  const end = start + 0.15; // Extended overlap range
+                  const end = start + 0.15; 
                   globalIdx++;
                   return <RevealCharacter key={`wc-${elIdx}-${cIdx}`} char={char} progress={scrollYProgress} range={[start, end]} />;
                })}
@@ -112,10 +119,11 @@ function FullScrollRevealHeading() {
            );
         } else if (el.type === 'img') {
            const start = globalIdx / totalItems;
-           const end = start + 0.15; // Extended overlap range
+           const end = start + 0.15; 
            globalIdx++;
            return <RevealImage key={`img-${elIdx}`} src={el.src} alt={el.alt} progress={scrollYProgress} range={[start, end]} />;
         }
+        return null;
       })}
     </h2>
   );
@@ -125,10 +133,12 @@ function FullScrollRevealHeading() {
    MAIN COMPONENT
 ───────────────────────────────────────── */
 export default function HomeAbout(): React.ReactElement {
+  // REMOVED: Unused and crashing requestAnimationFrame loop state variables
+
   return (
     <div className="w-full bg-white px-4 md:px-8 lg:px-10 py-10 font-['Manrope',_sans-serif]">
       
-      {/* ── LIGHT SOLID GLOSSY BACKGROUND WITH DIAGONAL LINES RESTORED ── */}
+      {/* ── LIGHT SOLID GLOSSY BACKGROUND WITH DIAGONAL LINES ── */}
       <section 
         className="relative w-full max-w-[1600px] mx-auto pt-24 pb-16 overflow-hidden rounded-[40px] md:rounded-[60px] border-[1.5px] border-white/40 shadow-[0_8px_40px_rgba(0,0,0,0.04)]"
         style={{ 
