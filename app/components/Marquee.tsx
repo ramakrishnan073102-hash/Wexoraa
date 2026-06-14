@@ -99,7 +99,7 @@ export default function MarqueeSection(): React.ReactElement {
                 "text-[1.75rem] md:text-[2.25rem]",
               ].join(" ")}
             >
-              Technologies Work with here{" "}
+             Technologies We Work With{" "}
               <br />
               <span className="text-[#86C232]">Wexoraa</span> 
             </h2>

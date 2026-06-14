@@ -10,13 +10,12 @@ import {
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface NavBadge { text: string; color: string; }
 interface NavChild { label: string; href: string; badge?: NavBadge; icon?: React.ElementType; desc?: string; }
-interface NavItem  { label: string; href: string; children?: NavChild[]; mega?: boolean; }
-interface MegaCol  { title: string; links: NavChild[]; }
+interface NavItem  { label: string; href: string; children?: NavChild[]; }
 
 // ─── Nav Data ─────────────────────────────────────────────────────────────────
 const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "Pages", href: "#", mega: true },
+  { label: "About Us", href: "/about" },
   {
     label: "Services", href: "/services",
     children: [
@@ -35,64 +34,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Portfolio Details", href: "/portfoliopage1" },
     ],
   },
-  {
-    label: "Blog", href: "/blog",
-    children: [
-      { label: "Blog",              href: "/readblog" },
-      { label: "Blog Grid",         href: "/bloggrid" },
-      { label: "Blog With Sidebar", href: "/blogrightsidebar" },
-      { label: "Blog Details",      href: "/blogpage1" },
-    ],
-  },
   { label: "Contact", href: "/contact" },
-];
-
-const MEGA_COLS: MegaCol[] = [
-  {
-    title: "Main Pages",
-    links: [
-      { label: "About Us",          href: "/about" },
-      { label: "Our History",       href: "/history",         badge: { text: "HOT", color: "#ef4444" } },
-      { label: "Team",              href: "/team" },
-      { label: "Team Details",      href: "/teamdetails" },
-      { label: "Careers",           href: "/careers",         badge: { text: "New", color: "#86C232" } },
-      { label: "Careers Details",   href: "/careersdetails" },
-      { label: "Pricing Plan",      href: "/pricing" },
-      { label: "Feedbacks",         href: "/feedbacks" },
-      { label: "Faq",               href: "/faq" },
-      { label: "Contact",           href: "/contact" },
-    ],
-  },
-  {
-    title: "Other pages",
-    links: [
-      { label: "Services",          href: "/navservices" },
-      { label: "Service Details",   href: "/page1" },
-      { label: "Portfolios",        href: "/portfolio" },
-      { label: "Portfolio Details", href: "/portfoliopage1" },
-      { label: "Error 404",         href: "/404" },
-      { label: "Blog Grid",         href: "/bloggrid",    badge: { text: "New", color: "#86C232" } },
-      { label: "Blog Standard",     href: "/readblog" },
-      { label: "Blog Sidebar",      href: "/blogrightsidebar" },
-      { label: "Blog Details",      href: "/blogpage1" },
-      { label: "Term & Conditions", href: "/termsandconditions" },
-    ],
-  },
-  {
-    title: "Shop pages",
-    links: [
-      { label: "Shop",          href: "/shop",         badge: { text: "HOT", color: "#ef4444" } },
-      { label: "Shop Details",  href: "/shop-details" },
-      { label: "Cart",          href: "/cart" },
-      { label: "Checkout",      href: "/checkout" },
-      { label: "My Account",    href: "/account" },
-      { label: "Wishlist",      href: "/wishlist",     badge: { text: "New", color: "#86C232" } },
-      { label: "Login",         href: "/login" },
-      { label: "Registration",  href: "/register" },
-      { label: "Order Confirm", href: "/order-confirm" },
-      { label: "Coming Soon",   href: "/coming-soon" },
-    ],
-  },
 ];
 
 const HOME_DEMOS = [
@@ -251,23 +193,11 @@ export default function Navbar(): React.ReactElement {
           transform: translateY(0) scale(1);
           transition: opacity 0.38s ease-out, transform 0.38s cubic-bezier(0.16,1,0.3,1), visibility 0s;
         }
-        .js-mega {
-          opacity: 0; visibility: hidden; pointer-events: none;
-          transform: translateX(-50%) translateY(8px) scale(0.97); transform-origin: top center;
-          transition: opacity 0.32s ease-out, transform 0.32s cubic-bezier(0.16,1,0.3,1), visibility 0.32s;
-        }
-        .js-mega[data-open="true"] {
-          opacity: 1; visibility: visible; pointer-events: auto;
-          transform: translateX(-50%) translateY(0) scale(1);
-          transition: opacity 0.38s ease-out, transform 0.38s cubic-bezier(0.16,1,0.3,1), visibility 0s;
-        }
         .nav-chevron { transition: transform 0.32s cubic-bezier(0.16,1,0.3,1); }
         .nav-chevron[data-open="true"] { transform: rotate(180deg); }
 
         .dd-link:hover .dd-dot   { opacity:1; transform:scale(1); }
         .dd-link:hover .dd-arrow { opacity:1; transform:translateX(0); }
-        .mega-link:hover .mega-dot   { opacity:1; transform:scale(1); }
-        .mega-link:hover .mega-arrow { opacity:1; transform:translateX(0); }
 
         /* Panels */
         .panel-overlay { opacity:0; visibility:hidden; transition:opacity 0.28s, visibility 0.28s; }
@@ -297,7 +227,7 @@ export default function Navbar(): React.ReactElement {
         className={[
           "fixed z-[1000] flex justify-center pointer-events-none",
           "top-8 left-3 right-3 md:top-8 md:left-6 md:right-6 lg:top-8 lg:left-10 lg:right-10",
-          "transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+          "transition-[transform,opacity] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]",
           hidden ? "navbar-hidden" : "",
         ].join(" ")}
       >
@@ -333,19 +263,17 @@ export default function Navbar(): React.ReactElement {
           <nav className="hidden lg:block">
             <ul className="flex items-center list-none m-0 p-0 gap-px">
               {NAV_ITEMS.map((item) => {
-                const hasDD      = !!(item.children && !item.mega);
-                const isMega     = !!item.mega;
-                const hasAny     = hasDD || isMega;
+                const hasDD      = !!item.children;
                 const isServices = item.label === "Services";
                 const isOpen     = activeMenu === item.label;
                 return (
                   <li
                     key={item.label}
-                    className={`relative ${isMega ? "static" : ""}`}
-                    onMouseEnter={() => hasAny && openMenu(item.label)}
-                    onMouseLeave={() => hasAny && scheduleClose()}
+                    className="relative"
+                    onMouseEnter={() => hasDD && openMenu(item.label)}
+                    onMouseLeave={() => hasDD && scheduleClose()}
                   >
-                    {hasAny ? (
+                    {hasDD ? (
                       <button className={["flex items-center gap-1 px-3.5 py-1.5 text-sm font-semibold bg-transparent border-none cursor-pointer rounded-full transition-colors duration-200 whitespace-nowrap", isOpen ? "text-[#86C232] bg-[#86C232]/[0.08]" : "text-white/85 hover:text-[#86C232] hover:bg-white/10"].join(" ")}>
                         {item.label}
                         <ChevronDown size={13} className="nav-chevron opacity-60" data-open={isOpen ? "true" : "false"} />
@@ -359,7 +287,6 @@ export default function Navbar(): React.ReactElement {
                     {/* GLOSSY DROPDOWNS */}
                     {hasDD && !isServices && (
                       <div className="js-dropdown absolute top-full left-0 min-w-[240px] z-[200] pt-4" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
-                        {/* High blur on dropdowns too */}
                         <div className="bg-[#222629]/75 border border-white/10 rounded-[16px] p-2 shadow-[0_24px_64px_rgba(0,0,0,0.5)]" style={{ backdropFilter: "blur(48px) saturate(200%)" }}>
                           {item.children!.map((child, idx) => (
                             <div key={child.label}>
@@ -402,43 +329,6 @@ export default function Navbar(): React.ReactElement {
                           <div className="mt-2 pt-2.5 border-t border-white/10 px-2 flex items-center justify-between">
                             <span className="text-[0.78rem] font-semibold text-white/50">Explore all services</span>
                             <Link href="/services" onClick={() => setActiveMenu(null)} className="flex items-center gap-1.5 text-[0.78rem] font-bold text-[#86C232] hover:underline">View all <ArrowRight size={12} strokeWidth={2.5} /></Link>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {isMega && (
-                      <div className="js-mega absolute top-full left-1/2 w-[1050px] max-w-[calc(100vw-4rem)] z-[200] pt-4" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
-                        <div className="bg-[#222629]/75 border border-white/10 rounded-[24px] p-8 shadow-[0_30px_80px_rgba(0,0,0,0.6)] grid grid-cols-[1fr_1fr_1fr_280px] gap-8" style={{ backdropFilter: "blur(48px) saturate(200%)" }}>
-                          {MEGA_COLS.map((col) => (
-                            <div key={col.title}>
-                              <div className="text-[1.0rem] font-extrabold text-white mb-5 pb-3 border-b border-white/10">{col.title}</div>
-                              <div className="flex flex-col gap-0.5">
-                                {col.links.map((lnk) => (
-                                  <Link key={lnk.label} href={lnk.href} onClick={() => setActiveMenu(null)} className="mega-link flex items-center justify-between text-[0.875rem] font-semibold text-white/70 px-3 py-[9px] rounded-xl hover:text-white hover:bg-white/5 transition-colors duration-200 gap-1.5">
-                                    <span className="flex items-center gap-2">
-                                      <span className="mega-dot w-1.5 h-1.5 rounded-full bg-[#86C232] opacity-0 flex-shrink-0 scale-50 transition-[opacity,transform] duration-200" />
-                                      {lnk.label}
-                                      {lnk.badge && <span className="ml-1 text-[9px] font-extrabold px-1.5 py-0.5 rounded text-[#222629] uppercase" style={{ background: lnk.badge.color }}>{lnk.badge.text}</span>}
-                                    </span>
-                                    <span className="mega-arrow text-[#86C232] opacity-0 -translate-x-1 transition-[opacity,transform] duration-200 flex-shrink-0"><ArrowRight size={12} strokeWidth={2.5} /></span>
-                                  </Link>
-                                ))}
-                              </div>
-                            </div>
-                          ))}
-                          <div className="rounded-[20px] p-6 flex flex-col relative overflow-hidden bg-white/5 border border-white/10 shadow-xl">
-                            <div className="relative z-10">
-                              <h3 className="text-4xl font-extrabold text-white leading-[1.1] mb-2">Modern</h3>
-                              <p className="text-[0.9rem] mb-6 text-white/80 font-semibold tracking-wide">Home Makeover</p>
-                              <a href="tel:+8321890640" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-[0.85rem] font-bold border-2 rounded-full transition-all hover:bg-[#86C232] hover:text-[#222629] border-[#86C232] text-[#86C232]">
-                                <Phone size={14} strokeWidth={2.5} /> +8 (321) 890-640
-                              </a>
-                            </div>
-                            <div className="absolute -bottom-8 -right-8 w-44 h-44 rounded-full border-[6px] border-[#86C232] overflow-hidden bg-[#222629]">
-                              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" alt="Professional" className="w-full h-full object-cover" />
-                            </div>
-                            <div className="absolute -bottom-10 -right-10 w-32 h-32 rounded-full blur-[100px] opacity-25 bg-[#86C232] pointer-events-none" />
                           </div>
                         </div>
                       </div>
@@ -559,34 +449,6 @@ export default function Navbar(): React.ReactElement {
             </div>
           </MobileAccordion>
 
-          <MobileAccordion label="Pages" isOpen={openAccordion === "Pages"} onToggle={() => setOpenAccordion(openAccordion === "Pages" ? null : "Pages")}>
-            <div className="pb-4">
-              {MEGA_COLS.map((col) => (
-                <div key={col.title} className="px-6 pt-5 pb-1">
-                  <p className="text-[1.0rem] font-bold text-white mb-1">{col.title}</p>
-                  <div className="w-7 h-[3px] bg-[#86C232] rounded-full mb-3" />
-                  {col.links.map((lnk, idx) => (
-                    <div key={lnk.label}>
-                      <Link
-                        href={lnk.href}
-                        className="flex items-center gap-2 py-[10px] text-[0.9rem] font-medium text-white/75 hover:text-[#86C232] transition-colors duration-200"
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        {lnk.label}
-                        {lnk.badge && (
-                          <span className="text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wide" style={{ background: lnk.badge.color, color: lnk.badge.color === "#86C232" ? "#222629" : "#fff" }}>
-                            {lnk.badge.text}
-                          </span>
-                        )}
-                      </Link>
-                      {idx < col.links.length - 1 && <div className="h-px bg-[#474B4F]/40" />}
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </MobileAccordion>
-
           <MobileAccordion label="Services" isOpen={openAccordion === "Services"} onToggle={() => setOpenAccordion(openAccordion === "Services" ? null : "Services")}>
             <div className="pb-2">
               {NAV_ITEMS.find(i => i.label === "Services")!.children!.map((svc, idx, arr) => {
@@ -621,19 +483,6 @@ export default function Navbar(): React.ReactElement {
           <MobileAccordion label="Portfolio" isOpen={openAccordion === "Portfolio"} onToggle={() => setOpenAccordion(openAccordion === "Portfolio" ? null : "Portfolio")}>
             <div className="px-6 pb-4">
               {NAV_ITEMS.find(i => i.label === "Portfolio")!.children!.map((child, idx, arr) => (
-                <div key={child.label}>
-                  <Link href={child.href} className="block py-[10px] text-[0.9rem] font-medium text-white/75 hover:text-[#86C232] transition-colors duration-200" onClick={() => setMobileOpen(false)}>
-                    {child.label}
-                  </Link>
-                  {idx < arr.length - 1 && <div className="h-px bg-[#474B4F]/40" />}
-                </div>
-              ))}
-            </div>
-          </MobileAccordion>
-
-          <MobileAccordion label="Blog" isOpen={openAccordion === "Blog"} onToggle={() => setOpenAccordion(openAccordion === "Blog" ? null : "Blog")}>
-            <div className="px-6 pb-4">
-              {NAV_ITEMS.find(i => i.label === "Blog")!.children!.map((child, idx, arr) => (
                 <div key={child.label}>
                   <Link href={child.href} className="block py-[10px] text-[0.9rem] font-medium text-white/75 hover:text-[#86C232] transition-colors duration-200" onClick={() => setMobileOpen(false)}>
                     {child.label}
