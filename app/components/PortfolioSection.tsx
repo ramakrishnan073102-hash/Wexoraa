@@ -134,11 +134,11 @@ export default function PortfolioSection(): React.ReactElement {
   return (
     <section 
       id="portfolio"
-      className="relative bg-white py-[120px] overflow-hidden w-full font-['Manrope',_sans-serif]"
+      className="relative bg-white py-20 md:py-[120px] overflow-hidden w-full font-['Manrope',_sans-serif]"
     >
       
       {/* ── ANIMATED HEADER ── */}
-      <div className="text-center mb-[60px] px-6 flex flex-col items-center">
+      <div className="text-center mb-[50px] md:mb-[60px] px-6 flex flex-col items-center">
         <motion.span 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -154,7 +154,7 @@ export default function PortfolioSection(): React.ReactElement {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[clamp(2.2rem,5vw,3.8rem)] font-extrabold text-[#222629] leading-[1.1] tracking-[-0.03em]"
+          className="text-4xl md:text-[clamp(2.2rem,5vw,3.8rem)] font-extrabold text-[#222629] leading-[1.1] tracking-[-0.03em]"
         >
           Breaking Boundaries,<br />
           Building <span className="text-[#86C232]">Dreams.</span>
@@ -162,17 +162,22 @@ export default function PortfolioSection(): React.ReactElement {
       </div>
 
       {/* ── SCROLL SLIDER VIEWPORT AREA ── */}
+      {/* Responsive Centering Logic:
+        Mobile: pl-[calc(50vw-140px)] perfectly centers the 280px wide card.
+        Tablet: pl-[calc(50vw-175px)] perfectly centers the 350px wide card.
+        Desktop: pl-[clamp(24px,6vw,100px)] returns it to the classic left-aligned look.
+      */}
       <motion.div 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="w-full overflow-hidden py-[20px] pl-[clamp(24px,6vw,100px)]"
+        className="w-full overflow-hidden py-[20px] pl-[calc(50vw-140px)] sm:pl-[calc(50vw-175px)] lg:pl-[clamp(24px,6vw,100px)]"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <div 
-          className="flex gap-[24px] lg:gap-[32px] w-max will-change-transform" 
+          className="flex gap-[16px] sm:gap-[24px] lg:gap-[32px] w-max will-change-transform" 
           ref={trackRef}
           style={{ 
             transform: `translateX(-${activeIndex * slideWidth}px)`,
@@ -181,12 +186,12 @@ export default function PortfolioSection(): React.ReactElement {
           }}
         >
           {EXTENDED_ITEMS.map((item, index) => {
-            // Note: The scale-[0.95] logic was completely removed so every card stays the same size
             return (
               <Link
                 key={`${item.id}-${index}`}
                 href={item.href}
-                className="group/card flex-none w-[350px] lg:w-[420px] h-[460px] lg:h-[520px] rounded-[24px] relative overflow-hidden cursor-pointer no-underline opacity-100"
+                // Responsive card widths to fit screens nicely
+                className="group/card flex-none w-[280px] sm:w-[350px] lg:w-[420px] h-[380px] sm:h-[460px] lg:h-[520px] rounded-[24px] relative overflow-hidden cursor-pointer no-underline opacity-100"
               >
                 <img 
                   src={item.img} 
@@ -195,21 +200,22 @@ export default function PortfolioSection(): React.ReactElement {
                 />
                 
                 {/* ── OVERLAY STYLE ── */}
-                <div className="absolute inset-0 flex flex-col justify-center items-center p-[40px] text-center transition-all duration-500 z-10 bg-[#111316]/40 lg:bg-transparent lg:group-hover/card:bg-[#111316]/75">
+                {/* Always visible on mobile, appears on hover on desktop */}
+                <div className="absolute inset-0 flex flex-col justify-center items-center p-[30px] sm:p-[40px] text-center transition-all duration-500 z-10 bg-[#111316]/50 lg:bg-transparent lg:group-hover/card:bg-[#111316]/75">
                   
                   {/* Content Wrapper */}
                   <div className="flex flex-col items-center transition-all duration-500 opacity-100 lg:opacity-0 lg:group-hover/card:opacity-100 lg:translate-y-4 lg:group-hover/card:translate-y-0">
                     
-                    <span className="bg-transparent border border-white/40 text-white text-[13px] font-medium px-[20px] py-[6px] rounded-full mb-[20px] backdrop-blur-sm">
+                    <span className="bg-transparent border border-white/40 text-white text-[12px] sm:text-[13px] font-medium px-[20px] py-[6px] rounded-full mb-[16px] sm:mb-[20px] backdrop-blur-sm">
                       {item.badge}
                     </span>
                     
-                    <h3 className="text-white text-[2rem] font-bold tracking-[-0.02em] leading-[1.2] mb-[24px]">
+                    <h3 className="text-white text-[1.6rem] sm:text-[2rem] font-bold tracking-[-0.02em] leading-[1.2] mb-[20px] sm:mb-[24px]">
                       {item.title}
                     </h3>
                     
-                    <div className="text-white transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/card:translate-x-[6px] group-hover/card:-translate-y-[6px] group-hover/card:text-[#86C232]">
-                      <ArrowUpRight size={80} strokeWidth={1} />
+                    <div className="text-white transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:group-hover/card:translate-x-[6px] lg:group-hover/card:-translate-y-[6px] lg:group-hover/card:text-[#86C232]">
+                      <ArrowUpRight size={60} className="sm:w-[80px] sm:h-[80px]" strokeWidth={1} />
                     </div>
 
                   </div>
@@ -226,7 +232,7 @@ export default function PortfolioSection(): React.ReactElement {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.5 }}
-        className="flex justify-center gap-[10px] mt-[50px]"
+        className="flex justify-center gap-[10px] mt-[40px] sm:mt-[50px]"
       >
         {PORTFOLIO_ITEMS.map((_, index) => (
           <div
