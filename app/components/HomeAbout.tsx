@@ -26,7 +26,6 @@ const AVATARS = [
 /* ─────────────────────────────────────────
    SCROLL REVEAL COMPONENTS (Smooth Wave)
 ───────────────────────────────────────── */
-// 1. Animates a single letter smoothly
 function RevealCharacter({ char, progress, range }: { char: string; progress: MotionValue<number>; range: [number, number] }) {
   const opacity = useTransform(progress, range, [0.15, 1]);
   const color = useTransform(progress, range, ["#A0AAB2", "#222629"]); 
@@ -38,7 +37,6 @@ function RevealCharacter({ char, progress, range }: { char: string; progress: Mo
   );
 }
 
-// 2. Animates an inline image
 function RevealImage({ src, alt, progress, range }: { src: string; alt: string; progress: MotionValue<number>; range: [number, number] }) {
   const opacity = useTransform(progress, range, [0.3, 1]);
   const scale = useTransform(progress, range, [0.95, 1]);
@@ -52,13 +50,11 @@ function RevealImage({ src, alt, progress, range }: { src: string; alt: string; 
   );
 }
 
-// Custom Types to fix strict-mode TS errors
 type ParsedElement = 
   | { type: 'space'; content: string }
   | { type: 'word'; content: string }
   | { type: 'img'; src: string; alt: string };
 
-// 3. The Main Heading Component
 function FullScrollRevealHeading() {
   const containerRef = useRef<HTMLHeadingElement>(null);
   const { scrollYProgress } = useScroll({
@@ -133,22 +129,20 @@ function FullScrollRevealHeading() {
    MAIN COMPONENT
 ───────────────────────────────────────── */
 export default function HomeAbout(): React.ReactElement {
-  // REMOVED: Unused and crashing requestAnimationFrame loop state variables
-
   return (
     <div className="w-full bg-white px-4 md:px-8 lg:px-10 py-10 font-['Manrope',_sans-serif]">
       
-      {/* ── LIGHT SOLID GLOSSY BACKGROUND WITH DIAGONAL LINES ── */}
       <section 
-        className="relative w-full max-w-[1600px] mx-auto pt-24 pb-16 overflow-hidden rounded-[40px] md:rounded-[60px] border-[1.5px] border-white/40 shadow-[0_8px_40px_rgba(0,0,0,0.04)]"
+        className="relative w-full max-w-[1600px] mx-auto pt-24 pb-16 overflow-hidden rounded-[40px] md:rounded-[60px] border-[1.5px] border-white/50 shadow-[0_8px_40px_rgba(0,0,0,0.04)]"
         style={{ 
           backgroundColor: "#EAF0ED",
+          // FIXED: 1px exact width to stop rendering glitches, reduced opacity for a soft light effect
           backgroundImage: `repeating-linear-gradient(
             -45deg,
-            rgba(71, 75, 79, 0.05) 0px,
-            rgba(71, 75, 79, 0.05) 1.5px,
-            transparent 1.5px,
-            transparent 12px
+            rgba(255, 255, 255, 0.4) 0px,
+            rgba(255, 255, 255, 0.4) 1px,
+            transparent 1px,
+            transparent 10px
           )`
         }}
       >
@@ -203,7 +197,6 @@ export default function HomeAbout(): React.ReactElement {
               className="lg:col-span-9 flex flex-col justify-between relative"
             >
               
-              {/* === FULL SMOOTH SCROLL REVEAL HEADING HERE === */}
               <FullScrollRevealHeading />
 
               <div className="flex flex-wrap items-center gap-4 mt-6">
@@ -234,7 +227,7 @@ export default function HomeAbout(): React.ReactElement {
           {/* ══════════════════════════════════════════
               HARDWARE-ACCELERATED INFINITE SCROLL
           ══════════════════════════════════════════ */}
-          <div className="w-full relative pt-12 pb-6 border-t border-[#474B4F]/10">
+          <div className="w-full relative pt-12 pb-6 border-t border-white/50">
              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#EAF0ED] to-transparent z-10 pointer-events-none" />
              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#EAF0ED] to-transparent z-10 pointer-events-none" />
 

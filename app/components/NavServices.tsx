@@ -194,7 +194,7 @@ export default function ServicesPage(): React.ReactElement {
           1. HERO SECTION (BOXY DESIGN)
       ════════════════════════════════════════════════════ */}
       <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-16 md:mb-24">
-        <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[15px] md:rounded-[15px][40px] flex items-center justify-center overflow-hidden shadow-sm">
+        <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[15px] md:rounded-[40px] flex items-center justify-center overflow-hidden shadow-sm">
           
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -274,10 +274,9 @@ export default function ServicesPage(): React.ReactElement {
                       {service.desc}
                     </p>
 
-                    {/* Learn More (Div wrapper so it animates securely inside the Link) */}
+                    {/* Learn More */}
                     <div className="flex items-center gap-2 text-[15px] font-extrabold text-[#222629] transition-colors duration-300 group-hover:text-white mt-auto w-fit">
                       Learn More 
-                      {/* Circle & Arrow icon */}
                       <span className="flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 bg-transparent text-[#222629] group-hover:bg-[#222629] group-hover:text-white">
                         <ArrowRight 
                           size={18} 
@@ -352,7 +351,7 @@ export default function ServicesPage(): React.ReactElement {
             backgroundSize: "80%",
             backgroundPosition: "20% center",
             backgroundRepeat: "no-repeat",
-            filter: "invert(1)" // Inverts the black SVG to white
+            filter: "invert(1)"
           }}
         />
 
@@ -388,7 +387,6 @@ export default function ServicesPage(): React.ReactElement {
                       </p>
                       <p className="text-[13px] font-bold">P: +1 (009) 544-7818</p>
                       <p className="text-[13px] font-bold">M: support@wexoraa.com</p>
-                      {/* Triangle Pointer */}
                       <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[8px] border-transparent border-t-[#86C232]" />
                     </motion.div>
                   )}
@@ -414,7 +412,8 @@ export default function ServicesPage(): React.ReactElement {
           </div>
 
           {/* RIGHT: CONTACT FORM */}
-          <div className="w-full lg:w-1/2 bg-[#222629] p-8 sm:p-12 lg:p-16 rounded-[24px] lg:rounded-none lg:rounded-l-[40px] shadow-2xl relative lg:-mr-8 my-auto border border-[#474B4F]/30 lg:border-r-0">
+          {/* FIXED: Removed lg:rounded-l-[40px] and lg:-mr-8 and lg:border-r-0 to give all corners a 40px rounded design and fit neatly inside the layout */}
+          <div className="w-full lg:w-1/2 bg-[#222629] p-8 sm:p-12 lg:p-16 rounded-[24px] lg:rounded-[10px] shadow-2xl relative my-auto border border-[#474B4F]/30">
             
             <div className="flex items-center gap-2 text-[#86C232] text-xs font-black uppercase tracking-[0.2em] mb-6">
               <Box size={14} strokeWidth={2.5} /> Get in touch

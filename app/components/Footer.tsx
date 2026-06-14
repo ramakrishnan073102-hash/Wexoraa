@@ -33,30 +33,6 @@ const FOOTER_LINKS = {
 };
 
 /* ─────────────────────────────────────────────
-   HEADING LETTER HOVER EFFECT
-───────────────────────────────────────────── */
-function AnimatedHeading({ text }: { text: string }) {
-  const words = text.split(" ");
-  return (
-    <h2 className="text-white text-[2.5rem] sm:text-5xl lg:text-[4.5rem] font-medium leading-[1.1] tracking-tight max-w-[650px]">
-      {words.map((word, wi) => (
-        <span key={wi} className="inline-block mr-[0.25em]">
-          {word.split("").map((char, ci) => (
-            <span
-              key={ci}
-              className="inline-block transition-all duration-300 hover:text-[#222629] hover:-translate-y-1 cursor-default"
-              style={{ transitionDelay: `${ci * 20}ms` }}
-            >
-              {char}
-            </span>
-          ))}
-        </span>
-      ))}
-    </h2>
-  );
-}
-
-/* ─────────────────────────────────────────────
    SIMPLE FOOTER LINK
 ───────────────────────────────────────────── */
 function FooterLink({
@@ -98,72 +74,100 @@ function FooterLink({
 export default function Footer(): React.ReactElement {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: `
-        .gs-btn {
-          transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.2s ease;
-        }
-        .gs-btn:hover {
-          background: #86C232 !important;
-          box-shadow: 0 10px 36px rgba(134,194,50,0.3);
-        }
-        .gs-btn:active { transform: scale(0.97); }
-
-        .gs-circle {
-          background: white;
-          color: #222629;
-          transition: background 0.35s ease, color 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .gs-btn:hover .gs-circle {
-          transform: rotate(45deg) scale(1.05);
-        }
-      `}} />
-
       <footer className="relative overflow-hidden bg-[#EEF3EE] font-['Manrope',_sans-serif]">
         <div className="relative z-10 max-w-[1340px] mx-auto px-5 sm:px-6 lg:px-8 pt-20 md:pt-28 pb-10">
 
           {/* ═══════════════════════════════════════════
-              CTA BANNER
+              CTA BANNER (GLOSSY & MASSIVE TEXT)
           ═══════════════════════════════════════════ */}
           <div
-            className="relative overflow-hidden rounded-[32px] mb-24 min-h-[380px] flex flex-col lg:flex-row items-stretch isolate"
-            style={{ background: "#61892F" }}
+            className="relative overflow-hidden rounded-[10px] mb-24 min-h-[500px] flex flex-col items-center justify-center isolate bg-gradient-to-br from-[#86C232]/20 via-[#86C232]/5 to-transparent backdrop-blur-2xl border-[1.5px] border-white/60 shadow-[0_20px_60px_rgba(134,194,50,0.15)]"
           >
+            {/* Inner Glossy Sheen */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-transparent to-transparent pointer-events-none z-0" />
+
             {/* Ambient Background Glow inside banner */}
-            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#86C232] blur-[150px] opacity-40 pointer-events-none rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#86C232]/25 blur-[120px] pointer-events-none rounded-full z-0" />
 
-            {/* LEFT: Text + Button */}
-            <div className="relative z-30 flex-1 flex flex-col justify-center p-8 sm:p-12 lg:p-[4.5rem] lg:pr-0 max-w-[750px]">
-              <AnimatedHeading text="Let's Build Future together." />
+            {/* Content: Massive Text + Centered Avatar Button */}
+            <div className="relative z-30 flex flex-col items-center text-center p-8 sm:p-12 w-full">
+              
+              <h2 className="text-[#222629] text-[3.5rem] sm:text-[5.5rem] lg:text-[7.5rem] font-black leading-[0.95] tracking-tighter max-w-[1100px] mx-auto drop-shadow-md flex flex-wrap justify-center gap-x-[0.2em] mb-14">
+                
+                {/* Let's */}
+                <span className="inline-block">
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">L</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">e</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">t</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">'s</span>
+                </span>
+                
+                {/* Build (Glossy Green Color) */}
+                <span className="inline-block text-[#86C232] drop-shadow-sm">
+                  <span className="hover:text-[#222629] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">B</span>
+                  <span className="hover:text-[#222629] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">u</span>
+                  <span className="hover:text-[#222629] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">i</span>
+                  <span className="hover:text-[#222629] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">l</span>
+                  <span className="hover:text-[#222629] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">d</span>
+                </span>
+                
+                {/* Future */}
+                <span className="inline-block">
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">F</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">u</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">t</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">u</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">r</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">e</span>
+                </span>
+                
+                {/* Together? */}
+                <span className="inline-block">
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">T</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">o</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">g</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">e</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">t</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">h</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">e</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">r</span>
+                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default text-[#86C232]">?</span>
+                </span>
+              </h2>
 
-              <div className="mt-12">
-                <button
-                  className="gs-btn group inline-flex items-center gap-4 w-fit rounded-full pl-8 pr-2 py-2 font-bold text-[1.1rem] text-white shadow-lg"
-                  style={{ background: "#222629" }}
+              {/* Centered Avatar "Lets Talk" Button */}
+              <div className="w-full flex justify-center">
+                <Link
+                  href="/contact"
+                  className="group inline-flex items-center gap-4 lg:gap-6 rounded-full p-2 pr-6 lg:pr-8 bg-[#222629] border border-white/20 shadow-[0_15px_40px_rgba(34,38,41,0.2)] hover:bg-[#86C232] transition-all duration-300 backdrop-blur-md"
                 >
-                  <span>Started Now</span>
-                  <span className="gs-circle w-[46px] h-[46px] rounded-full flex items-center justify-center flex-shrink-0">
-                    <ArrowUpRight size={22} strokeWidth={2.5} />
+                  {/* Overlapping Avatars */}
+                  <div className="flex -space-x-3 lg:-space-x-4">
+                    <img 
+                      src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=150" 
+                      alt="Team 1" 
+                      className="w-12 h-12 lg:w-14 lg:h-14 rounded-full border-[3px] border-[#222629] group-hover:border-[#86C232] transition-colors object-cover relative z-30" 
+                    />
+                    <img 
+                      src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150" 
+                      alt="Team 2" 
+                      className="w-12 h-12 lg:w-14 lg:h-14 rounded-full border-[3px] border-[#222629] group-hover:border-[#86C232] transition-colors object-cover relative z-20" 
+                    />
+                    <img 
+                      src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150" 
+                      alt="Team 3" 
+                      className="w-12 h-12 lg:w-14 lg:h-14 rounded-full border-[3px] border-[#222629] group-hover:border-[#86C232] transition-colors object-cover relative z-10" 
+                    />
+                  </div>
+                  
+                  {/* Text & Arrow */}
+                  <span className="flex items-center gap-2 text-white font-extrabold text-[1.1rem] lg:text-[1.3rem] group-hover:text-[#222629] transition-colors tracking-wide">
+                    Lets Talk 
+                    <ArrowUpRight size={24} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                   </span>
-                </button>
+                </Link>
               </div>
-            </div>
 
-            {/* RIGHT: Image with Blob Mask */}
-            <div className="relative z-20 flex-1 min-h-[350px] lg:min-h-full overflow-hidden flex items-center justify-end">
-              <div
-                className="absolute right-0 w-[115%] lg:w-[105%] h-[110%] lg:h-[120%] origin-right"
-                style={{
-                  borderRadius: "50% 0% 0% 50% / 60% 0% 0% 40%",
-                  overflow: "hidden",
-                  transform: "translateX(2%)",
-                }}
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1400&auto=format&fit=crop"
-                  alt="Business Meeting"
-                  className="w-full h-full object-cover object-center transition-transform duration-[2500ms] hover:scale-105"
-                />
-              </div>
             </div>
           </div>
 
@@ -187,19 +191,10 @@ export default function Footer(): React.ReactElement {
                 </span>
               </Link>
 
-              <p className="text-[#6B6E70] leading-[1.8] text-[15px] max-w-[280px] mb-8 font-medium">
+              <p className="text-[#6B6E70] leading-[1.8] text-[15px] max-w-[280px] font-medium">
                 Personalize our developing custom ways to increase satisfaction and loyalty of our customer.
               </p>
-
-              {/* Awwwards Badge */}
-              <div className="flex gap-4 items-center">
-                <div className="flex flex-col items-center justify-center border-2 border-[#222629] rounded-full w-[72px] h-[72px] relative hover:border-[#86C232] transition-colors duration-300 group cursor-pointer">
-                  <span className="text-xl font-black text-[#222629] group-hover:text-[#86C232] transition-colors duration-300 leading-none">5</span>
-                  <span className="text-[9px] font-extrabold tracking-widest text-[#222629] absolute -bottom-2 bg-[#EEF3EE] px-1.5 uppercase">
-                    AWWWARDS
-                  </span>
-                </div>
-              </div>
+              {/* Note: Awwwards Badge has been entirely removed from here */}
             </div>
 
             {/* 2. SERVICES */}
@@ -285,9 +280,9 @@ export default function Footer(): React.ReactElement {
             {/* Social Icons */}
             <div className="flex items-center gap-2.5">
               {[
-                { icon: FaFacebookF,  label: "Facebook"  },
-                { icon: FaInstagram,  label: "Instagram" },
-                { icon: FaXTwitter,   label: "Twitter"   },
+                { icon: FaFacebookF,   label: "Facebook"  },
+                { icon: FaInstagram,   label: "Instagram" },
+                { icon: FaXTwitter,    label: "Twitter"   },
                 { icon: FaLinkedinIn, label: "LinkedIn"  },
               ].map((social, i) => (
                 <Link

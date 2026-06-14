@@ -292,7 +292,7 @@ export default function Navbar(): React.ReactElement {
         .demo-card:hover .demo-overlay { opacity:1; }
       `}</style>
 
-      {/* ══ NAVBAR WRAPPER (GLOSSY BLUR EFFECT) ══ */}
+      {/* ══ NAVBAR WRAPPER (HEAVY GLOSSY BLUR EFFECT) ══ */}
       <div
         className={[
           "fixed z-[1000] flex justify-center pointer-events-none",
@@ -304,16 +304,17 @@ export default function Navbar(): React.ReactElement {
         <div
           className={[
             "relative pointer-events-auto w-full flex items-center justify-between",
-            "rounded-[24px] px-2.5 py-2 md:px-4 md:py-2.5 gap-1.5 md:gap-4",
-            "border border-white/10 transition-all duration-400",
+            "rounded-[10px] px-2.5 py-2 md:px-4 md:py-2.5 gap-1.5 md:gap-4",
+            "border border-white/20 transition-all duration-400",
+            // Increased the blur radius to 48px and saturation to 200% for an extreme glass look
             scrolled
-              ? "bg-[#222629]/75 shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
-              : "bg-white/[0.06] shadow-sm",
+              ? "bg-[#222629]/65 shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+              : "bg-white/[0.08] shadow-sm",
           ].join(" ")}
           style={{
             fontFamily: "'Manrope', sans-serif",
-            backdropFilter: "blur(24px) saturate(150%)",
-            WebkitBackdropFilter: "blur(24px) saturate(150%)",
+            backdropFilter: "blur(48px) saturate(200%)",
+            WebkitBackdropFilter: "blur(48px) saturate(200%)",
           }}
         >
           {/* Logo */}
@@ -358,7 +359,8 @@ export default function Navbar(): React.ReactElement {
                     {/* GLOSSY DROPDOWNS */}
                     {hasDD && !isServices && (
                       <div className="js-dropdown absolute top-full left-0 min-w-[240px] z-[200] pt-4" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
-                        <div className="bg-[#222629]/85 border border-white/10 rounded-[16px] p-2 shadow-[0_24px_64px_rgba(0,0,0,0.4)]" style={{ backdropFilter: "blur(24px) saturate(150%)" }}>
+                        {/* High blur on dropdowns too */}
+                        <div className="bg-[#222629]/75 border border-white/10 rounded-[16px] p-2 shadow-[0_24px_64px_rgba(0,0,0,0.5)]" style={{ backdropFilter: "blur(48px) saturate(200%)" }}>
                           {item.children!.map((child, idx) => (
                             <div key={child.label}>
                               <Link href={child.href} onClick={() => setActiveMenu(null)} className="dd-link flex items-center justify-between px-3.5 py-3 rounded-[12px] text-[0.875rem] font-bold text-white/70 hover:text-white hover:bg-white/5 transition-colors duration-200 whitespace-nowrap group">
@@ -380,7 +382,7 @@ export default function Navbar(): React.ReactElement {
 
                     {hasDD && isServices && (
                       <div className="js-dropdown absolute top-full left-0 w-[480px] z-[200] pt-4" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
-                        <div className="bg-[#222629]/85 border border-white/10 rounded-[20px] p-3 shadow-[0_24px_64px_rgba(0,0,0,0.4)]" style={{ backdropFilter: "blur(24px) saturate(150%)" }}>
+                        <div className="bg-[#222629]/75 border border-white/10 rounded-[20px] p-3 shadow-[0_24px_64px_rgba(0,0,0,0.5)]" style={{ backdropFilter: "blur(48px) saturate(200%)" }}>
                           <div className="grid grid-cols-2 gap-1">
                             {item.children!.map((child) => {
                               const Icon = child.icon;
@@ -391,7 +393,7 @@ export default function Navbar(): React.ReactElement {
                                   </span>
                                   <span className="flex flex-col gap-0.5 min-w-0">
                                     <span className="text-[0.8rem] font-bold text-white/90 group-hover:text-white transition-colors duration-200 leading-tight">{child.label}</span>
-                                    {child.desc && <span className="text-[0.72rem] font-medium leading-snug text-white/50">{child.desc}</span>}
+                                    <span className="text-[0.72rem] font-medium leading-snug text-white/50">{child.desc}</span>
                                   </span>
                                 </Link>
                               );
@@ -407,7 +409,7 @@ export default function Navbar(): React.ReactElement {
 
                     {isMega && (
                       <div className="js-mega absolute top-full left-1/2 w-[1050px] max-w-[calc(100vw-4rem)] z-[200] pt-4" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
-                        <div className="bg-[#222629]/85 border border-white/10 rounded-[24px] p-8 shadow-[0_30px_80px_rgba(0,0,0,0.5)] grid grid-cols-[1fr_1fr_1fr_280px] gap-8" style={{ backdropFilter: "blur(24px) saturate(150%)" }}>
+                        <div className="bg-[#222629]/75 border border-white/10 rounded-[24px] p-8 shadow-[0_30px_80px_rgba(0,0,0,0.6)] grid grid-cols-[1fr_1fr_1fr_280px] gap-8" style={{ backdropFilter: "blur(48px) saturate(200%)" }}>
                           {MEGA_COLS.map((col) => (
                             <div key={col.title}>
                               <div className="text-[1.0rem] font-extrabold text-white mb-5 pb-3 border-b border-white/10">{col.title}</div>
