@@ -133,7 +133,7 @@ export default function HomeAbout(): React.ReactElement {
     <div className="w-full bg-white px-4 md:px-8 lg:px-10 py-10 font-['Manrope',_sans-serif]">
       
       <section 
-        className="relative w-full max-w-[1600px] mx-auto pt-24 pb-16 overflow-hidden rounded-[40px] md:rounded-[60px] border-[1.5px] border-white/50 shadow-[0_8px_40px_rgba(0,0,0,0.04)]"
+        className="relative w-full max-w-[1600px] mx-auto pt-24 pb-16 overflow-hidden rounded-[40px] md:rounded-[10px] border-[1.5px] border-white/50 shadow-[0_8px_40px_rgba(0,0,0,0.04)]"
         style={{ 
           backgroundColor: "#EAF0ED",
           // FIXED: 1px exact width to stop rendering glitches, reduced opacity for a soft light effect
@@ -210,15 +210,7 @@ export default function HomeAbout(): React.ReactElement {
                   </span>
                 </Link>
                 
-                <Link
-                  href="/team"
-                  className="group inline-flex items-center gap-3 bg-transparent text-[#222629] border border-[#222629]/20 rounded-full pl-6 pr-2 py-2 font-bold text-[15px] hover:border-[#86C232] transition-all duration-300"
-                >
-                  Meet Teams
-                  <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#222629] text-white transition-all duration-300 group-hover:bg-[#86C232]">
-                    <ArrowUpRight size={18} strokeWidth={2.5} className="group-hover:rotate-45 transition-transform duration-300" />
-                  </span>
-                </Link>
+               
               </div>
               
             </motion.div>

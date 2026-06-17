@@ -131,7 +131,7 @@ export default function Footer(): React.ReactElement {
                   <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">h</span>
                   <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">e</span>
                   <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default">r</span>
-                  <span className="hover:text-[#86C232] transition-all duration-300 hover:-translate-y-2 inline-block cursor-default text-[#86C232]">?</span>
+                  
                 </span>
               </h2>
 

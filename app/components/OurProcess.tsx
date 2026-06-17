@@ -72,7 +72,7 @@ export default function OurProcessSection(): React.ReactElement {
       
       {/* ── LIGHT BACKGROUND ── */}
       <div 
-        className="w-full rounded-[40px] md:rounded-[60px] py-20 md:py-32 px-6 border-[1.5px] border-[#EAF0ED] relative overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.04)]"
+        className="w-full rounded-[10px] md:rounded-[10px] py-20 md:py-32 px-6 border-[1.5px] border-[#EAF0ED] relative overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.04)]"
         style={{ 
           backgroundColor: "#EAF0ED",
           backgroundImage: `repeating-linear-gradient(
