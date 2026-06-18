@@ -182,33 +182,36 @@ export default function TestimonialSection(): React.ReactElement {
             </span>
           </h2>
 
-          {/* EXACT SIZED IMAGE CONTAINER */}
+          {/* IMAGE CONTAINER */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="relative w-full h-[400px] lg:h-[460px] rounded-[28px] overflow-hidden shadow-[0_8px_32px_rgba(34,38,41,0.05)] border-[1.5px] border-[#EAF0ED]"
+            className="relative w-full h-auto lg:h-[460px] lg:rounded-[10px] lg:overflow-hidden lg:shadow-[0_8px_32px_rgba(34,38,41,0.05)] lg:border-[1.5px] lg:border-[#EAF0ED]"
           >
+            {/* Hidden on mobile, visible on lg screens */}
             <img
               src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80"
               alt="Team"
-              className="w-full h-full object-cover"
+              className="hidden lg:block w-full h-full object-cover"
             />
 
-            {/* Glossy Rating Badge */}
-            <div className="absolute bottom-0 right-0 bg-white/60 backdrop-blur-xl p-4 sm:p-6 rounded-tl-[24px] border-t-[1.5px] border-l-[1.5px] border-white/80 shadow-[-8px_-8px_32px_rgba(0,0,0,0.05)]">
+            {/* Glossy Rating Badge 
+                UPDATED: Added mx-auto, text-center, and flex adjustments to center on mobile
+            */}
+            <div className="relative mx-auto lg:mx-0 lg:absolute lg:bottom-0 lg:right-0 bg-black/5 lg:bg-white/60 backdrop-blur-xl p-5 sm:p-6 rounded-[16px] lg:rounded-none lg:rounded-tl-[24px] border-[1.5px] lg:border-none lg:border-t-[1.5px] lg:border-l-[1.5px] border-black/5 lg:border-white/80 shadow-none lg:shadow-[-8px_-8px_32px_rgba(0,0,0,0.05)] w-fit flex flex-col items-center lg:items-start">
               <div className="text-4xl sm:text-6xl font-black leading-none text-[#86C232] drop-shadow-sm">
                 4.9
               </div>
 
-              <div className="flex gap-1 my-2">
+              <div className="flex gap-1 my-2 justify-center lg:justify-start w-full">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} size={16} fill="#86C232" strokeWidth={0} />
                 ))}
               </div>
 
-              <p className="text-xs sm:text-sm font-extrabold text-[#222629]">
+              <p className="text-xs sm:text-sm font-extrabold text-[#222629] text-center lg:text-left">
                 (80+ Clients Reviews)
               </p>
             </div>
@@ -245,7 +248,7 @@ export default function TestimonialSection(): React.ReactElement {
                   className="flex-shrink-0"
                 >
                   {/* EXACT SIZED GLOSSY CARD COMPONENT */}
-                  <div className="flex flex-col relative p-8 md:p-10 rounded-[28px] overflow-hidden bg-gradient-to-br from-[#86C232]/10 to-[#222629]/[0.03] backdrop-blur-xl border border-[#86C232]/20 shadow-[0_8px_32px_rgba(34,38,41,0.05)] w-full h-[400px] lg:h-[460px]">
+                  <div className="flex flex-col relative p-8 md:p-10 rounded-[10px] overflow-hidden bg-gradient-to-br from-[#86C232]/10 to-[#222629]/[0.03] backdrop-blur-xl border border-[#86C232]/20 shadow-[0_8px_32px_rgba(34,38,41,0.05)] w-full h-[400px] lg:h-[460px]">
                     
                     {/* Inner Glossy Sheen */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[#86C232]/5 via-transparent to-transparent pointer-events-none z-0" />

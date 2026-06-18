@@ -41,69 +41,62 @@ export default function MarqueeSection(): React.ReactElement {
 
       <section
         className={[
-          "relative w-full py-[120px] overflow-hidden",
-          "bg-[#ffffff] flex items-center",
+          "relative w-full py-20 md:py-[120px] overflow-hidden",
+          "bg-[#ffffff] flex items-center justify-center",
           "font-['Manrope',sans-serif]",
-          /* Left edge fade - using white to match background */
+          /* Left & Right fade edges */
           "before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-0",
-          "before:w-[200px] before:z-[5] before:pointer-events-none",
+          "before:w-[40px] md:before:w-[150px] before:z-[5] before:pointer-events-none",
           "before:bg-gradient-to-r before:from-[#ffffff] before:to-transparent",
-          /* Right edge fade - using white to match background */
           "after:content-[''] after:absolute after:top-0 after:bottom-0 after:right-0",
-          "after:w-[200px] after:z-[5] after:pointer-events-none",
+          "after:w-[40px] md:after:w-[150px] after:z-[5] after:pointer-events-none",
           "after:bg-gradient-to-l after:from-[#ffffff] after:to-transparent",
         ].join(" ")}
       >
 
         {/* ── Scrolling track ── */}
-        <div className="marquee-track flex w-max">
-          {[...TECH_STACK, ...TECH_STACK].map((tech, index) => (
+        <div className="marquee-track flex w-max relative z-[1]">
+          {[...TECH_STACK, ...TECH_STACK, ...TECH_STACK].map((tech, index) => (
             <div
               key={index}
               className={[
-                "flex-shrink-0 min-w-[200px] px-7 h-[85px] mr-6",
+                "flex-shrink-0 min-w-[180px] md:min-w-[200px] px-5 md:px-7 h-[75px] md:h-[85px] mr-4 md:mr-6",
                 "flex items-center justify-center gap-4",
                 "rounded-2xl border",
-                /* White theme card styles */
                 "bg-[#f4f4f6] border-[#e5e7eb]",
                 "transition-all duration-300 ease-in-out",
                 "hover:bg-[#86C232]/10 hover:border-[#86C232]/30 group cursor-default",
               ].join(" ")}
             >
-              {/* Tech Logo */}
               <img 
                 src={tech.src} 
                 alt={`${tech.name} logo`} 
-                className="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300 ease-out" 
+                className="w-8 h-8 md:w-10 md:h-10 object-contain group-hover:scale-110 transition-transform duration-300 ease-out" 
               />
-              {/* Tech Name */}
-              <span className="text-[#474B4F] text-[1.15rem] font-bold tracking-[0.03em] group-hover:text-[#222629] transition-colors duration-300">
+              <span className="text-[#474B4F] text-[1rem] md:text-[1.15rem] font-bold tracking-[0.03em] group-hover:text-[#222629] transition-colors duration-300">
                 {tech.name}
               </span>
             </div>
           ))}
         </div>
 
-        {/* ── Centre radial fade overlay + text ── */}
-        <div
-          className="absolute inset-0 z-[10] pointer-events-none flex items-center justify-center"
-          style={{
-            background:
-              "radial-gradient(circle at center, #ffffff 30%, rgba(255,255,255,0) 65%)",
-          }}
-        >
-          <div className="text-center z-[20] pointer-events-none">
-            <h2
-              className={[
-                "font-extrabold text-[#222629] leading-[1.5]",
-                "text-[1.75rem] md:text-[2.25rem]",
-              ].join(" ")}
-            >
-             Technologies We Work With{" "}
+        {/* ── Center Soft Glassmorphism Overlay ── */}
+        <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center">
+
+          {/* Clean, Crisp Frosted Glass Circle 
+              UPDATED: w-[200px] h-[200px] for mobile, leaving plenty of room for marquee cards 
+          */}
+          <div className="absolute w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] rounded-full bg-white/50 backdrop-blur-[15px] border border-white/60 shadow-[0_4px_30px_rgba(0,0,0,0.05)] transform-gpu" />
+          
+          {/* The Text Layout */}
+          <div className="relative z-20 text-center px-4 w-full max-w-[200px] sm:max-w-none">
+            <h2 className="font-extrabold text-[#222629] leading-[1.4] text-[13px] sm:text-base md:text-lg">
+              Technologies to Work With
               <br />
               <span className="text-[#86C232]">Wexoraa</span> 
             </h2>
           </div>
+
         </div>
 
       </section>

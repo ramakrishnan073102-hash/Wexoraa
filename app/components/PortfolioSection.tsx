@@ -191,7 +191,7 @@ export default function PortfolioSection(): React.ReactElement {
                 key={`${item.id}-${index}`}
                 href={item.href}
                 // Responsive card widths to fit screens nicely
-                className="group/card flex-none w-[280px] sm:w-[350px] lg:w-[420px] h-[380px] sm:h-[460px] lg:h-[520px] rounded-[24px] relative overflow-hidden cursor-pointer no-underline opacity-100"
+                className="group/card flex-none w-[280px] sm:w-[350px] lg:w-[420px] h-[380px] sm:h-[460px] lg:h-[520px] rounded-[10px] relative overflow-hidden cursor-pointer no-underline opacity-100"
               >
                 <img 
                   src={item.img} 

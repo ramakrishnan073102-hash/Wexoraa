@@ -33,8 +33,7 @@ export default function HeroSection(): React.ReactElement {
       triggerTransition((current + 1) % SLIDES.length);
     }, 5000);
     return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current]);
+  }, [current, isAnimating]);
 
   const triggerTransition = (nextIndex: number): void => {
     if (isAnimating || nextIndex === current) return;
@@ -100,12 +99,12 @@ export default function HeroSection(): React.ReactElement {
       `}</style>
 
       {/* ══════════════════════════════════════════
-         OUTER SHELL
-      ══════════════════════════════════════════ */}
+          OUTER SHELL (Fluid and compact on mobile)
+         ══════════════════════════════════════════ */}
       <div
         className={[
-          "w-full min-h-screen bg-white flex flex-col",
-          "p-3 md:p-[22px]",
+          "w-full min-h-[80vh] md:min-h-screen bg-white flex flex-col",
+          "p-2 md:p-[22px]",
           "[font-family:'Inter',system-ui,sans-serif]",
           "transition-opacity duration-700 ease-in",
           vis ? "opacity-100" : "opacity-0",
@@ -114,13 +113,13 @@ export default function HeroSection(): React.ReactElement {
 
         {/* ══════════════════════════════════════════
             CURVED FRAME
-        ══════════════════════════════════════════ */}
+           ══════════════════════════════════════════ */}
         <div
           className={[
             "relative flex-1 overflow-hidden",
-            "rounded-[20px] md:rounded-[15px]",
+            "rounded-[16px] md:rounded-[15px]",
             "border border-[#474B4F] bg-[#222629]",
-            "min-h-[calc(100vh-24px)] md:min-h-[calc(100vh-44px)]",
+            "min-h-[calc(80vh-16px)] md:min-h-[calc(100vh-44px)]",
           ].join(" ")}
         >
 
@@ -138,7 +137,7 @@ export default function HeroSection(): React.ReactElement {
             className="absolute inset-0 z-[3]"
             style={{
               background:
-                "linear-gradient(108deg, rgba(34,38,41,0.96) 0%, rgba(34,38,41,0.78) 44%, rgba(34,38,41,0.30) 68%, rgba(34,38,41,0.10) 100%)",
+                "linear-gradient(108deg, rgba(34,38,41,0.96) 0%, rgba(34,38,41,0.85) 44%, rgba(34,38,41,0.45) 75%, rgba(34,38,41,0.15) 100%)",
             }}
           />
           {/* ── Overlay 2: radial vignette ── */}
@@ -162,8 +161,8 @@ export default function HeroSection(): React.ReactElement {
           <div
             className={[
               "absolute z-[12]",
-              "top-6 right-6 md:top-9 md:right-11",
-              "text-[0.75rem] font-bold tracking-[0.1em] text-[#6B6E70]",
+              "top-5 right-5 md:top-9 md:right-11",
+              "text-[10px] md:text-[0.75rem] font-bold tracking-[0.1em] text-[#6B6E70]",
             ].join(" ")}
           >
             0{current + 1} / 0{SLIDES.length}
@@ -171,12 +170,13 @@ export default function HeroSection(): React.ReactElement {
 
           {/* ══════════════════════════════════════════
               HERO BODY
-          ══════════════════════════════════════════ */}
+             ══════════════════════════════════════════ */}
           <div
             className={[
               "relative z-[10] flex items-center",
-              "min-h-[calc(100vh-24px)] md:min-h-[calc(100vh-44px)]",
-              "px-6 pt-[120px] pb-20",
+              "min-h-[calc(80vh-16px)] md:min-h-[calc(100vh-44px)]",
+              "px-5 pt-24 pb-28",
+              "sm:px-8",
               "md:px-[90px] md:pt-[140px] md:pb-[80px]",
               "lg:px-[110px] lg:pt-[160px] lg:pb-[90px]",
             ].join(" ")}
@@ -185,7 +185,7 @@ export default function HeroSection(): React.ReactElement {
             <div
               key={textKey}
               className={[
-                "max-w-[680px]",
+                "max-w-[680px] w-full",
                 "transition-opacity duration-500 ease-in-out",
                 isAnimating ? "opacity-0" : "opacity-100",
               ].join(" ")}
@@ -194,8 +194,8 @@ export default function HeroSection(): React.ReactElement {
               {/* Headline */}
               <h1
                 className={[
-                  "font-extrabold text-white leading-[1.05] tracking-[-0.03em] mb-6",
-                  "[font-size:clamp(2.5rem,7vw,6.4rem)]",
+                  "font-extrabold text-white leading-[1.1] md:leading-[1.05] tracking-[-0.03em] mb-4 md:mb-6",
+                  "text-[2.2rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] xl:text-[6.4rem]",
                 ].join(" ")}
               >
                 <span className="block overflow-hidden">
@@ -213,16 +213,24 @@ export default function HeroSection(): React.ReactElement {
               <p
                 className={[
                   "sub-anim",
-                  "[font-size:clamp(0.95rem,2vw,1.05rem)]",
-                  "text-white/70 leading-[1.6] max-w-[440px] mb-10 font-normal",
+                  "text-xs sm:text-sm md:text-[1.05rem]",
+                  "text-white/70 leading-[1.6] max-w-[440px] mb-6 md:mb-10 font-normal",
                 ].join(" ")}
               >
                 Committed to delivering innovative solutions that drive success.
                 With a focus on quality.
               </p>
 
-              {/* CTA */}
-              <div className="cta-anim">
+              {/* CTA - UPDATED FOR MOBILE POSITIONING */}
+              <div 
+                className={[
+                  "cta-anim",
+                  /* Mobile: Absolute position in the bottom-left corner */
+                  "absolute bottom-[60px] left-5",
+                  /* Desktop: Returns to relative normal flow under the text */
+                  "md:relative md:bottom-auto md:left-auto md:mt-2"
+                ].join(" ")}
+              >
                 <Link
                   href="/contact"
                   className={[
@@ -236,10 +244,10 @@ export default function HeroSection(): React.ReactElement {
                 >
                   {/* Rolling label */}
                   <span
-                    className="cta-label relative block overflow-hidden text-base font-bold mr-3.5 tracking-[-0.01em] whitespace-nowrap"
-                    data-text="Get Started"
+                    className="cta-label relative block overflow-hidden text-sm md:text-base font-bold mr-3.5 tracking-[-0.01em] whitespace-nowrap"
+                    data-text="Explore More"
                   >
-                    <span className="cta-label-inner">Get Started</span>
+                    <span className="cta-label-inner">Explore More</span>
                   </span>
 
                   {/* Arrow circle */}
@@ -247,10 +255,10 @@ export default function HeroSection(): React.ReactElement {
                     className={[
                       "flex items-center justify-center flex-shrink-0 rounded-full",
                       "bg-[#222629] text-[#86C232]",
-                      "w-[42px] h-[42px] sm:w-12 sm:h-12",
+                      "w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12",
                     ].join(" ")}
                   >
-                    <ArrowRight size={20} className="cta-icon-svg" />
+                    <ArrowRight size={18} className="cta-icon-svg" />
                   </span>
                 </Link>
               </div>
@@ -259,8 +267,8 @@ export default function HeroSection(): React.ReactElement {
           </div>
 
           {/* ══════════════════════════════════════════
-              PREV / NEXT ARROWS  (hidden on mobile)
-          ══════════════════════════════════════════ */}
+              PREV / NEXT ARROWS (hidden on mobile)
+             ══════════════════════════════════════════ */}
           <button
             className={[
               "hidden md:flex",
@@ -297,11 +305,11 @@ export default function HeroSection(): React.ReactElement {
 
           {/* ══════════════════════════════════════════
               DOT INDICATORS
-          ══════════════════════════════════════════ */}
+             ══════════════════════════════════════════ */}
           <div
             className={[
-              "absolute z-[12] flex items-center gap-2",
-              "bottom-6 left-6",
+              "absolute z-[12] flex items-center gap-1.5",
+              "bottom-5 left-5",
               "md:bottom-9 md:left-[90px]",
               "lg:left-[110px]",
             ].join(" ")}
@@ -315,22 +323,22 @@ export default function HeroSection(): React.ReactElement {
                   "h-[3px] rounded-sm border-none cursor-pointer",
                   "transition-all duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
                   i === current
-                    ? "w-[46px] bg-[#86C232]"
-                    : "w-[22px] bg-[#6B6E70] hover:bg-[#86C232]/60",
+                    ? "w-8 md:w-[46px] bg-[#86C232]"
+                    : "w-4 md:w-[22px] bg-[#6B6E70] hover:bg-[#86C232]/60",
                 ].join(" ")}
               />
             ))}
           </div>
 
           {/* ══════════════════════════════════════════
-              EXPLORE MORE ROTATING BADGE (Glassmorphism Added)
-          ══════════════════════════════════════════ */}
+              EXPLORE MORE ROTATING BADGE
+             ══════════════════════════════════════════ */}
           <div
             className={[
               "absolute z-[12] cursor-pointer group",
-              "bottom-6 right-6 md:bottom-12 md:right-12",
-              "w-[120px] h-[120px] md:w-[150px] md:h-[150px]",
-              "rounded-full bg-[#222629]/40 backdrop-blur-md border border-white/10", // <-- Background blur added back here
+              "-bottom-[10px] right-5 md:bottom-12 md:right-12",
+              "w-[90px] h-[90px] md:w-[150px] md:h-[150px]",
+              "rounded-full bg-[#222629]/40 backdrop-blur-md border border-white/10",
               "flex items-center justify-center",
               "transition-all duration-500 hover:scale-105 hover:bg-[#222629]/60",
             ].join(" ")}
@@ -338,7 +346,7 @@ export default function HeroSection(): React.ReactElement {
               window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
             }
           >
-            {/* Rotating SVG text ring (Uses Tailwind animate-spin) */}
+            {/* Rotating SVG text ring */}
             <svg
               viewBox="0 0 160 160"
               className="absolute inset-0 w-full h-full pointer-events-none animate-[spin_12s_linear_infinite]"
@@ -360,8 +368,8 @@ export default function HeroSection(): React.ReactElement {
             </svg>
 
             {/* Static Centre Arrow */}
-            <div className="absolute inset-0 flex items-center justify-center transition-transform duration-500 group-hover:translate-y-2 pointer-events-none">
-              <ArrowDown size={44} strokeWidth={1} className="text-white" />
+            <div className="absolute inset-0 flex items-center justify-center transition-transform duration-500 group-hover:translate-y-1 pointer-events-none">
+              <ArrowDown className="text-white w-6 h-6 md:w-11 md:h-11" strokeWidth={1.2} />
             </div>
           </div>
 

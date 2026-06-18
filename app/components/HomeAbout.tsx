@@ -236,12 +236,12 @@ export default function HomeAbout(): React.ReactElement {
                    {[...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS].map((logo, idx) => (
   <div 
     key={idx} 
-    className="flex items-center justify-center bg-white border border-[#474B4F]/5 rounded-[20px] px-8 py-6 min-w-[210px] h-[90px] shadow-sm grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 flex-shrink-0"
+   className="flex items-center justify-center bg-white border border-[#474B4F]/5 rounded-[20px] px-8 py-6 min-w-[210px] h-[90px] shadow-sm transition-all duration-300 flex-shrink-0 cursor-pointer hover:shadow-md hover:-translate-y-1"
   >
     <img 
       src={logo.src} 
       alt={logo.name} 
-      className="max-h-[150px] max-w-[170px] object-contain"
+      className="max-h-[140px] max-w-[140px] object-contain"
       onError={(e) => {
         (e.currentTarget as HTMLImageElement).src = `https://placehold.co/130x35/e2e8f0/474b4f?text=${encodeURIComponent(logo.name)}`;
       }}

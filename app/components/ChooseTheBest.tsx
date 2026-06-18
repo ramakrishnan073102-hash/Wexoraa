@@ -90,7 +90,7 @@ export default function ChooseBestSection(): React.ReactElement {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
                 /* ── ONLY CARDS ARE GLOSSY NOW ── */
-                className="group/card flex flex-col h-full relative p-8 md:p-10 rounded-[28px] overflow-hidden bg-gradient-to-br from-[#86C232]/10 to-[#222629]/[0.03] backdrop-blur-xl border border-[#86C232]/20 shadow-[0_8px_32px_rgba(34,38,41,0.05)] transition-all duration-500 hover:-translate-y-2 hover:border-[#86C232]/40 hover:from-[#86C232]/15 hover:to-[#86C232]/10 hover:shadow-[0_25px_50px_-12px_rgba(134,194,50,0.15)]"
+                className="group/card flex flex-col h-full relative p-8 md:p-10 rounded-[10px] overflow-hidden bg-gradient-to-br from-[#86C232]/10 to-[#222629]/[0.03] backdrop-blur-xl border border-[#86C232]/20 shadow-[0_8px_32px_rgba(34,38,41,0.05)] transition-all duration-500 hover:-translate-y-2 hover:border-[#86C232]/40 hover:from-[#86C232]/15 hover:to-[#86C232]/10 hover:shadow-[0_25px_50px_-12px_rgba(134,194,50,0.15)]"
               >
                 {/* Card internal glossy reflection */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#86C232]/5 via-transparent to-transparent pointer-events-none z-0" />
