@@ -9,12 +9,16 @@ import { ArrowUpRight } from "lucide-react";
    DATA
 ───────────────────────────────────────── */
 const LOGOS = [
-  { name: "Coudac", src: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" },
-  { name: "Flomodia", src: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" },
-  { name: "Weglot", src: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" },
-  { name: "Influence 4 You", src: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" },
-  { name: "TSE", src: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Lenovo_logo.svg" },
-  { name: "Monceau", src: "https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_transparent.png" },
+  { name: "Covai Home Tech", src: "img/1.PNG" },
+  { name: "Flomodia", src: "/img/2.png" },
+  { name: "Weglot", src: "/img/3.png" },
+  { name: "Influence 4 You", src: "/img/4.png" },
+  { name: "TSE", src: "/img/5.png" },
+  { name: "Monceau", src: "/img/6.png" },
+  { name: "Company 7", src: "/img/7.png" },
+  { name: "Company 8", src: "/img/8.png" },
+  { name: "Company 9", src: "/img/9.png" },
+  { name: "Company 10", src: "/img/10.png" },
 ];
 
 const AVATARS = [
@@ -227,20 +231,23 @@ export default function HomeAbout(): React.ReactElement {
                 <motion.div 
                    className="flex items-center gap-12 md:gap-20 w-max"
                    animate={{ x: ["0%", "-50%"] }}
-                   transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
+                   transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
                 >
                    {[...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS].map((logo, idx) => (
-                      <div 
-                         key={idx} 
-                         className="flex items-center justify-center bg-white border border-[#474B4F]/5 rounded-[20px] px-8 py-6 min-w-[210px] h-[90px] shadow-sm grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 flex-shrink-0"
-                      >
-                         <img 
-                            src={logo.src} 
-                            alt={logo.name} 
-                            className="max-h-[35px] max-w-[130px] object-contain"
-                         />
-                      </div>
-                   ))}
+  <div 
+    key={idx} 
+    className="flex items-center justify-center bg-white border border-[#474B4F]/5 rounded-[20px] px-8 py-6 min-w-[210px] h-[90px] shadow-sm grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 flex-shrink-0"
+  >
+    <img 
+      src={logo.src} 
+      alt={logo.name} 
+      className="max-h-[150px] max-w-[170px] object-contain"
+      onError={(e) => {
+        (e.currentTarget as HTMLImageElement).src = `https://placehold.co/130x35/e2e8f0/474b4f?text=${encodeURIComponent(logo.name)}`;
+      }}
+    />
+  </div>
+))}
                 </motion.div>
              </div>
           </div>

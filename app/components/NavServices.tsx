@@ -25,8 +25,8 @@ import Marquee from "../components/Marquee"; // Adjust path as needed
 const SERVICES_DATA = [
   {
     id: 1,
-    title: "Business Strategy Consultant",
-    desc: "A powerful combination of data-driven insights and innovative approaches. We work closely with you to develop strategy.",
+    title: "Web Development ",
+    desc: "Fast, responsive websites built to convert visitors into enquiries and help your business look trustworthy online.",
     icon: Target,
     href: "/page1"
   },

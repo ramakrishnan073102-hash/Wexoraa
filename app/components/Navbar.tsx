@@ -19,12 +19,12 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: "Services", href: "/services",
     children: [
-      { label: "Business Strategy Development",   href: "/page1",  icon: Blocks,    desc: "Customized corporate execution models" },
-      { label: "Customer Experience Solutions",   href: "/page2",        icon: Radar,     desc: "Seamless journeys that build loyalty"  },
-      { label: "Sustainability & ESG Consulting", href: "/page3",       icon: Leaf,      desc: "Actionable ESG frameworks"             },
-      { label: "Training Development Programs",   href: "/page4",  icon: Sun,       desc: "Upskill employees & align objectives"  },
-      { label: "IT Support & Maintenance",        href: "/page5",        icon: Cpu,       desc: "Reliable tech support for your team"   },
-      { label: "Marketing Strategy & Campaigns",  href: "/page6", icon: Megaphone, desc: "Data-driven marketing execution"       },
+      { label: "Web Development",   href: "/page1",  icon: Blocks,    desc: "Customized corporate execution models" },
+      { label: "UI/UX Design",   href: "/page2",        icon: Radar,     desc: "Seamless journeys that build loyalty"  },
+      { label: "Custom Software", href: "/page3",       icon: Leaf,      desc: "Actionable ESG frameworks"             },
+      { label: "Mobile Apps",   href: "/page4",  icon: Sun,       desc: "Upskill employees & align objectives"  },
+      { label: "Digital Marketing",        href: "/page5",        icon: Cpu,       desc: "Reliable tech support for your team"   },
+      { label: "AI Solutions",  href: "/page6", icon: Megaphone, desc: "Data-driven marketing execution"       },
     ],
   },
   {
