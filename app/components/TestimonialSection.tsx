@@ -69,7 +69,7 @@ function LetterScrollAnimation({ text }: { text: string }): React.ReactElement {
 
   return (
     <motion.div
-      className="inline-flex flex-wrap gap-x-[0.25em]"
+      className="inline-flex flex-wrap gap-x-[0.25em] justify-center lg:justify-start"
       variants={container}
       initial="hidden"
       whileInView="visible"
@@ -174,30 +174,32 @@ export default function TestimonialSection(): React.ReactElement {
         ───────────────────────────────────────── */}
         <div className="flex flex-col w-full">
           
-          {/* Header Row: Flex container to hold Heading and Mobile Badge side-by-side */}
-          <div className="flex items-center justify-between gap-4 mb-6 md:mb-10 w-full">
+          {/* Header Row: Stacked & Centered on Mobile, Row on Desktop 
+          */}
+          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 mb-8 md:mb-10 w-full text-center lg:text-left">
             
-            {/* Heading (UPDATED: Smaller Font Size for Mobile) */}
-            <h2 className="text-[1.6rem] sm:text-[2.1rem] md:text-[2.5rem] lg:text-[3.2rem] font-extrabold leading-[1.15] tracking-tight text-[#222629] drop-shadow-sm shrink-0">
-              <LetterScrollAnimation text="Hear from Our" />
-              <br />
-              <span className="text-[#86C232]">
+            {/* Heading */}
+            <h2 className="flex flex-col items-center lg:items-start text-[1.5rem] sm:text-[2.1rem] md:text-[2.5rem] lg:text-[3.2rem] font-extrabold leading-[1.15] tracking-tight text-[#222629] drop-shadow-sm shrink-0 w-full lg:w-auto">
+              <span className="block">
+                <LetterScrollAnimation text="Hear from Our" />
+              </span>
+              <span className="block text-[#86C232]">
                 <LetterScrollAnimation text="Customer." />
               </span>
             </h2>
 
-            {/* Mobile Rating Badge (UPDATED: Hidden on Desktop, Visible on Mobile/Tablet) */}
-            <div className="lg:hidden flex flex-col items-center bg-black/5 backdrop-blur-md p-3 sm:p-4 rounded-[14px] border-[1.5px] border-black/5 shrink-0">
+            {/* Mobile Rating Badge (Stacked right under heading) */}
+            <div className="lg:hidden flex flex-col items-center bg-[#f4f6f5] backdrop-blur-md p-4 sm:p-5 rounded-[16px] border-[1.5px] border-[#eaf0ed] shrink-0 min-w-[180px] shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
               <div className="text-3xl sm:text-4xl font-black leading-none text-[#86C232] drop-shadow-sm">
                 4.9
               </div>
-              <div className="flex gap-1 my-1.5 justify-center">
+              <div className="flex gap-1 my-2 justify-center">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} size={14} fill="#86C232" strokeWidth={0} />
                 ))}
               </div>
-              <p className="text-[10px] sm:text-[11px] font-extrabold text-[#222629] text-center">
-                (30+ Clients Reviews)
+              <p className="text-[11px] sm:text-[12px] font-extrabold text-[#222629] text-center">
+                (80+ Clients Reviews)
               </p>
             </div>
 
@@ -218,9 +220,7 @@ export default function TestimonialSection(): React.ReactElement {
               className="hidden lg:block w-full h-full object-cover"
             />
 
-            {/* Desktop Glossy Rating Badge 
-                (UPDATED: Hidden on Mobile, only shows over the image on Desktop)
-            */}
+            {/* Desktop Glossy Rating Badge */}
             <div className="hidden lg:flex absolute bottom-0 right-0 bg-white/60 backdrop-blur-xl p-5 sm:p-6 rounded-tl-[24px] border-t-[1.5px] border-l-[1.5px] border-white/80 shadow-[-8px_-8px_32px_rgba(0,0,0,0.05)] w-fit flex-col items-start">
               <div className="text-4xl sm:text-6xl font-black leading-none text-[#86C232] drop-shadow-sm">
                 4.9

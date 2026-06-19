@@ -146,7 +146,7 @@ export default function OurProcessSection(): React.ReactElement {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.6 + index * 0.2, ease: [0.16, 1, 0.3, 1] }}
                     // Increased background opacity and border strength for better visibility
-                    className={`relative w-full p-8 md:p-10 rounded-[28px] overflow-hidden bg-gradient-to-br from-[#86C232]/20 to-[#86C232]/5 backdrop-blur-2xl border-[1.5px] border-[#86C232]/40 shadow-[0_12px_40px_rgba(134,194,50,0.1)] transition-all duration-500 group-hover:-translate-y-2 group-hover:border-[#86C232]/70 group-hover:shadow-[0_25px_50px_-12px_rgba(134,194,50,0.25)] ${step.margin}`}
+                    className={`relative w-full p-8 md:p-10 rounded-[10px] overflow-hidden bg-gradient-to-br from-[#86C232]/20 to-[#86C232]/5 backdrop-blur-2xl border-[1.5px] border-[#86C232]/40 shadow-[0_12px_40px_rgba(134,194,50,0.1)] transition-all duration-500 group-hover:-translate-y-2 group-hover:border-[#86C232]/70 group-hover:shadow-[0_25px_50px_-12px_rgba(134,194,50,0.25)] ${step.margin}`}
                   >
                     {/* Card internal glossy reflection */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none z-0" />

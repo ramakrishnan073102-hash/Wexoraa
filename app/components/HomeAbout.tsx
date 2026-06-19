@@ -137,7 +137,7 @@ export default function HomeAbout(): React.ReactElement {
     <div className="w-full bg-white px-4 md:px-8 lg:px-10 py-10 font-['Manrope',_sans-serif]">
       
       <section 
-        className="relative w-full max-w-[1600px] mx-auto pt-24 pb-16 overflow-hidden rounded-[40px] md:rounded-[10px] border-[1.5px] border-white/50 shadow-[0_8px_40px_rgba(0,0,0,0.04)]"
+        className="relative w-full max-w-[1600px] mx-auto pt-24 pb-16 overflow-hidden rounded-[10px] md:rounded-[10px] border-[1.5px] border-white/50 shadow-[0_8px_40px_rgba(0,0,0,0.04)]"
         style={{ 
           backgroundColor: "#EAF0ED",
           // FIXED: 1px exact width to stop rendering glitches, reduced opacity for a soft light effect
@@ -236,7 +236,7 @@ export default function HomeAbout(): React.ReactElement {
                    {[...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS].map((logo, idx) => (
   <div 
     key={idx} 
-   className="flex items-center justify-center bg-white border border-[#474B4F]/5 rounded-[20px] px-8 py-6 min-w-[210px] h-[90px] shadow-sm transition-all duration-300 flex-shrink-0 cursor-pointer hover:shadow-md hover:-translate-y-1"
+   className="flex items-center justify-center bg-white border border-[#474B4F]/5 rounded-[10px] px-8 py-6 min-w-[210px] h-[90px] shadow-sm transition-all duration-300 flex-shrink-0 cursor-pointer hover:shadow-md hover:-translate-y-1"
   >
     <img 
       src={logo.src} 
