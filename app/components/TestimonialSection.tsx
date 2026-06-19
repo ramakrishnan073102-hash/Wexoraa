@@ -173,14 +173,35 @@ export default function TestimonialSection(): React.ReactElement {
             LEFT COLUMN (Heading + Image)
         ───────────────────────────────────────── */}
         <div className="flex flex-col w-full">
-          {/* Heading */}
-          <h2 className="text-[2.2rem] sm:text-[2.8rem] md:text-5xl lg:text-[3.2rem] font-extrabold leading-[1.15] tracking-tight text-[#222629] mb-8 md:mb-10 drop-shadow-sm">
-            <LetterScrollAnimation text="Hear from Our" />
-            <br />
-            <span className="text-[#86C232]">
-              <LetterScrollAnimation text="Customer." />
-            </span>
-          </h2>
+          
+          {/* Header Row: Flex container to hold Heading and Mobile Badge side-by-side */}
+          <div className="flex items-center justify-between gap-4 mb-6 md:mb-10 w-full">
+            
+            {/* Heading (UPDATED: Smaller Font Size for Mobile) */}
+            <h2 className="text-[1.6rem] sm:text-[2.1rem] md:text-[2.5rem] lg:text-[3.2rem] font-extrabold leading-[1.15] tracking-tight text-[#222629] drop-shadow-sm shrink-0">
+              <LetterScrollAnimation text="Hear from Our" />
+              <br />
+              <span className="text-[#86C232]">
+                <LetterScrollAnimation text="Customer." />
+              </span>
+            </h2>
+
+            {/* Mobile Rating Badge (UPDATED: Hidden on Desktop, Visible on Mobile/Tablet) */}
+            <div className="lg:hidden flex flex-col items-center bg-black/5 backdrop-blur-md p-3 sm:p-4 rounded-[14px] border-[1.5px] border-black/5 shrink-0">
+              <div className="text-3xl sm:text-4xl font-black leading-none text-[#86C232] drop-shadow-sm">
+                4.9
+              </div>
+              <div className="flex gap-1 my-1.5 justify-center">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={14} fill="#86C232" strokeWidth={0} />
+                ))}
+              </div>
+              <p className="text-[10px] sm:text-[11px] font-extrabold text-[#222629] text-center">
+                (30+ Clients Reviews)
+              </p>
+            </div>
+
+          </div>
 
           {/* IMAGE CONTAINER */}
           <motion.div
@@ -197,21 +218,19 @@ export default function TestimonialSection(): React.ReactElement {
               className="hidden lg:block w-full h-full object-cover"
             />
 
-            {/* Glossy Rating Badge 
-                UPDATED: Added mx-auto, text-center, and flex adjustments to center on mobile
+            {/* Desktop Glossy Rating Badge 
+                (UPDATED: Hidden on Mobile, only shows over the image on Desktop)
             */}
-            <div className="relative mx-auto lg:mx-0 lg:absolute lg:bottom-0 lg:right-0 bg-black/5 lg:bg-white/60 backdrop-blur-xl p-5 sm:p-6 rounded-[16px] lg:rounded-none lg:rounded-tl-[24px] border-[1.5px] lg:border-none lg:border-t-[1.5px] lg:border-l-[1.5px] border-black/5 lg:border-white/80 shadow-none lg:shadow-[-8px_-8px_32px_rgba(0,0,0,0.05)] w-fit flex flex-col items-center lg:items-start">
+            <div className="hidden lg:flex absolute bottom-0 right-0 bg-white/60 backdrop-blur-xl p-5 sm:p-6 rounded-tl-[24px] border-t-[1.5px] border-l-[1.5px] border-white/80 shadow-[-8px_-8px_32px_rgba(0,0,0,0.05)] w-fit flex-col items-start">
               <div className="text-4xl sm:text-6xl font-black leading-none text-[#86C232] drop-shadow-sm">
                 4.9
               </div>
-
-              <div className="flex gap-1 my-2 justify-center lg:justify-start w-full">
+              <div className="flex gap-1 my-2 justify-start w-full">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} size={16} fill="#86C232" strokeWidth={0} />
                 ))}
               </div>
-
-              <p className="text-xs sm:text-sm font-extrabold text-[#222629] text-center lg:text-left">
+              <p className="text-xs sm:text-sm font-extrabold text-[#222629] text-left">
                 (80+ Clients Reviews)
               </p>
             </div>

@@ -245,9 +245,9 @@ export default function HeroSection(): React.ReactElement {
                   {/* Rolling label */}
                   <span
                     className="cta-label relative block overflow-hidden text-sm md:text-base font-bold mr-3.5 tracking-[-0.01em] whitespace-nowrap"
-                    data-text="Explore More"
+                    data-text="Let's Talk"
                   >
-                    <span className="cta-label-inner">Explore More</span>
+                    <span className="cta-label-inner">Let's Talk</span>
                   </span>
 
                   {/* Arrow circle */}
@@ -336,7 +336,8 @@ export default function HeroSection(): React.ReactElement {
           <div
             className={[
               "absolute z-[12] cursor-pointer group",
-              "-bottom-[10px] right-5 md:bottom-12 md:right-12",
+              /* UPDATED: Changed from -bottom-[10px] to bottom-0 to move it slightly higher on mobile */
+              "bottom-6 right-5 md:bottom-12 md:right-12",
               "w-[90px] h-[90px] md:w-[150px] md:h-[150px]",
               "rounded-full bg-[#222629]/40 backdrop-blur-md border border-white/10",
               "flex items-center justify-center",

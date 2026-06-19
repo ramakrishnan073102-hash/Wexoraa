@@ -91,9 +91,10 @@ export default function MarqueeSection(): React.ReactElement {
           {/* The Text Layout */}
           <div className="relative z-20 text-center px-4 w-full max-w-[200px] sm:max-w-none">
             <h2 className="font-extrabold text-[#222629] leading-[1.4] text-[13px] sm:text-base md:text-lg">
-              Technologies to Work With
+             Technologies we use at
+
               <br />
-              <span className="text-[#86C232]">Wexoraa</span> 
+              <span className="text-[#86C232]">Wexoraa Infotech</span> 
             </h2>
           </div>
 

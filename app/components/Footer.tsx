@@ -21,12 +21,12 @@ interface FooterLinkItem {
 
 const FOOTER_LINKS: { services: FooterLinkItem[]; resources: FooterLinkItem[] } = {
   services: [
-    { label: "Customer Experience", href: "/page1" },
-    { label: "Training Programs",   href: "/page2" },
-    { label: "Business Strategy",   href: "/page3" },
-    { label: "Training Program",    href: "/page4" },
-    { label: "ESG Consulting",      href: "/page5" },
-    { label: "Development Hub",     href: "/page6" },
+    { label: "Web Development", href: "/page1" },
+    { label: "UI/UX Design",   href: "/page2" },
+    { label: "Custom Software",   href: "/page3" },
+    { label: "Mobile Apps",    href: "/page4" },
+    { label: "Digital Marketing",      href: "/page5" },
+    { label: "AI Solutions",     href: "/page6" },
   ],
   resources: [
     { label: "Contact us",   href: "/contact" },
