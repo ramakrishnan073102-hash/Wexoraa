@@ -69,7 +69,7 @@ function LetterScrollAnimation({ text }: { text: string }): React.ReactElement {
 
   return (
     <motion.div
-      className="inline-flex flex-wrap gap-x-[0.25em] justify-center lg:justify-start"
+      className="inline-flex flex-wrap gap-x-[0.25em] justify-center w-full"
       variants={container}
       initial="hidden"
       whileInView="visible"
@@ -166,45 +166,45 @@ export default function TestimonialSection(): React.ReactElement {
       {/* Soft Ambient Glow in the background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#86C232]/10 blur-[120px] rounded-full pointer-events-none" />
 
+      {/* ─────────────────────────────────────────
+          HEADER ROW (Moved Outside the Grid)
+      ───────────────────────────────────────── */}
+      <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-8 md:mb-12 flex flex-col items-center justify-center text-center w-full">
+        
+        {/* Heading */}
+        <h2 className="flex flex-col items-center text-center text-[1.6rem] sm:text-[2.1rem] md:text-[2.5rem] lg:text-[3.2rem] font-extrabold leading-[1.15] tracking-tight text-[#222629] drop-shadow-sm w-full">
+          <span className="block w-full">
+            <LetterScrollAnimation text="Hear from Our" />
+          </span>
+          <span className="block text-[#86C232] w-full">
+            <LetterScrollAnimation text="Customer." />
+          </span>
+        </h2>
+
+        {/* Mobile Rating Badge (Stacked right under heading on small screens) */}
+        <div className="lg:hidden flex flex-col items-center bg-[#f4f6f5] backdrop-blur-md p-4 sm:p-5 rounded-[16px] border-[1.5px] border-[#eaf0ed] min-w-[180px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] mt-6">
+          <div className="text-3xl sm:text-4xl font-black leading-none text-[#86C232] drop-shadow-sm">
+            4.9
+          </div>
+          <div className="flex gap-1 my-2 justify-center">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} size={14} fill="#86C232" strokeWidth={0} />
+            ))}
+          </div>
+          <p className="text-[11px] sm:text-[12px] font-extrabold text-[#222629] text-center">
+            (80+ Clients Reviews)
+          </p>
+        </div>
+
+      </div>
+
       {/* SYMMETRICAL 50/50 GRID */}
       <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-end relative z-10">
         
         {/* ─────────────────────────────────────────
-            LEFT COLUMN (Heading + Image)
+            LEFT COLUMN (Image Only)
         ───────────────────────────────────────── */}
         <div className="flex flex-col w-full">
-          
-          {/* Header Row: Stacked & Centered on Mobile, Row on Desktop 
-          */}
-          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 mb-8 md:mb-10 w-full text-center lg:text-left">
-            
-            {/* Heading */}
-            <h2 className="flex flex-col items-center lg:items-start text-[1.5rem] sm:text-[2.1rem] md:text-[2.5rem] lg:text-[3.2rem] font-extrabold leading-[1.15] tracking-tight text-[#222629] drop-shadow-sm shrink-0 w-full lg:w-auto">
-              <span className="block">
-                <LetterScrollAnimation text="Hear from Our" />
-              </span>
-              <span className="block text-[#86C232]">
-                <LetterScrollAnimation text="Customer." />
-              </span>
-            </h2>
-
-            {/* Mobile Rating Badge (Stacked right under heading) */}
-            <div className="lg:hidden flex flex-col items-center bg-[#f4f6f5] backdrop-blur-md p-4 sm:p-5 rounded-[16px] border-[1.5px] border-[#eaf0ed] shrink-0 min-w-[180px] shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
-              <div className="text-3xl sm:text-4xl font-black leading-none text-[#86C232] drop-shadow-sm">
-                4.9
-              </div>
-              <div className="flex gap-1 my-2 justify-center">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={14} fill="#86C232" strokeWidth={0} />
-                ))}
-              </div>
-              <p className="text-[11px] sm:text-[12px] font-extrabold text-[#222629] text-center">
-                (80+ Clients Reviews)
-              </p>
-            </div>
-
-          </div>
-
           {/* IMAGE CONTAINER */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
