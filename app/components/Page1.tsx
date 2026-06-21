@@ -17,12 +17,12 @@ import {
    MOCK DATA (Updated with individual unique routing paths)
 ────────────────────────────────────────────────────────── */
 const SIDEBAR_SERVICES = [
-  { name: "Business Strategy", active: true, href: "/page1" },
-  { name: "Customer Experience", active: false, href: "/page2" },
-  { name: "ESG Consulting", active: false, href: "/page3" },
-  { name: "Training Programs", active: false, href: "/page4" },
-  { name: "IT Support", active: false, href: "/page5" },
-  { name: "Marketing Strategy", active: false, href: "/page6" },
+  { name: "Web Development", active: true, href: "/page1" },
+  { name: "UI/UX Design", active: false, href: "/page2" },
+  { name: "Custom Software", active: false, href: "/page3" },
+  { name: "Mobile Apps", active: false, href: "/page4" },
+  { name: "Digital Marketing", active: false, href: "/page5" },
+  { name: "AI Solutions", active: false, href: "/page6" },
 ];
 
 const CHECKLIST = [
