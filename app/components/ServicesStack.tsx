@@ -235,7 +235,7 @@ export default function ServiceSection() {
                     </p>
 
                     <Link
-                      href="/contact"
+                      href="/"
                       className="group/btn inline-flex items-center gap-3 bg-[#86C232] hover:bg-[#61892F] transition-colors duration-300 rounded-full pl-6 pr-2 py-2 w-fit shadow-lg"
                     >
                       <span className="text-[#222629] font-bold text-sm md:text-[15px]">

@@ -149,7 +149,7 @@ export default function Page6(): React.ReactElement {
          1. HERO
       ════════════════════════════════════════ */}
       <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-16 md:mb-24">
-        <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[32px] md:rounded-[15px][10px] flex items-center justify-center overflow-hidden shadow-sm">
+        <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[10px] md:rounded-[15px][10px] flex items-center justify-center overflow-hidden shadow-sm">
           
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -164,7 +164,7 @@ export default function Page6(): React.ReactElement {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-5xl lg:text-[4rem] font-extrabold text-white mb-6 tracking-tight leading-tight"
             >
-             Marketing Strategy & Campaigns
+            AI Solutions
             </motion.h1>
 
             <motion.div 
@@ -182,7 +182,7 @@ export default function Page6(): React.ReactElement {
               </Link>
               <ChevronRight size={16} className="text-[#6B6E70]" />
               <span className="text-white font-bold truncate max-w-[160px] sm:max-w-[240px]">
-                Marketing Strategy & Campaigns
+               AI Solutions...
               </span>
             </motion.div>
           </div>

@@ -160,7 +160,7 @@ export default function ServiceDetailsPage(): React.ReactElement {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-5xl lg:text-[4rem] font-extrabold text-white mb-6 tracking-tight leading-tight"
             >
-             Customer Experience Solutions
+             UI/UX Design
             </motion.h1>
 
             <motion.div 
@@ -178,7 +178,7 @@ export default function ServiceDetailsPage(): React.ReactElement {
               </Link>
               <ChevronRight size={16} className="text-[#6B6E70]" />
               <span className="text-white font-bold truncate max-w-[160px] sm:max-w-[240px]">
-               Customer Experience Solutions...
+               UI/UX Design...
               </span>
             </motion.div>
           </div>
