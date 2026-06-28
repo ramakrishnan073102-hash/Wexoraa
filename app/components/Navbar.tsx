@@ -2,31 +2,18 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
-import {
-  ChevronDown, ArrowRight, X, Phone,
-  Blocks, Radar, Leaf, Sun, Cpu, Megaphone,
-} from "lucide-react";
+import { ChevronDown, ArrowRight, X, Phone } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface NavBadge { text: string; color: string; }
-interface NavChild { label: string; href: string; badge?: NavBadge; icon?: React.ElementType; desc?: string; }
+interface NavChild { label: string; href: string; badge?: NavBadge; desc?: string; }
 interface NavItem  { label: string; href: string; children?: NavChild[]; }
 
 // ─── Nav Data ─────────────────────────────────────────────────────────────────
 const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  {
-    label: "Services", href: "/services",
-    children: [
-      { label: "Web Development",   href: "/page1",  icon: Blocks,    desc: "Customized corporate execution models" },
-      { label: "UI/UX Design",   href: "/page2",        icon: Radar,     desc: "Seamless journeys that build loyalty"  },
-      { label: "Custom Software", href: "/page3",       icon: Leaf,      desc: "Actionable ESG frameworks"             },
-      { label: "Mobile Apps",   href: "/page4",  icon: Sun,       desc: "Upskill employees & align objectives"  },
-      { label: "Digital Marketing",        href: "/page5",        icon: Cpu,       desc: "Reliable tech support for your team"   },
-      { label: "AI Solutions",  href: "/page6", icon: Megaphone, desc: "Data-driven marketing execution"       },
-    ],
-  },
+  { label: "Services", href: "/navservices" }, // ── CHANGED: Removed dropdown children
   {
     label: "Portfolio", href: "/portfolio",
     children: [
@@ -211,12 +198,6 @@ export default function Navbar(): React.ReactElement {
         .mob-acc { max-height:0; overflow:hidden; transition:max-height 0.4s ease; }
         .mob-acc.open { max-height:3000px; }
 
-        /* Service row hover */
-        .svc-row-arrow { opacity:0; transition:opacity 0.2s ease; }
-        .svc-row:hover .svc-row-arrow { opacity:1; }
-        .svc-row:hover .svc-row-label { color:#86C232; }
-        .svc-row-label { transition:color 0.2s ease; }
-
         /* Demo card hover overlay */
         .demo-overlay { opacity:0; transition:opacity 0.2s ease; }
         .demo-card:hover .demo-overlay { opacity:1; }
@@ -236,7 +217,6 @@ export default function Navbar(): React.ReactElement {
             "relative pointer-events-auto w-full flex items-center justify-between",
             "rounded-[10px] px-2.5 py-2 md:px-4 md:py-2.5 gap-1.5 md:gap-4",
             "border border-white/20 transition-all duration-400",
-            // Made solid #222629 when scrolled, replacing the translucent blur effect
             scrolled
               ? "bg-[#222629] shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
               : "bg-white/[0.08] shadow-sm",
@@ -261,8 +241,7 @@ export default function Navbar(): React.ReactElement {
           <nav className="hidden lg:block">
             <ul className="flex items-center list-none m-0 p-0 gap-px">
               {NAV_ITEMS.map((item) => {
-                const hasDD      = !!item.children;
-                const isServices = item.label === "Services";
+                const hasDD    = !!item.children;
                 const isOpen     = activeMenu === item.label;
                 return (
                   <li
@@ -282,10 +261,9 @@ export default function Navbar(): React.ReactElement {
                       </Link>
                     )}
 
-                    {/* SOLID DROPDOWNS */}
-                    {hasDD && !isServices && (
+                    {/* DROPDOWN MENU */}
+                    {hasDD && (
                       <div className="js-dropdown absolute top-full left-0 min-w-[240px] z-[200] pt-4" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
-                        {/* Changed to solid bg-[#222629] */}
                         <div className="bg-[#222629] border border-white/10 rounded-[16px] p-2 shadow-[0_24px_64px_rgba(0,0,0,0.5)]">
                           {item.children!.map((child, idx) => (
                             <div key={child.label}>
@@ -302,34 +280,6 @@ export default function Navbar(): React.ReactElement {
                               {idx < item.children!.length - 1 && <div className="h-px bg-white/10 mx-3" />}
                             </div>
                           ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {hasDD && isServices && (
-                      <div className="js-dropdown absolute top-full left-0 w-[480px] z-[200] pt-4" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
-                        {/* Changed to solid bg-[#222629] */}
-                        <div className="bg-[#222629] border border-white/10 rounded-[20px] p-3 shadow-[0_24px_64px_rgba(0,0,0,0.5)]">
-                          <div className="grid grid-cols-2 gap-1">
-                            {item.children!.map((child) => {
-                              const Icon = child.icon;
-                              return (
-                                <Link key={child.label} href={child.href} onClick={() => setActiveMenu(null)} className="dd-link flex items-start gap-3 px-3.5 py-3.5 rounded-[14px] hover:bg-white/5 transition-colors duration-200 group">
-                                  <span className="flex-shrink-0 w-9 h-9 rounded-[10px] flex items-center justify-center bg-white/5 border border-white/10 text-[#86C232] group-hover:bg-[#86C232]/15 group-hover:border-[#86C232]/30 transition-all duration-200">
-                                    {Icon && <Icon size={16} strokeWidth={1.8} />}
-                                  </span>
-                                  <span className="flex flex-col gap-0.5 min-w-0">
-                                    <span className="text-[0.8rem] font-bold text-white/90 group-hover:text-white transition-colors duration-200 leading-tight">{child.label}</span>
-                                    <span className="text-[0.72rem] font-medium leading-snug text-white/50">{child.desc}</span>
-                                  </span>
-                                </Link>
-                              );
-                            })}
-                          </div>
-                          <div className="mt-2 pt-2.5 border-t border-white/10 px-2 flex items-center justify-between">
-                            <span className="text-[0.78rem] font-semibold text-white/50">Explore all services</span>
-                            <Link href="/services" onClick={() => setActiveMenu(null)} className="flex items-center gap-1.5 text-[0.78rem] font-bold text-[#86C232] hover:underline">View all <ArrowRight size={12} strokeWidth={2.5} /></Link>
-                          </div>
                         </div>
                       </div>
                     )}
@@ -449,36 +399,16 @@ export default function Navbar(): React.ReactElement {
             </div>
           </MobileAccordion>
 
-          <MobileAccordion label="Services" isOpen={openAccordion === "Services"} onToggle={() => setOpenAccordion(openAccordion === "Services" ? null : "Services")}>
-            <div className="pb-2">
-              {NAV_ITEMS.find(i => i.label === "Services")!.children!.map((svc, idx, arr) => {
-                const Icon = svc.icon;
-                return (
-                  <div key={svc.label}>
-                    <Link
-                      href={svc.href}
-                      className="svc-row flex items-center gap-4 px-6 py-4 hover:bg-[#86C232]/[0.05] transition-colors duration-200"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      <span className="flex-shrink-0 w-[50px] h-[50px] rounded-full flex items-center justify-center bg-[#86C232]/20 text-[#86C232]">
-                        {Icon && <Icon size={22} strokeWidth={1.7} />}
-                      </span>
-                      <span className="svc-row-label flex-1 text-[0.98rem] font-semibold text-white leading-snug">
-                        {svc.label}
-                      </span>
-                      <span className="svc-row-arrow flex-shrink-0 text-[#86C232]">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <line x1="7" y1="17" x2="17" y2="7"/>
-                          <polyline points="7 7 17 7 17 17"/>
-                        </svg>
-                      </span>
-                    </Link>
-                    {idx < arr.length - 1 && <div className="h-px bg-[#474B4F]/40 mx-6" />}
-                  </div>
-                );
-              })}
-            </div>
-          </MobileAccordion>
+          {/* ── CHANGED: Services rendered as flat mobile menu row ── */}
+          <div className="border-t border-[#474B4F]/50">
+            <Link
+              href="/navservices"
+              className="flex items-center justify-between w-full px-6 py-[18px] text-[1.08rem] font-bold text-white hover:text-[#86C232] transition-colors duration-200"
+              onClick={() => setMobileOpen(false)}
+            >
+              Services
+            </Link>
+          </div>
 
           <MobileAccordion label="Portfolio" isOpen={openAccordion === "Portfolio"} onToggle={() => setOpenAccordion(openAccordion === "Portfolio" ? null : "Portfolio")}>
             <div className="px-6 pb-4">

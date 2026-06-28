@@ -14,8 +14,7 @@ import {
   Layers,
   Briefcase,
   TrendingUp,
-  Cpu,
-  ChevronsRight
+  Cpu
 } from "lucide-react";
 import Marquee from "../components/Marquee"; // Adjust path as needed
 
@@ -25,117 +24,45 @@ import Marquee from "../components/Marquee"; // Adjust path as needed
 const SERVICES_DATA = [
   {
     id: 1,
-    title: "Web Development ",
+    title: "Web Development",
     desc: "Fast, responsive websites built to convert visitors into enquiries and help your business look trustworthy online.",
     icon: Target,
     href: "/page1"
   },
   {
     id: 2,
-    title: "Customer Experience Solutions",
+    title: "UI/UX Design",
     desc: "Customer Experience Solutions are designed to enhance every touchpoint of your customer journey, from first interaction.",
     icon: PieChart,
     href: "/page2"
   },
   {
     id: 3,
-    title: "Sustainability and Consulting",
+    title: "Custom Software",
     desc: "Provide tailored strategies that not only drive long-term value but also build trust with stakeholders, investors.",
     icon: Layers,
-    href: "pag3"
+    href: "/page3"
   },
   {
     id: 4,
-    title: "Training and Development",
+    title: "Mobile Apps",
     desc: "Training and Development Programs designed to empower employees with the skills, knowledge, and tools.",
     icon: Briefcase,
-    href: "page4"
+    href: "/page4"
   },
   {
     id: 5,
-    title: "IT Support & Maintenance",
+    title: "Digital Marketing",
     desc: "In today's dynamic business environment, to know to success lies strategic planning and operationals business success execution.",
     icon: Cpu,
-    href: "page5"
+    href: "/page5"
   },
   {
     id: 6,
-    title: "Marketing Strategy Campaigns",
+    title: "AI Solutions",
     desc: "In today's dynamic business environment, to know to success lies strategic planning and operationals business success execution.",
     icon: TrendingUp,
-    href: "page6"
-  },
-  {
-    id: 7,
-    title: "Financial Advisory Services",
-    desc: "Comprehensive financial planning and risk management strategies to ensure long-term stability and growth for your business.",
-    icon: PieChart,
-    href: ""
-  },
-  {
-    id: 8,
-    title: "Operational Efficiency",
-    desc: "Streamline your business operations to reduce costs, improve productivity, and maximize overall output across departments.",
-    icon: Layers,
-    href: ""
-  },
-  {
-    id: 9,
-    title: "Digital Transformation",
-    desc: "Integrate cutting-edge digital technology into all areas of your business to fundamentally change how you operate and deliver value.",
-    icon: Target,
-    href: "#"
-  },
-];
-
-/* ──────────────────────────────────────────────────────────
-   PRICING DATA
-────────────────────────────────────────────────────────── */
-const PRICING_PLANS = [
-  {
-    id: 1,
-    name: "Basic Plan",
-    desc: "Essential Business Services",
-    price: "149",
-    popular: false,
-    features: [
-      "Core business services",
-      "Basic customer support (email)",
-      "1 project per month",
-      "Basic reporting and analytics",
-      "Access to templates and tools",
-      "Basic performance tracking"
-    ]
-  },
-  {
-    id: 2,
-    name: "Standard Plan",
-    desc: "Complete Business Solutions",
-    price: "249",
-    popular: true,
-    features: [
-      "All features in Basic Plan",
-      "Priority customer support",
-      "Up to 3 projects per month",
-      "Monthly performance reviews",
-      "Collaboration tools for team",
-      "Custom templates"
-    ]
-  },
-  {
-    id: 3,
-    name: "Premium Plan",
-    desc: "Advanced Business Services",
-    price: "499",
-    popular: false,
-    features: [
-      "All features in Standard Plan",
-      "Dedicated account manager",
-      "Tailored strategy sessions",
-      "Quarterly performance audits",
-      "Priority support",
-      "24/7 emergency services"
-    ]
+    href: "/page6"
   }
 ];
 
@@ -194,7 +121,7 @@ export default function ServicesPage(): React.ReactElement {
           1. HERO SECTION (BOXY DESIGN)
       ════════════════════════════════════════════════════ */}
       <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-16 md:mb-24">
-        <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[15px] md:rounded-[40px] flex items-center justify-center overflow-hidden shadow-sm">
+        <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[15px] md:rounded-[10px] flex items-center justify-center overflow-hidden shadow-sm">
           
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -341,7 +268,7 @@ export default function ServicesPage(): React.ReactElement {
       {/* ════════════════════════════════════════════════════
           3. DROP US A LINE (CONTACT) SECTION
       ════════════════════════════════════════════════════ */}
-      <section className="w-full bg-[#111316] relative mb-24 md:mb-32 border-y border-[#474B4F]/20">
+      <section className="w-full bg-[#111316] relative mb-16 md:mb-24 border-y border-[#474B4F]/20">
         
         {/* WORLD MAP BACKGROUND */}
         <div 
@@ -412,7 +339,6 @@ export default function ServicesPage(): React.ReactElement {
           </div>
 
           {/* RIGHT: CONTACT FORM */}
-          {/* FIXED: Removed lg:rounded-l-[40px] and lg:-mr-8 and lg:border-r-0 to give all corners a 40px rounded design and fit neatly inside the layout */}
           <div className="w-full lg:w-1/2 bg-[#222629] p-8 sm:p-12 lg:p-16 rounded-[24px] lg:rounded-[10px] shadow-2xl relative my-auto border border-[#474B4F]/30">
             
             <div className="flex items-center gap-2 text-[#86C232] text-xs font-black uppercase tracking-[0.2em] mb-6">
@@ -448,7 +374,6 @@ export default function ServicesPage(): React.ReactElement {
                   className="w-full bg-transparent border-b border-[#474B4F]/60 pb-3 text-white text-[15px] font-semibold placeholder:text-[#6B6E70] outline-none focus:border-[#86C232] transition-colors"
                 />
                 
-                {/* SELECT MENU WITH REACT WARNING FIX */}
                 <div className="relative w-full">
                   <select 
                     required
@@ -456,10 +381,12 @@ export default function ServicesPage(): React.ReactElement {
                     className="w-full bg-transparent border-b border-[#474B4F]/60 pb-3 text-white text-[15px] font-semibold outline-none focus:border-[#86C232] transition-colors appearance-none cursor-pointer"
                   >
                     <option value="" disabled hidden className="text-[#6B6E70]">Choose a option</option>
-                    <option value="business" className="bg-[#222629] text-white">Business Strategy</option>
-                    <option value="customer" className="bg-[#222629] text-white">Customer Experience</option>
-                    <option value="sustainability" className="bg-[#222629] text-white">Sustainability & ESG</option>
-                    <option value="training" className="bg-[#222629] text-white">Training & Development</option>
+                    <option value="Web" className="bg-[#222629] text-white">Web Development</option>
+                    <option value="UI/UX Design" className="bg-[#222629] text-white">UI/UX Design</option>
+                    <option value="Custom Software" className="bg-[#222629] text-white">Custom Software</option>
+                    <option value="Mobile Apps" className="bg-[#222629] text-white">Mobile Apps</option>
+                    <option value="Digital Marketing" className="bg-[#222629] text-white">Digital Marketing</option>
+                    <option value="AI Solutions" className="bg-[#222629] text-white">AI Solutions</option>
                   </select>
                   <div className="absolute right-0 top-0 bottom-3 flex items-center pointer-events-none text-[#6B6E70]">
                     <ChevronRight size={18} className="rotate-90" />
@@ -499,120 +426,9 @@ export default function ServicesPage(): React.ReactElement {
       </section>
 
       {/* ════════════════════════════════════════════════════
-          4. PRICING PLAN SECTION
+          4. PARTNER LOGOS MARQUEE
       ════════════════════════════════════════════════════ */}
-      <section className="w-full max-w-[1300px] mx-auto px-5 sm:px-6 lg:px-8 mb-12 md:mb-16">
-        
-        {/* Header */}
-        <div className="flex flex-col items-center text-center mb-16 md:mb-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center justify-center gap-2 text-[#86C232] text-xs font-black uppercase tracking-[0.2em] mb-4 bg-[#86C232]/10 px-3 py-1.5 rounded-sm border border-[#86C232]/20 w-fit mx-auto"
-          >
-            <Box size={14} strokeWidth={2.5} /> Pricing Plan
-          </motion.div>
-
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.5rem] font-extrabold text-[#222629] tracking-tight leading-[1.1]"
-          >
-            Our Pricing <span className="text-[#86C232]">Plan.</span>
-          </motion.h2>
-        </div>
-
-        {/* Pricing Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-center">
-          {PRICING_PLANS.map((plan, i) => {
-            const isPopular = plan.popular;
-
-            return (
-              <motion.div
-                key={plan.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
-                className={`relative flex flex-col rounded-[32px] p-8 lg:p-10 transition-all duration-300 ${
-                  isPopular 
-                    ? "bg-[#61892F] shadow-[0_20px_50px_rgba(97,137,47,0.3)] md:scale-105 z-10 py-10 lg:py-14" 
-                    : "bg-white border border-[#474B4F]/10 shadow-[0_10px_30px_rgba(34,38,41,0.04)]"
-                }`}
-              >
-                
-                {/* Plan Title & Desc */}
-                <div className="mb-8">
-                  <h3 className={`text-2xl font-extrabold mb-2 ${isPopular ? "text-white" : "text-[#222629]"}`}>
-                    {plan.name}
-                  </h3>
-                  <p className={`text-[15px] font-medium ${isPopular ? "text-white/80" : "text-[#6B6E70]"}`}>
-                    {plan.desc}
-                  </p>
-                </div>
-
-                {/* Price */}
-                <div className="flex items-start gap-1 mb-8">
-                  <span className={`text-2xl font-extrabold mt-1 ${isPopular ? "text-white" : "text-[#222629]"}`}>
-                    $
-                  </span>
-                  <span className={`text-[4rem] font-black leading-none tracking-tighter ${isPopular ? "text-white" : "text-[#222629]"}`}>
-                    {plan.price}
-                  </span>
-                  <span className={`text-[15px] font-bold mt-auto mb-2 ml-1 ${isPopular ? "text-white/80" : "text-[#6B6E70]"}`}>
-                    /per month
-                  </span>
-                </div>
-
-                {/* CTA Button */}
-                <Link
-                  href="#"
-                  className={`group flex items-center justify-center gap-3 w-full p-2 pl-6 pr-2 rounded-full font-bold text-[15px] transition-all duration-300 mb-10 ${
-                    isPopular
-                      ? "bg-white text-[#222629] shadow-lg"
-                      : "bg-transparent border-2 border-[#474B4F]/10 text-[#222629] hover:border-[#474B4F]/30"
-                  }`}
-                >
-                  <span className="flex-1 text-center pr-2">Choose Plan</span>
-                  <span className="w-11 h-11 rounded-full bg-[#86C232] text-white flex items-center justify-center flex-shrink-0 transition-colors duration-300 group-hover:bg-[#222629]">
-                    <ArrowRight 
-                      size={18} 
-                      strokeWidth={2.5} 
-                      className="-rotate-45 transition-transform duration-300 group-hover:rotate-0" 
-                    />
-                  </span>
-                </Link>
-
-                {/* Features List */}
-                <div className="flex flex-col gap-4 mt-auto">
-                  {plan.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <ChevronsRight 
-                        size={18} 
-                        strokeWidth={3} 
-                        className={`flex-shrink-0 mt-0.5 ${isPopular ? "text-white" : "text-[#86C232]"}`} 
-                      />
-                      <span className={`text-[15px] font-semibold leading-snug ${isPopular ? "text-white/95" : "text-[#474B4F]"}`}>
-                        {feature}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-              </motion.div>
-            );
-          })}
-        </div>
-
-      </section>
-
-      {/* ════════════════════════════════════════════════════
-          5. PARTNER LOGOS MARQUEE
-      ════════════════════════════════════════════════════ */}
-      <section className="relative w-full py-16 mt-10 md:mt-20 bg-[#f8f9fa] overflow-hidden flex items-center justify-center border-t border-[#474B4F]/10">
+      <section className="relative w-full py-16 bg-[#f8f9fa] overflow-hidden flex items-center justify-center border-t border-[#474B4F]/10">
         <div className="w-full max-w-[1400px] mx-auto flex justify-center">
           <Marquee />
         </div>
