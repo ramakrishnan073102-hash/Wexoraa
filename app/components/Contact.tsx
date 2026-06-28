@@ -227,10 +227,12 @@ export default function ContactPage(): React.ReactElement {
                       className="w-full bg-transparent border-b-2 border-[#474B4F]/20 pb-3 text-[#6B6E70] font-medium outline-none focus:border-[#86C232] transition-colors appearance-none cursor-pointer"
                     >
                       <option value="" disabled selected hidden>Chose a option</option>
-                      <option value="business">Business Strategy</option>
-                      <option value="customer">Customer Experience</option>
-                      <option value="esg">Sustainability and ESG</option>
-                      <option value="training">Training and Development</option>
+                      <option value="Web Development">Web Development</option>
+                      <option value="UI/UX Design">UI/UX Design</option>
+                      <option value="Custom Software">Custom Software</option>
+                      <option value="training">Mobile Apps</option>
+                      <option value="Digital Marketing">Digital Marketing</option>
+                      <option value="AI Solutions">AI Solutions</option>
                     </select>
                     {/* Custom Dropdown Chevron */}
                     <div className="absolute right-0 top-1 pointer-events-none text-[#6B6E70]">
