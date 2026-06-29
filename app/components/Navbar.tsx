@@ -13,14 +13,8 @@ interface NavItem  { label: string; href: string; children?: NavChild[]; }
 const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Services", href: "/navservices" }, // ── CHANGED: Removed dropdown children
-  {
-    label: "Portfolio", href: "/portfolio",
-    children: [
-      { label: "Portfolios",        href: "/portfolio" },
-      { label: "Portfolio Details", href: "/portfoliopage1" },
-    ],
-  },
+  { label: "Services", href: "/navservices" },
+  { label: "Portfolio", href: "/portfolio" }, // ── CHANGED: Removed dropdown children
   { label: "Contact", href: "/contact" },
 ];
 
@@ -399,7 +393,16 @@ export default function Navbar(): React.ReactElement {
             </div>
           </MobileAccordion>
 
-          {/* ── CHANGED: Services rendered as flat mobile menu row ── */}
+          <div className="border-t border-[#474B4F]/50">
+            <Link
+              href="/about"
+              className="flex items-center justify-between w-full px-6 py-[18px] text-[1.08rem] font-bold text-white hover:text-[#86C232] transition-colors duration-200"
+              onClick={() => setMobileOpen(false)}
+            >
+              About Us
+            </Link>
+          </div>
+
           <div className="border-t border-[#474B4F]/50">
             <Link
               href="/navservices"
@@ -410,18 +413,16 @@ export default function Navbar(): React.ReactElement {
             </Link>
           </div>
 
-          <MobileAccordion label="Portfolio" isOpen={openAccordion === "Portfolio"} onToggle={() => setOpenAccordion(openAccordion === "Portfolio" ? null : "Portfolio")}>
-            <div className="px-6 pb-4">
-              {NAV_ITEMS.find(i => i.label === "Portfolio")!.children!.map((child, idx, arr) => (
-                <div key={child.label}>
-                  <Link href={child.href} className="block py-[10px] text-[0.9rem] font-medium text-white/75 hover:text-[#86C232] transition-colors duration-200" onClick={() => setMobileOpen(false)}>
-                    {child.label}
-                  </Link>
-                  {idx < arr.length - 1 && <div className="h-px bg-[#474B4F]/40" />}
-                </div>
-              ))}
-            </div>
-          </MobileAccordion>
+          {/* ── CHANGED: Portfolio is now a direct link instead of an accordion ── */}
+          <div className="border-t border-[#474B4F]/50">
+            <Link
+              href="/portfolio"
+              className="flex items-center justify-between w-full px-6 py-[18px] text-[1.08rem] font-bold text-white hover:text-[#86C232] transition-colors duration-200"
+              onClick={() => setMobileOpen(false)}
+            >
+              Portfolio
+            </Link>
+          </div>
 
           <div className="border-t border-[#474B4F]/50">
             <Link
