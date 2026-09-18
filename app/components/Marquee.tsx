@@ -84,17 +84,16 @@ export default function MarqueeSection(): React.ReactElement {
         <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center">
 
           {/* Clean, Crisp Frosted Glass Circle 
-              UPDATED: w-[200px] h-[200px] for mobile, leaving plenty of room for marquee cards 
+              UPDATED: w-[180px] h-[180px] for mobile so the text actually fits inside the circle without overflowing! 
           */}
-          <div className="absolute w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] rounded-full bg-white/50 backdrop-blur-[15px] border border-white/60 shadow-[0_4px_30px_rgba(0,0,0,0.05)] transform-gpu" />
+          <div className="absolute w-[150px] h-[150px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] rounded-full bg-white/50 backdrop-blur-[15px] border border-white/60 shadow-[0_4px_30px_rgba(0,0,0,0.05)] transform-gpu" />
           
           {/* The Text Layout */}
-          <div className="relative z-20 text-center px-4 w-full max-w-[200px] sm:max-w-none">
-            <h2 className="font-extrabold text-[#222629] leading-[1.4] text-[13px] sm:text-base md:text-lg">
-             Technologies we use at
-
+          <div className="relative z-20 text-center px-3 w-full max-w-[170px] sm:max-w-none font-['Manrope',_sans-serif]">
+            <h2 className="font-extrabold text-[#222629] leading-[1.5] text-[12px] sm:text-base md:text-lg tracking-tight">
+              Technologies we use at
               <br />
-              <span className="text-[#86C232]">Wexoraa Infotech</span> 
+              <span className="text-[#86C232]">Wexoraa</span> 
             </h2>
           </div>
 

@@ -163,11 +163,12 @@ export default function Footer(): React.ReactElement {
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 lg:gap-8 text-[#474B4F] font-semibold text-[14px] md:text-[15px]">
               <a href="tel:+10095447818" className="flex items-center gap-2.5 hover:text-[#86C232] transition-colors duration-300">
-                <Phone size={18} className="text-[#6B6E70]" /> (009) 544-7818
+                <Phone size={18} className="text-[#6B6E70]" /> (+91) 9360375338 <br /> Nava India, Coimbatore, Tamilnadu
               </a>
               <a href="mailto:info@wexoraa.com" className="flex items-center gap-2.5 hover:text-[#86C232] transition-colors duration-300">
                 <Mail size={18} className="text-[#6B6E70]" /> info@wexoraa.com
               </a>
+              
             </div>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 lg:gap-10">

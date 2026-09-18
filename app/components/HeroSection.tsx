@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight, ArrowDown } from "lucide-react";
 
-// ─── Slide images ─────────────────────────────────────────────────────────────
+// ─── Slide images ───────────────────────────────────────────────────────────── 
 const SLIDES: string[] = [
   "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=2000",
   "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=2000",
