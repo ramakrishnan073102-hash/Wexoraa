@@ -257,12 +257,12 @@ export default function Navbar(): React.ReactElement {
                       onMouseLeave={() => hasDD && scheduleClose()}
                     >
                       {hasDD ? (
-                        <button className={["flex items-center gap-1 px-3.5 py-1.5 text-sm font-semibold bg-transparent border-none cursor-pointer rounded-full transition-colors duration-200 whitespace-nowrap", isOpen ? "text-[#86C232] bg-[#86C232]/[0.08]" : "text-[#222629]/80 hover:text-[#86C232] hover:bg-[#222629]/5"].join(" ")}>
+                        <button className={["flex items-center gap-1 px-4 py-2 text-[1.05rem] font-semibold bg-transparent border-none cursor-pointer rounded-full transition-colors duration-200 whitespace-nowrap", isOpen ? "text-[#86C232] bg-[#86C232]/[0.08]" : "text-[#222629]/80 hover:text-[#86C232] hover:bg-[#222629]/5"].join(" ")}>
                           {item.label}
                           <ChevronDown size={13} className="nav-chevron opacity-60" data-open={isOpen ? "true" : "false"} />
                         </button>
                       ) : (
-                        <Link href={item.href} className="flex items-center gap-1 px-3.5 py-1.5 text-sm font-semibold text-[#222629]/80 rounded-full hover:text-[#86C232] hover:bg-[#222629]/5 transition-colors duration-200 whitespace-nowrap">
+                        <Link href={item.href} className="flex items-center gap-1 px-4 py-2 text-[1.05rem] font-semibold text-[#222629]/80 rounded-full hover:text-[#86C232] hover:bg-[#222629]/5 transition-colors duration-200 whitespace-nowrap">
                           {item.label}
                         </Link>
                       )}
