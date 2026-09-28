@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
-import { ChevronDown, ArrowRight, X, Phone } from "lucide-react";
+import { ChevronDown, ArrowRight, X } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface NavBadge { text: string; color: string; }
@@ -14,7 +14,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/navservices" },
-  { label: "Portfolio", href: "/portfolio" }, // ── CHANGED: Removed dropdown children
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -195,6 +195,13 @@ export default function Navbar(): React.ReactElement {
         /* Demo card hover overlay */
         .demo-overlay { opacity:0; transition:opacity 0.2s ease; }
         .demo-card:hover .demo-overlay { opacity:1; }
+
+        /* EXACT GRAINY ORGANIC TEXTURE: Custom heavy glass distortion pattern overlay */
+        .pebble-glass-texture {
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='pebbleNoise' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23pebbleNoise)'/%3E%3C/svg%3E");
+          mix-blend-mode: overlay;
+          pointer-events: none;
+        }
       `}</style>
 
       {/* ══ NAVBAR WRAPPER ══ */}
@@ -210,99 +217,106 @@ export default function Navbar(): React.ReactElement {
           className={[
             "relative pointer-events-auto w-full flex items-center justify-between",
             "rounded-[10px] px-2.5 py-2 md:px-4 md:py-2.5 gap-1.5 md:gap-4",
-            "border border-white/20 transition-all duration-400",
-            scrolled
-              ? "bg-[#222629] shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
-              : "bg-white/[0.08] shadow-sm",
+            "transition-all duration-400 backdrop-blur-[0px] overflow-hidden",
+            scrolled 
+              ? "bg-white/100 shadow-[0_8px_32px_rgba(34,38,41,0.08)]" 
+              : "bg-white/100 shadow-sm",
           ].join(" ")}
           style={{
             fontFamily: "'Manrope', sans-serif",
           }}
         >
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0 group overflow-hidden pl-2">
-            <img
-              src="/img/logo.png" alt="Wexoraa"
-              className="h-5 sm:h-7 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-              onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-            />
-            <span className="text-[1.05rem] sm:text-[1.28rem] font-bold text-white" style={{ letterSpacing: "-0.03em" }}>
-              Wex<span className="text-[#86C232]">oraa</span>
-            </span>
-          </Link>
+          {/* Pebble Textured Layer Overlay */}
+          <div className="absolute inset-0 pebble-glass-texture z-0" />
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:block">
-            <ul className="flex items-center list-none m-0 p-0 gap-px">
-              {NAV_ITEMS.map((item) => {
-                const hasDD    = !!item.children;
-                const isOpen     = activeMenu === item.label;
-                return (
-                  <li
-                    key={item.label}
-                    className="relative"
-                    onMouseEnter={() => hasDD && openMenu(item.label)}
-                    onMouseLeave={() => hasDD && scheduleClose()}
-                  >
-                    {hasDD ? (
-                      <button className={["flex items-center gap-1 px-3.5 py-1.5 text-sm font-semibold bg-transparent border-none cursor-pointer rounded-full transition-colors duration-200 whitespace-nowrap", isOpen ? "text-[#86C232] bg-[#86C232]/[0.08]" : "text-white/85 hover:text-[#86C232] hover:bg-white/10"].join(" ")}>
-                        {item.label}
-                        <ChevronDown size={13} className="nav-chevron opacity-60" data-open={isOpen ? "true" : "false"} />
-                      </button>
-                    ) : (
-                      <Link href={item.href} className="flex items-center gap-1 px-3.5 py-1.5 text-sm font-semibold text-white/85 rounded-full hover:text-[#86C232] hover:bg-white/10 transition-colors duration-200 whitespace-nowrap">
-                        {item.label}
-                      </Link>
-                    )}
-
-                    {/* DROPDOWN MENU */}
-                    {hasDD && (
-                      <div className="js-dropdown absolute top-full left-0 min-w-[240px] z-[200] pt-4" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
-                        <div className="bg-[#222629] border border-white/10 rounded-[16px] p-2 shadow-[0_24px_64px_rgba(0,0,0,0.5)]">
-                          {item.children!.map((child, idx) => (
-                            <div key={child.label}>
-                              <Link href={child.href} onClick={() => setActiveMenu(null)} className="dd-link flex items-center justify-between px-3.5 py-3 rounded-[12px] text-[0.875rem] font-bold text-white/70 hover:text-white hover:bg-white/5 transition-colors duration-200 whitespace-nowrap group">
-                                <span className="flex items-center gap-2.5">
-                                  <span className="dd-dot w-1.5 h-1.5 rounded-full bg-[#86C232] opacity-0 flex-shrink-0 scale-50 transition-[opacity,transform] duration-200" />
-                                  {child.label}
-                                  {child.badge && <span className="text-[8px] font-extrabold px-1.5 py-0.5 rounded text-[#222629] uppercase tracking-wide" style={{ background: child.badge.color }}>{child.badge.text}</span>}
-                                </span>
-                                <span className="dd-arrow flex items-center justify-center w-[22px] h-[22px] rounded-full text-[#86C232] opacity-0 -translate-x-1.5 transition-[opacity,transform] duration-200 bg-[#86C232]/[0.12]">
-                                  <ArrowRight size={11} strokeWidth={2.5} />
-                                </span>
-                              </Link>
-                              {idx < item.children!.length - 1 && <div className="h-px bg-white/10 mx-3" />}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-
-          {/* Right Actions */}
-          <div className="flex items-center gap-1.5 sm:gap-4 flex-shrink-0">
-            <Link href="/contact" className="tp inline-flex items-center bg-[#86C232] text-[#222629] rounded-full flex-shrink-0 transition-transform duration-200 hover:-translate-y-px py-[3px] pr-[3px] pl-3 md:py-1.5 md:pr-1.5 md:pl-5">
-              <span className="tp-lbl relative block overflow-hidden text-xs md:text-[0.88rem] font-bold mr-3 md:mr-3.5 whitespace-nowrap" data-text="Let's Talk">
-                <span className="tp-lbl-inner">Let&apos;s Talk</span>
-              </span>
-              <span className="flex items-center justify-center w-[26px] h-[26px] md:w-8 md:h-8 rounded-full bg-[#222629] text-[#86C232] flex-shrink-0">
-                <ArrowRight size={14} strokeWidth={2.5} className="transition-transform duration-[400ms] ease-[cubic-bezier(0.65,0,0.35,1)] -rotate-45 [.tp:hover_&]:rotate-0" />
+          {/* Content (Z-10 to stay above texture) */}
+          <div className="relative z-10 w-full flex items-center justify-between">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0 group overflow-hidden pl-2">
+              <img
+                src="/img/logo.png" alt="Wexoraa"
+                className="h-5 sm:h-7 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+              />
+              <span className="text-[1.05rem] sm:text-[1.28rem] font-bold text-[#222629]" style={{ letterSpacing: "-0.03em" }}>
+                Wex<span className="text-[#86C232]">oraa</span>
               </span>
             </Link>
-            <button className="hidden lg:flex w-11 h-11 items-center justify-center text-white/70 hover:text-white transition-colors" onClick={() => setSidePanelOpen(true)}>
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-              </svg>
-            </button>
-            <button className="flex lg:hidden w-[34px] h-[34px] sm:w-11 sm:h-11 items-center justify-center text-white/70 hover:text-white transition-colors" onClick={() => setMobileOpen(true)}>
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-              </svg>
-            </button>
+
+            {/* Desktop Nav */}
+            <nav className="hidden lg:block">
+              <ul className="flex items-center list-none m-0 p-0 gap-px">
+                {NAV_ITEMS.map((item) => {
+                  const hasDD    = !!item.children;
+                  const isOpen     = activeMenu === item.label;
+                  return (
+                    <li
+                      key={item.label}
+                      className="relative"
+                      onMouseEnter={() => hasDD && openMenu(item.label)}
+                      onMouseLeave={() => hasDD && scheduleClose()}
+                    >
+                      {hasDD ? (
+                        <button className={["flex items-center gap-1 px-3.5 py-1.5 text-sm font-semibold bg-transparent border-none cursor-pointer rounded-full transition-colors duration-200 whitespace-nowrap", isOpen ? "text-[#86C232] bg-[#86C232]/[0.08]" : "text-[#222629]/80 hover:text-[#86C232] hover:bg-[#222629]/5"].join(" ")}>
+                          {item.label}
+                          <ChevronDown size={13} className="nav-chevron opacity-60" data-open={isOpen ? "true" : "false"} />
+                        </button>
+                      ) : (
+                        <Link href={item.href} className="flex items-center gap-1 px-3.5 py-1.5 text-sm font-semibold text-[#222629]/80 rounded-full hover:text-[#86C232] hover:bg-[#222629]/5 transition-colors duration-200 whitespace-nowrap">
+                          {item.label}
+                        </Link>
+                      )}
+
+                      {/* DROPDOWN MENU */}
+                      {hasDD && (
+                        <div className="js-dropdown absolute top-full left-0 min-w-[240px] z-[200] pt-4" data-open={isOpen ? "true" : "false"} onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
+                          <div className="bg-[#222629] border border-white/10 rounded-[16px] p-2 shadow-[0_24px_64px_rgba(0,0,0,0.5)]">
+                            {item.children!.map((child, idx) => (
+                              <div key={child.label}>
+                                <Link href={child.href} onClick={() => setActiveMenu(null)} className="dd-link flex items-center justify-between px-3.5 py-3 rounded-[12px] text-[0.875rem] font-bold text-white/70 hover:text-white hover:bg-white/5 transition-colors duration-200 whitespace-nowrap group">
+                                  <span className="flex items-center gap-2.5">
+                                    <span className="dd-dot w-1.5 h-1.5 rounded-full bg-[#86C232] opacity-0 flex-shrink-0 scale-50 transition-[opacity,transform] duration-200" />
+                                    {child.label}
+                                    {child.badge && <span className="text-[8px] font-extrabold px-1.5 py-0.5 rounded text-[#222629] uppercase tracking-wide" style={{ background: child.badge.color }}>{child.badge.text}</span>}
+                                  </span>
+                                  <span className="dd-arrow flex items-center justify-center w-[22px] h-[22px] rounded-full text-[#86C232] opacity-0 -translate-x-1.5 transition-[opacity,transform] duration-200 bg-[#86C232]/[0.12]">
+                                    <ArrowRight size={11} strokeWidth={2.5} />
+                                  </span>
+                                </Link>
+                                {idx < item.children!.length - 1 && <div className="h-px bg-white/10 mx-3" />}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+
+            {/* Right Actions */}
+            <div className="flex items-center gap-1.5 sm:gap-4 flex-shrink-0">
+              <Link href="/contact" className="tp inline-flex items-center bg-[#86C232] text-[#222629] rounded-full flex-shrink-0 transition-transform duration-200 hover:-translate-y-px py-[3px] pr-[3px] pl-3 md:py-1.5 md:pr-1.5 md:pl-5 shadow-sm">
+                <span className="tp-lbl relative block overflow-hidden text-xs md:text-[0.88rem] font-bold mr-3 md:mr-3.5 whitespace-nowrap" data-text="Let's Talk">
+                  <span className="tp-lbl-inner">Let&apos;s Talk</span>
+                </span>
+                <span className="flex items-center justify-center w-[26px] h-[26px] md:w-8 md:h-8 rounded-full bg-[#222629] text-[#86C232] flex-shrink-0">
+                  <ArrowRight size={14} strokeWidth={2.5} className="transition-transform duration-[400ms] ease-[cubic-bezier(0.65,0,0.35,1)] -rotate-45 [.tp:hover_&]:rotate-0" />
+                </span>
+              </Link>
+              
+              <button className="hidden lg:flex w-11 h-11 items-center justify-center text-[#222629]/70 hover:text-[#86C232] transition-colors" onClick={() => setSidePanelOpen(true)}>
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+              </button>
+              <button className="flex lg:hidden w-[34px] h-[34px] sm:w-11 sm:h-11 items-center justify-center text-[#222629]/70 hover:text-[#86C232] transition-colors" onClick={() => setMobileOpen(true)}>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -413,7 +427,6 @@ export default function Navbar(): React.ReactElement {
             </Link>
           </div>
 
-          {/* ── CHANGED: Portfolio is now a direct link instead of an accordion ── */}
           <div className="border-t border-[#474B4F]/50">
             <Link
               href="/portfolio"
