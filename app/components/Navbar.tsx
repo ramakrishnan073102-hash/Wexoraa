@@ -13,15 +13,20 @@ interface NavItem  { label: string; href: string; children?: NavChild[]; }
 const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Services", href: "/navservices" },
+  { 
+    label: "Services", 
+    href: "/navservices",
+    children: [
+      { label: "Web Development", href: "/page1" },
+      { label: "UI/UX Design", href: "/page2" },
+      { label: "Custom Software", href: "/page3" },
+      { label: "Mobile Apps", href: "/page4" },
+      { label: "Digital Marketing", href: "/page5" },
+      { label: "AI Solutions", href: "/page6" },
+    ]
+  },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/contact" },
-];
-
-const HOME_DEMOS = [
-  { label: "Home - 01", href: "/", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" },
-  { label: "Home - 02", href: "/", img: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=600&q=80" },
-  { label: "Home - 03", href: "/", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" },
 ];
 
 const SocialIcons: React.FC[] = [
@@ -94,7 +99,6 @@ function MobileAccordion({
 export default function Navbar(): React.ReactElement {
   const [scrolled,       setScrolled]      = useState<boolean>(false);
   const [hidden,         setHidden]        = useState<boolean>(false);
-  const [sidePanelOpen, setSidePanelOpen] = useState<boolean>(false);
   const [mobileOpen,    setMobileOpen]    = useState<boolean>(false);
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
 
@@ -139,11 +143,13 @@ export default function Navbar(): React.ReactElement {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Prevent background scroll when mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = sidePanelOpen || mobileOpen ? "hidden" : "";
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [sidePanelOpen, mobileOpen]);
+  }, [mobileOpen]);
 
+  // Reset accordion when closing mobile menu
   useEffect(() => {
     if (!mobileOpen) setOpenAccordion(null);
   }, [mobileOpen]);
@@ -183,18 +189,12 @@ export default function Navbar(): React.ReactElement {
         /* Panels */
         .panel-overlay { opacity:0; visibility:hidden; transition:opacity 0.28s, visibility 0.28s; }
         .panel-overlay.open { opacity:1; visibility:visible; }
-        .side-panel { transform:translateX(100%); transition:transform 0.5s cubic-bezier(0.16,1,0.3,1); }
-        .side-panel.open { transform:translateX(0); }
         .mob-panel { transform:translateX(100%); transition:transform 0.45s cubic-bezier(0.16,1,0.3,1); }
         .mob-panel.open  { transform:translateX(0); }
 
         /* Accordion */
         .mob-acc { max-height:0; overflow:hidden; transition:max-height 0.4s ease; }
-        .mob-acc.open { max-height:3000px; }
-
-        /* Demo card hover overlay */
-        .demo-overlay { opacity:0; transition:opacity 0.2s ease; }
-        .demo-card:hover .demo-overlay { opacity:1; }
+        .mob-acc.open { max-height:1000px; }
 
         /* EXACT GRAINY ORGANIC TEXTURE: Custom heavy glass distortion pattern overlay */
         .pebble-glass-texture {
@@ -202,13 +202,29 @@ export default function Navbar(): React.ReactElement {
           mix-blend-mode: overlay;
           pointer-events: none;
         }
+
+        /* CUSTOM BIG SCROLLBAR */
+        ::-webkit-scrollbar {
+          width: 14px;
+        }
+        ::-webkit-scrollbar-track {
+          background: #222629;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: #86C232;
+          border-radius: 10px;
+          border: 3px solid #222629;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #95D638;
+        }
       `}</style>
 
       {/* ══ NAVBAR WRAPPER ══ */}
       <div
         className={[
           "fixed z-[1000] flex justify-center pointer-events-none",
-          "top-8 left-3 right-3 md:top-8 md:left-6 md:right-6 lg:top-8 lg:left-10 lg:right-10",
+          "top-4 left-3 right-3 md:top-8 md:left-6 md:right-6 lg:top-8 lg:left-10 lg:right-10",
           "transition-[transform,opacity] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]",
           hidden ? "navbar-hidden" : "",
         ].join(" ")}
@@ -217,7 +233,7 @@ export default function Navbar(): React.ReactElement {
           className={[
             "relative pointer-events-auto w-full flex items-center justify-between",
             "rounded-[10px] px-2.5 py-2 md:px-4 md:py-2.5 gap-1.5 md:gap-4",
-            "transition-all duration-400 backdrop-blur-[0px] overflow-hidden",
+            "transition-all duration-400 backdrop-blur-[0px]",
             scrolled 
               ? "bg-white/100 shadow-[0_8px_32px_rgba(34,38,41,0.08)]" 
               : "bg-white/100 shadow-sm",
@@ -227,7 +243,7 @@ export default function Navbar(): React.ReactElement {
           }}
         >
           {/* Pebble Textured Layer Overlay */}
-          <div className="absolute inset-0 pebble-glass-texture z-0" />
+          <div className="absolute inset-0 pebble-glass-texture z-0 rounded-[10px]" />
 
           {/* Content (Z-10 to stay above texture) */}
           <div className="relative z-10 w-full flex items-center justify-between">
@@ -245,7 +261,7 @@ export default function Navbar(): React.ReactElement {
 
             {/* Desktop Nav */}
             <nav className="hidden lg:block">
-              <ul className="flex items-center list-none m-0 p-0 gap-px">
+              <ul className="flex items-center list-none m-0 p-0 gap-2 xl:gap-4">
                 {NAV_ITEMS.map((item) => {
                   const hasDD    = !!item.children;
                   const isOpen     = activeMenu === item.label;
@@ -257,12 +273,12 @@ export default function Navbar(): React.ReactElement {
                       onMouseLeave={() => hasDD && scheduleClose()}
                     >
                       {hasDD ? (
-                        <button className={["flex items-center gap-1 px-4 py-2 text-[1.05rem] font-semibold bg-transparent border-none cursor-pointer rounded-full transition-colors duration-200 whitespace-nowrap", isOpen ? "text-[#86C232] bg-[#86C232]/[0.08]" : "text-[#222629]/80 hover:text-[#86C232] hover:bg-[#222629]/5"].join(" ")}>
+                        <button className={["flex items-center gap-1.5 px-4 py-2 text-[1.2rem] font-extrabold bg-transparent border-none cursor-pointer rounded-full transition-colors duration-200 whitespace-nowrap", isOpen ? "text-[#86C232] bg-[#86C232]/[0.08]" : "text-[#474B4F] hover:text-[#86C232] hover:bg-[#222629]/5"].join(" ")}>
                           {item.label}
-                          <ChevronDown size={13} className="nav-chevron opacity-60" data-open={isOpen ? "true" : "false"} />
+                          <ChevronDown size={16} className="nav-chevron opacity-60" data-open={isOpen ? "true" : "false"} />
                         </button>
                       ) : (
-                        <Link href={item.href} className="flex items-center gap-1 px-4 py-2 text-[1.05rem] font-semibold text-[#222629]/80 rounded-full hover:text-[#86C232] hover:bg-[#222629]/5 transition-colors duration-200 whitespace-nowrap">
+                        <Link href={item.href} className="flex items-center gap-1 px-4 py-2 text-[1.2rem] font-extrabold text-[#474B4F] rounded-full hover:text-[#86C232] hover:bg-[#222629]/5 transition-colors duration-200 whitespace-nowrap">
                           {item.label}
                         </Link>
                       )}
@@ -295,23 +311,24 @@ export default function Navbar(): React.ReactElement {
               </ul>
             </nav>
 
-            {/* Right Actions */}
+            {/* Right Actions & Hamburger */}
             <div className="flex items-center gap-1.5 sm:gap-4 flex-shrink-0">
+              {/* Let's Talk Button (Desktop & Mobile) */}
               <Link href="/contact" className="tp inline-flex items-center bg-[#86C232] text-[#222629] rounded-full flex-shrink-0 transition-transform duration-200 hover:-translate-y-px py-[3px] pr-[3px] pl-3 md:py-1.5 md:pr-1.5 md:pl-5 shadow-sm">
-                <span className="tp-lbl relative block overflow-hidden text-xs md:text-[0.88rem] font-bold mr-3 md:mr-3.5 whitespace-nowrap" data-text="Let's Talk">
-                  <span className="tp-lbl-inner">Let&apos;s Talk</span>
+                <span className="tp-lbl relative block overflow-hidden text-xs md:text-[0.88rem] font-bold mr-3 md:mr-3.5 whitespace-nowrap" data-text="Let's Connect">
+                  <span className="tp-lbl-inner">Let&apos;s Connect</span>
                 </span>
                 <span className="flex items-center justify-center w-[26px] h-[26px] md:w-8 md:h-8 rounded-full bg-[#222629] text-[#86C232] flex-shrink-0">
                   <ArrowRight size={14} strokeWidth={2.5} className="transition-transform duration-[400ms] ease-[cubic-bezier(0.65,0,0.35,1)] -rotate-45 [.tp:hover_&]:rotate-0" />
                 </span>
               </Link>
               
-              <button className="hidden lg:flex w-11 h-11 items-center justify-center text-[#222629]/70 hover:text-[#86C232] transition-colors" onClick={() => setSidePanelOpen(true)}>
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-                </svg>
-              </button>
-              <button className="flex lg:hidden w-[34px] h-[34px] sm:w-11 sm:h-11 items-center justify-center text-[#222629]/70 hover:text-[#86C232] transition-colors" onClick={() => setMobileOpen(true)}>
+              {/* Mobile Hamburger Icon */}
+              <button 
+                className="flex lg:hidden w-[34px] h-[34px] sm:w-11 sm:h-11 items-center justify-center text-[#222629]/70 hover:text-[#86C232] transition-colors" 
+                onClick={() => setMobileOpen(true)}
+                aria-label="Open menu"
+              >
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
                 </svg>
@@ -321,44 +338,6 @@ export default function Navbar(): React.ReactElement {
         </div>
       </div>
 
-      {/* ══ SIDEBAR ══ */}
-      <div className={`panel-overlay fixed inset-0 z-[1100] bg-black/60 backdrop-blur-sm ${sidePanelOpen ? "open" : ""}`} onClick={() => setSidePanelOpen(false)} />
-      <aside
-        className={["side-panel fixed top-0 right-0 h-[100dvh] w-full max-w-[400px] z-[1101] flex flex-col p-8 sm:p-10 overflow-y-auto bg-[#222629] border-l border-[#474B4F]", sidePanelOpen ? "open" : ""].join(" ")}
-        style={{ fontFamily: "'Manrope', sans-serif" }}
-      >
-        <button onClick={() => setSidePanelOpen(false)} className="absolute top-7 right-7 w-10 h-10 rounded-xl flex items-center justify-center text-[#6B6E70] border border-[#474B4F] hover:bg-[#86C232] hover:border-[#86C232] hover:text-[#222629] transition-all">
-          <X size={18} />
-        </button>
-        <div className="flex items-center gap-3 mt-2 mb-5">
-          <span className="text-xl font-bold text-white" style={{ letterSpacing: "-0.03em" }}>Wex<span className="text-[#86C232]">oraa</span></span>
-        </div>
-        <p className="text-sm leading-relaxed mb-9 text-[#6B6E70]">Developing personalized customer journeys to increase satisfaction &amp; loyalty of our expanding audience.</p>
-        <div className="mb-9">
-          <h4 className="text-xs font-bold text-white mb-5 uppercase tracking-widest">Contact Info</h4>
-          <div className="flex flex-col gap-6">
-            {[
-              { label: "Phone",    value: "+1 (009) 544-7818" },
-              { label: "Email",    value: "info@wexoraa.com" },
-              { label: "Location", value: "993 Renner Burg, West Rond, MT 94251-030" },
-            ].map(({ label, value }) => (
-              <div key={label} className="flex flex-col gap-1">
-                <p className="text-xs text-[#6B6E70]">{label}</p>
-                <p className="text-base text-white break-words leading-snug">{value}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="mt-auto pt-6">
-          <h4 className="text-sm font-bold text-white mb-4">Follow Us</h4>
-          <div className="flex gap-3 flex-wrap">
-            {SocialIcons.map((Icon, i) => (
-              <a key={i} href="#" className="w-10 h-10 rounded-full flex items-center justify-center bg-[#474B4F] text-white hover:bg-[#86C232] hover:text-[#222629] transition-all"><Icon /></a>
-            ))}
-          </div>
-        </div>
-      </aside>
-
       {/* ══ MOBILE MENU ══ */}
       <div className={`panel-overlay fixed inset-0 z-[1100] bg-black/70 backdrop-blur-sm lg:hidden ${mobileOpen ? "open" : ""}`} onClick={() => setMobileOpen(false)} />
 
@@ -366,6 +345,7 @@ export default function Navbar(): React.ReactElement {
         className={["mob-panel fixed top-0 right-0 h-[100dvh] w-[85vw] max-w-[380px] z-[1101] flex flex-col lg:hidden bg-[#222629]", mobileOpen ? "open" : ""].join(" ")}
         style={{ fontFamily: "'Manrope', sans-serif" }}
       >
+        {/* Header inside Mobile Menu */}
         <div className="flex items-center justify-between px-6 pt-6 pb-4 flex-shrink-0">
           <Link href="/" className="flex items-center gap-2.5" onClick={() => setMobileOpen(false)}>
             <img
@@ -382,30 +362,19 @@ export default function Navbar(): React.ReactElement {
           </button>
         </div>
 
+        {/* Scrollable Links Area */}
         <div className="flex-1 overflow-y-auto min-h-0 overscroll-contain">
 
-          <MobileAccordion label="Home" isOpen={openAccordion === "Home"} onToggle={() => setOpenAccordion(openAccordion === "Home" ? null : "Home")}>
-            <div className="flex flex-col gap-4 px-5 pb-6">
-              {HOME_DEMOS.map((demo) => (
-                <Link
-                  key={demo.label} href={demo.href}
-                  className="demo-card relative rounded-[16px] overflow-hidden block bg-[#1a1d20]"
-                  style={{ aspectRatio: "16/9" }}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <img src={demo.img} alt={demo.label} className="w-full h-full object-cover opacity-75" />
-                  <div className="demo-overlay absolute inset-0 flex items-center justify-center bg-black/35">
-                    <span className="flex items-center gap-2 bg-[#86C232] text-[#222629] font-bold text-[0.82rem] px-4 py-2 rounded-full">
-                      View Demo <ArrowRight size={13} strokeWidth={2.5} className="-rotate-45" />
-                    </span>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/75 to-transparent">
-                    <span className="text-white font-bold text-[0.88rem]">{demo.label}</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </MobileAccordion>
+          {/* HOME LINK */}
+          <div className="border-t border-[#474B4F]/50">
+            <Link
+              href="/"
+              className="flex items-center justify-between w-full px-6 py-[18px] text-[1.08rem] font-bold text-white hover:text-[#86C232] transition-colors duration-200"
+              onClick={() => setMobileOpen(false)}
+            >
+              Home
+            </Link>
+          </div>
 
           <div className="border-t border-[#474B4F]/50">
             <Link
@@ -417,15 +386,22 @@ export default function Navbar(): React.ReactElement {
             </Link>
           </div>
 
-          <div className="border-t border-[#474B4F]/50">
-            <Link
-              href="/navservices"
-              className="flex items-center justify-between w-full px-6 py-[18px] text-[1.08rem] font-bold text-white hover:text-[#86C232] transition-colors duration-200"
-              onClick={() => setMobileOpen(false)}
-            >
-              Services
-            </Link>
-          </div>
+          {/* SERVICES DROPDOWN */}
+          <MobileAccordion label="Services" isOpen={openAccordion === "Services"} onToggle={() => setOpenAccordion(openAccordion === "Services" ? null : "Services")}>
+            <div className="flex flex-col gap-4 px-6 pb-6">
+              {NAV_ITEMS.find((i) => i.label === "Services")?.children?.map((child) => (
+                <Link
+                  key={child.label}
+                  href={child.href}
+                  className="flex items-center gap-2.5 text-[0.95rem] font-semibold text-white/70 hover:text-[#86C232] transition-colors"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#86C232] opacity-70" />
+                  {child.label}
+                </Link>
+              ))}
+            </div>
+          </MobileAccordion>
 
           <div className="border-t border-[#474B4F]/50">
             <Link
@@ -447,6 +423,7 @@ export default function Navbar(): React.ReactElement {
             </Link>
           </div>
 
+          {/* Contact Info Footer inside Mobile Menu */}
           <div className="border-t border-[#474B4F]/50 px-6 pt-7 pb-6">
             <p className="text-[1.08rem] font-bold text-white mb-5">Contact Info</p>
             <div className="flex flex-col gap-5">

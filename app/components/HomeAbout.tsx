@@ -9,7 +9,7 @@ import { ArrowUpRight } from "lucide-react";
    DATA
 ───────────────────────────────────────── */
 const LOGOS = [
-  { name: "Covai Home Tech", src: "img/1.PNG" },
+  { name: "Covai Home Tech", src: "/img/1.PNG" },
   { name: "Flomodia", src: "/img/2.png" },
   { name: "Weglot", src: "/img/3.png" },
   { name: "Influence 4 You", src: "/img/4.png" },
@@ -19,12 +19,6 @@ const LOGOS = [
   { name: "Company 8", src: "/img/8.png" },
   { name: "Company 9", src: "/img/9.png" },
   { name: "Company 10", src: "/img/10.png" },
-];
-
-const AVATARS = [
-  "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=150",
-  "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150",
-  "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150",
 ];
 
 /* ─────────────────────────────────────────
@@ -67,11 +61,11 @@ function FullScrollRevealHeading() {
   });
 
   const headingChunks = [
-    { type: 'text', content: "Committed Delivering " },
+    { type: 'text', content: "Wexoraa brings strategy, " },
     { type: 'img', src: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=400", alt: "Team" },
-    { type: 'text', content: " Measurable Results and Building from the Lasting Relationships " },
+    { type: 'text', content: "  creativity, and technology together to build meaningful digital experiences that strengthen businesses, inspire growth,  " },
     { type: 'img', src: "https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&q=80&w=400", alt: "Meeting" },
-    { type: 'text', content: " through trust and innovation and shared for success industries Experts." }
+    { type: 'text', content: "and create lasting value for brands." }
   ];
 
   const elements: ParsedElement[] = [];
@@ -157,39 +151,18 @@ export default function HomeAbout(): React.ReactElement {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 min-h-[500px] mb-20">
             
-            {/* Left Column: Badge & Avatars */}
+            {/* Left Column: Badge */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
-              className="lg:col-span-3 flex flex-col justify-between h-full pt-4"
+              className="lg:col-span-3 flex flex-col justify-start h-full pt-4"
             >
-              {/* Glossy Badge */}
-              <div className="inline-block border-[1.5px] border-[#86C232]/40 bg-[#86C232]/10 backdrop-blur-md rounded-[6px] px-5 py-2 mb-8 w-fit shadow-sm">
-                 <span className="text-[12px] font-extrabold tracking-[0.15em] text-[#86C232] uppercase">
-                   Get to know us
-                 </span>
-              </div>
-
-              <div className="mt-16 lg:mt-auto flex flex-col gap-4">
-                <div className="flex -space-x-3 items-center">
-                  {AVATARS.map((src, idx) => (
-                    <img 
-                      key={idx} 
-                      src={src} 
-                      alt={`Customer ${idx + 1}`} 
-                      className="w-12 h-12 rounded-full border-[3px] border-[#EAF0ED] object-cover shadow-sm relative z-20"
-                    />
-                  ))}
-                  <div className="w-12 h-12 rounded-full border-[3px] border-[#EAF0ED] bg-[#86C232] text-white flex items-center justify-center font-bold text-xl shadow-sm z-30">
-                    +
-                  </div>
-                </div>
-                <p className="text-[#474B4F] text-[15px] font-medium leading-snug max-w-[200px]">
-                  We have <span className="font-extrabold text-[#222629]">100+</span> happy customer.
-                </p>
-              </div>
+              {/* UPDATED BADGE: Matching the "SERVICES" block-text style */}
+              <span className="inline-block text-[#86C232] border border-[#86C232]/80 bg-[#86C232]/10 px-[14px] py-[4px] rounded-[4px] text-[11px] md:text-[15px] font-extrabold tracking-[0.3em] uppercase mb-8 w-fit shadow-sm">
+                Get to know us
+              </span>
             </motion.div>
 
             {/* Right Column: Large Text & Buttons */}
@@ -208,13 +181,11 @@ export default function HomeAbout(): React.ReactElement {
                   href="/about"
                   className="group inline-flex items-center gap-3 bg-[#86C232] text-white rounded-full pl-6 pr-2 py-2 font-bold text-[15px] hover:bg-[#61892F] transition-all duration-300 shadow-md"
                 >
-                  Learn More
+                  Get Started 
                   <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#222629] text-white transition-transform duration-300">
                     <ArrowUpRight size={18} strokeWidth={2.5} className="group-hover:rotate-45 transition-transform duration-300" />
                   </span>
                 </Link>
-                
-               
               </div>
               
             </motion.div>
@@ -234,20 +205,20 @@ export default function HomeAbout(): React.ReactElement {
                    transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
                 >
                    {[...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS].map((logo, idx) => (
-  <div 
-    key={idx} 
-   className="flex items-center justify-center bg-white border border-[#474B4F]/5 rounded-[10px] px-8 py-6 min-w-[210px] h-[90px] shadow-sm transition-all duration-300 flex-shrink-0 cursor-pointer hover:shadow-md hover:-translate-y-1"
-  >
-    <img 
-      src={logo.src} 
-      alt={logo.name} 
-      className="max-h-[140px] max-w-[140px] object-contain"
-      onError={(e) => {
-        (e.currentTarget as HTMLImageElement).src = `https://placehold.co/130x35/e2e8f0/474b4f?text=${encodeURIComponent(logo.name)}`;
-      }}
-    />
-  </div>
-))}
+                      <div 
+                        key={idx} 
+                       className="flex items-center justify-center bg-white border border-[#474B4F]/5 rounded-[10px] px-8 py-6 min-w-[210px] h-[90px] shadow-sm transition-all duration-300 flex-shrink-0 cursor-pointer hover:shadow-md hover:-translate-y-1"
+                      >
+                        <img 
+                          src={logo.src} 
+                          alt={logo.name} 
+                          className="max-h-[140px] max-w-[140px] object-contain"
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).src = `https://placehold.co/130x35/e2e8f0/474b4f?text=${encodeURIComponent(logo.name)}`;
+                          }}
+                        />
+                      </div>
+                    ))}
                 </motion.div>
              </div>
           </div>

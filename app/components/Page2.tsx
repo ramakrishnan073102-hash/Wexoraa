@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import page1 from "../components/Page1"
 import {
   Home,
   ChevronRight,
@@ -11,16 +10,15 @@ import {
   Check,
   Phone,
   Plus,
-  Minus,
-  LayoutGrid,
+  Minus
 } from "lucide-react";
 
 /* ──────────────────────────────────────────────────────────
    DATA
 ────────────────────────────────────────────────────────── */
 const SIDEBAR_SERVICES = [
-  { name: "Web Development", active: true, href: "/page1" },
-  { name: "UI/UX Design", active: false, href: "/page2" },
+  { name: "Web Development", active: false, href: "/page1" },
+  { name: "UI/UX Design", active: true, href: "/page2" },
   { name: "Custom Software", active: false, href: "/page3" },
   { name: "Mobile Apps", active: false, href: "/page4" },
   { name: "Digital Marketing", active: false, href: "/page5" },
@@ -95,43 +93,6 @@ const FAQS = [
 ];
 
 /* ──────────────────────────────────────────────────────────
-   SCROLL PROGRESS RING
-────────────────────────────────────────────────────────── */
-function ScrollProgress() {
-  const [progress, setProgress] = useState(0);
-  useEffect(() => {
-    const onScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const radius = 20;
-  const circ = 2 * Math.PI * radius;
-  const dashOffset = circ - (progress / 100) * circ;
-
-  return (
-    <div className="fixed bottom-8 right-8 z-50 w-14 h-14 flex items-center justify-center bg-white rounded-full shadow-lg">
-      <svg width="56" height="56" className="absolute top-0 left-0 -rotate-90">
-        <circle cx="28" cy="28" r={radius} fill="none" stroke="#e5e7eb" strokeWidth="3" />
-        <circle
-          cx="28" cy="28" r={radius} fill="none"
-          stroke="#86C232" strokeWidth="3"
-          strokeDasharray={circ}
-          strokeDashoffset={dashOffset}
-          strokeLinecap="round"
-          style={{ transition: "stroke-dashoffset 0.2s ease" }}
-        />
-      </svg>
-      <span className="text-[11px] font-black text-[#222629] relative z-10">{progress}%</span>
-    </div>
-  );
-}
-
-/* ──────────────────────────────────────────────────────────
    MAIN COMPONENT
 ────────────────────────────────────────────────────────── */
 export default function ServiceDetailsPage(): React.ReactElement {
@@ -139,13 +100,12 @@ export default function ServiceDetailsPage(): React.ReactElement {
 
   return (
     <main className="w-full bg-[#f0f2f0] font-['Manrope',_sans-serif] min-h-screen pb-20 md:pb-28">
-      <ScrollProgress />
 
       {/* ════════════════════════════════════════
           1. HERO — full-width, no rounded corners
       ════════════════════════════════════════ */}
        <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-16 md:mb-24">
-        <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[15px] md:rounded-[15px][10px] flex items-center justify-center overflow-hidden shadow-sm">
+        <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[15px] flex items-center justify-center overflow-hidden shadow-sm">
           
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -173,17 +133,18 @@ export default function ServiceDetailsPage(): React.ReactElement {
                 <Home size={16} className="text-[#86C232]" /> Home
               </Link>
               <ChevronRight size={16} className="text-[#6B6E70]" />
-              <Link href="/services" className="hover:text-[#86C232] transition-colors">
+              <Link href="/navservices" className="hover:text-[#86C232] transition-colors">
                 Services
               </Link>
               <ChevronRight size={16} className="text-[#6B6E70]" />
               <span className="text-white font-bold truncate max-w-[160px] sm:max-w-[240px]">
-               UI/UX Design...
+                UI/UX Design...
               </span>
             </motion.div>
           </div>
         </div>
       </section>
+
       {/* ════════════════════════════════════════
           2. TWO-COLUMN LAYOUT
       ════════════════════════════════════════ */}
@@ -238,7 +199,7 @@ export default function ServiceDetailsPage(): React.ReactElement {
               ))}
             </div>
 
-            {/* 2-image grid (as seen in video) */}
+            {/* 2-image grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="h-[280px] rounded-[16px] overflow-hidden">
                 <img
@@ -420,13 +381,13 @@ export default function ServiceDetailsPage(): React.ReactElement {
               </div>
             </div>
 
-            {/* Contact / CTA Card — dark with circular portrait */}
+            {/* Custom Contact Card */}
             <div className="bg-[#1a2826] rounded-[20px] overflow-hidden shadow-xl relative min-h-[260px] flex flex-col justify-end p-8">
               
               {/* Decorative circle ring behind image */}
               <div className="absolute top-0 right-0 w-48 h-48 rounded-full border-[40px] border-[#86C232]/20 translate-x-10 -translate-y-10 z-0" />
 
-              {/* Portrait image — circular, bottom-right */}
+              {/* Portrait image */}
               <div className="absolute bottom-0 right-0 w-44 h-44 rounded-full overflow-hidden border-4 border-[#1a2826] z-10 translate-x-6 translate-y-6 shadow-xl">
                 <img
                   src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80"
@@ -446,7 +407,7 @@ export default function ServiceDetailsPage(): React.ReactElement {
                   className="inline-flex items-center gap-2 bg-[#86C232] text-white px-4 py-2.5 rounded-full font-bold text-[13px] transition-colors duration-300 hover:bg-[#61892F]"
                 >
                   <Phone size={13} fill="currentColor" />
-                  +8 (321) 890-640
+               (+91) 9360375338 
                 </a>
               </div>
             </div>

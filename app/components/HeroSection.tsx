@@ -5,14 +5,19 @@ import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight, ArrowDown } from "lucide-react";
 
 // ─── Slide images ───────────────────────────────────────────────────────────── 
+interface SlideData {
+  src: string;
+  alt: string;
+}
+
 const SLIDES: string[] = [
-  "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=2000",
-  "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=2000",
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000",
-  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000",
+  "/img/h1.jpg",
+  "/img/h2.jpg",
+  "/img/h3.jpg",
+  "/img/h4.jpg",
 ];
 
-const EXPLORE_LABEL = "Explore More * Explore More * Explore More * ";
+const EXPLORE_LABEL = "Create innovate impact / Create connect grow";
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function HeroSection(): React.ReactElement {
@@ -191,20 +196,20 @@ export default function HeroSection(): React.ReactElement {
               ].join(" ")}
             >
 
-              {/* Headline */}
+              {/* Headline - REDUCED FONT SIZE */}
               <h1
                 className={[
-                  "font-extrabold text-white leading-[1.1] md:leading-[1.05] tracking-[-0.03em] mb-4 md:mb-6",
-                  "text-[2.2rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] xl:text-[6.4rem]",
+                  "font-extrabold text-white leading-[1.15] md:leading-[1.1] tracking-[-0.03em] mb-4 md:mb-6",
+                  "text-[1.75rem] sm:text-[2.5rem] md:text-[3.25rem] lg:text-[4rem] xl:text-[4.5rem]", // Adjusted down from 6.4rem
                 ].join(" ")}
               >
                 <span className="block overflow-hidden">
-                  <span className="hl-inner d1">Leading Future</span>
+                  <span className="hl-inner d1"> Complete Solutions  </span>
                 </span>
                 <span className="block overflow-hidden">
                   <span className="hl-inner d2">
                     for{" "}
-                    <span className="text-[#86C232]">Business.</span>
+                    <span className="text-[#86C232]"> Your Business.</span>
                   </span>
                 </span>
               </h1>
@@ -217,8 +222,7 @@ export default function HeroSection(): React.ReactElement {
                   "text-white/70 leading-[1.6] max-w-[440px] mb-6 md:mb-10 font-normal",
                 ].join(" ")}
               >
-                Committed to delivering innovative solutions that drive success.
-                With a focus on quality.
+                 Everything your business needs to build, grow, and succeed in the digital world.
               </p>
 
               {/* CTA - UPDATED FOR MOBILE POSITIONING */}
@@ -245,9 +249,9 @@ export default function HeroSection(): React.ReactElement {
                   {/* Rolling label */}
                   <span
                     className="cta-label relative block overflow-hidden text-sm md:text-base font-bold mr-3.5 tracking-[-0.01em] whitespace-nowrap"
-                    data-text="Let's Talk"
+                    data-text="Let's Connect"
                   >
-                    <span className="cta-label-inner">Let's Talk</span>
+                    <span className="cta-label-inner">Let's Connect</span>
                   </span>
 
                   {/* Arrow circle */}

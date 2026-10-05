@@ -90,14 +90,17 @@ export default function OurProcessSection(): React.ReactElement {
 
         <div className="max-w-[1200px] mx-auto relative z-10">
           
-          {/* ── HEADER SECTION ── */}
+         {/* ── HEADER SECTION ── */}
           <div className="flex flex-col items-center text-center mb-16 md:mb-24">
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 border-[1.5px] border-[#86C232]/50 bg-[#86C232]/15 backdrop-blur-md rounded-[6px] px-4 py-1.5 text-[#86C232] text-xs font-extrabold uppercase tracking-[0.2em] mb-6 shadow-sm"
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-flex items-center gap-2 text-[#86C232] border border-[#86C232]/80 bg-[#86C232]/10 px-[14px] py-[4px] rounded-[4px] text-[11px] md:text-[15px] font-extrabold tracking-[0.3em] uppercase mb-6 w-fit shadow-sm"
             >
-              <Box size={14} strokeWidth={2.5} /> Our Process
+              <Box size={16} strokeWidth={2.5} className="md:w-5 md:h-5 -mt-0.5" /> 
+              Our Process
             </motion.div>
             
             <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-[#222629] leading-[1.2] tracking-tight max-w-3xl mx-auto drop-shadow-sm">
@@ -120,14 +123,14 @@ export default function OurProcessSection(): React.ReactElement {
               {PROCESS_STEPS.map((step, index) => (
                 <div key={step.id} className="flex flex-col items-center md:items-start relative w-full group">
                   
-                  {/* GLOSSY STEP PILL */}
+                  {/* GLOSSY STEP PILL - UPDATED SIZING & WEIGHT */}
                   <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.2 }}
                     className="flex justify-center w-full relative z-20 mb-4 md:mb-0"
                   >
-                    <span className="relative overflow-hidden bg-[#86C232]/15 backdrop-blur-xl border-[1.5px] border-[#86C232]/50 text-[#86C232] text-[0.85rem] font-extrabold px-8 py-2.5 rounded-full tracking-wide shadow-[0_0_0_8px_#EAF0ED] transition-all duration-300">
+                    <span className="relative overflow-hidden bg-[#86C232]/15 backdrop-blur-xl border-[2px] border-[#86C232] text-[#86C232] text-[1.1rem] md:text-[1.0rem] font-black px-6 md:px-8 py-2 md:py-3 rounded-full tracking-wide shadow-[0_0_0_8px_#EAF0ED] transition-all duration-300">
                       <span className="relative z-10">{step.step}</span>
                     </span>
                   </motion.div>

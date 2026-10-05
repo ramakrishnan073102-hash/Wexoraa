@@ -12,11 +12,9 @@ export default function Home() {
     <>
       <HeroSection />
       <Marquee />
-
       <div className="relative overflow-visible">
         <ServiceSection />
       </div>
-
       <Homeabout />
       <PortfolioSection />
       <OurProcess />

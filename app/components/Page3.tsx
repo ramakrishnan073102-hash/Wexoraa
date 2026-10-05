@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import page1 from "../components/Page1"
 import {
   Home,
   ChevronRight,
@@ -11,15 +12,16 @@ import {
   Phone,
   Plus,
   Minus,
+  LayoutGrid,
 } from "lucide-react";
 
 /* ──────────────────────────────────────────────────────────
    DATA
 ────────────────────────────────────────────────────────── */
 const SIDEBAR_SERVICES = [
-  { name: "Web Development", active: true, href: "/page1" },
+  { name: "Web Development", active: false, href: "/page1" },
   { name: "UI/UX Design", active: false, href: "/page2" },
-  { name: "Custom Software", active: false, href: "/page3" },
+  { name: "Custom Software", active: true, href: "/page3" },
   { name: "Mobile Apps", active: false, href: "/page4" },
   { name: "Digital Marketing", active: false, href: "/page5" },
   { name: "AI Solutions", active: false, href: "/page6" },
@@ -93,56 +95,6 @@ const FAQS = [
 ];
 
 /* ──────────────────────────────────────────────────────────
-   SCROLL PROGRESS RING
-────────────────────────────────────────────────────────── */
-function ScrollProgress() {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(
-        docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0
-      );
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const radius = 20;
-  const circ = 2 * Math.PI * radius;
-  const dashOffset = circ - (progress / 100) * circ;
-
-  return (
-    <div className="fixed bottom-8 right-8 z-50 w-14 h-14 flex items-center justify-center bg-white rounded-full shadow-lg">
-      <svg
-        width="56"
-        height="56"
-        className="absolute top-0 left-0 -rotate-90"
-      >
-        <circle
-          cx="28" cy="28" r={radius}
-          fill="none" stroke="#e5e7eb" strokeWidth="3"
-        />
-        <circle
-          cx="28" cy="28" r={radius}
-          fill="none" stroke="#86C232" strokeWidth="3"
-          strokeDasharray={circ}
-          strokeDashoffset={dashOffset}
-          strokeLinecap="round"
-          style={{ transition: "stroke-dashoffset 0.2s ease" }}
-        />
-      </svg>
-      <span className="text-[11px] font-black text-[#222629] relative z-10">
-        {progress}%
-      </span>
-    </div>
-  );
-}
-
-/* ──────────────────────────────────────────────────────────
    MAIN COMPONENT — PAGE 3: ESG CONSULTING
 ────────────────────────────────────────────────────────── */
 export default function Page3(): React.ReactElement {
@@ -150,8 +102,6 @@ export default function Page3(): React.ReactElement {
 
   return (
     <main className="w-full bg-[#eef0ee] font-['Manrope',_sans-serif] min-h-screen pb-20 md:pb-28">
-      <ScrollProgress />
-
       {/* ════════════════════════════════════════
           1. HERO
       ════════════════════════════════════════ */}
@@ -184,7 +134,7 @@ export default function Page3(): React.ReactElement {
                 <Home size={16} className="text-[#86C232]" /> Home
               </Link>
               <ChevronRight size={16} className="text-[#6B6E70]" />
-              <Link href="/services" className="hover:text-[#86C232] transition-colors">
+              <Link href="/navservices" className="hover:text-[#86C232] transition-colors">
                 Services
               </Link>
               <ChevronRight size={16} className="text-[#6B6E70]" />
@@ -414,7 +364,7 @@ export default function Page3(): React.ReactElement {
                     className="flex items-center gap-3 text-[#1a1d1f] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none ml-auto"
                   >
                     Next
-                    <div className="w-11 h-11 rounded-full border border-[#d1d5db] flex items-center justify-center text-[#1a1d1f] transition-all duration-300 group-hover:border-[#86C232] group-hover:bg-[#86C232] group-hover:text-white">
+                    <div className="w-11 h-11 rounded-full border border-[#d1d5db] flex items-center justify-center transition-all duration-300 group-hover:border-[#86C232] group-hover:bg-[#86C232] group-hover:text-white text-[#1a1d1f] group-hover:text-white">
                       <ChevronRight size={19} strokeWidth={2.5} />
                     </div>
                   </Link>

@@ -137,14 +137,14 @@ export default function PortfolioSection(): React.ReactElement {
       className="relative bg-white py-20 md:py-[120px] overflow-hidden w-full font-['Manrope',_sans-serif]"
     >
       
-      {/* ── ANIMATED HEADER ── */}
+     {/* ── ANIMATED HEADER ── */}
       <div className="text-center mb-[50px] md:mb-[60px] px-6 flex flex-col items-center">
         <motion.span 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-block text-[#86C232] border border-[#86C232] px-[16px] py-[6px] rounded-[5px] text-[11px] font-extrabold tracking-[2px] uppercase mb-[20px]"
+          className="inline-block text-[#86C232] border border-[#86C232]/80 bg-[#86C232]/10 px-[14px] py-[4px] rounded-[4px] text-[11px] md:text-[15px] font-extrabold tracking-[0.3em] uppercase mb-[20px] w-fit shadow-sm"
         >
           PROUD PROJECTS
         </motion.span>

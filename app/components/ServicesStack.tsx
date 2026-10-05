@@ -16,7 +16,7 @@ const services = [
   {
     number: "01",
     title: "Web Development",
-    desc: "Fast, responsive websites built to convert visitors into enquiries and help your business look trustworthy online.",
+    desc: " Websites built with purpose to strengthen your brand, generate leads, and grow your business. ",
     bg: "#1b1b1f",
     icon: Monitor,
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=900",
@@ -24,7 +24,7 @@ const services = [
   {
     number: "02",
     title: "UI/UX Design",
-    desc: "Clean user flows and modern interfaces that make your product simple, clear, and easy to use.",
+    desc: "Thoughtful design that turns every click into a better experience.",
     bg: "#20242b",
     icon: Paintbrush,
     image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&q=80&w=900",
@@ -32,7 +32,7 @@ const services = [
   {
     number: "03",
     title: "Custom Software",
-    desc: "Dashboards, CRM, ERP, automation tools, and internal systems designed around your exact workflow.",
+    desc: " Custom-built solutions that simplify, automate, and scale your business. ",
     bg: "#262220",
     icon: Settings,
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=900",
@@ -40,7 +40,7 @@ const services = [
   {
     number: "04",
     title: "Mobile Apps",
-    desc: "Practical mobile apps with smooth user experience, scalable features, and business-focused functionality.",
+    desc: "Powerful, user-friendly mobile apps built to connect with customers and grow your business. ",
     bg: "#1f2622",
     icon: Smartphone,
     image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=900",
@@ -48,7 +48,7 @@ const services = [
   {
     number: "05",
     title: "Digital Marketing",
-    desc: "SEO, social media, paid ads, and content strategies focused on bringing qualified leads to your business.",
+    desc: " SEO, social media marketing and performance marketing built to reach, engage, and convert. ",
     bg: "#221f26",
     icon: TrendingUp,
     image: "https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=80&w=900",
@@ -56,7 +56,7 @@ const services = [
   {
     number: "06",
     title: "AI Solutions",
-    desc: "Chatbots, smart automation, and AI-powered workflows that help your business move faster.",
+    desc: "Smarter automation and AI-powered solutions designed to save time, simplify operations, and accelerate business growth. ",
     bg: "#1a2226",
     icon: Bot,
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=900",
@@ -138,20 +138,17 @@ export default function ServiceSection() {
         };
 
   return (
-    // 1. Changed section background to white and base text to dark (#222629)
     <section className="bg-white text-[#222629] relative pb-10 font-['Manrope',_sans-serif]">
       
-      {/* 2. Adjusted header text colors for the white background */}
-      <div className="pt-16 md:pt-24 pb-12 md:pb-16 text-center px-6 flex flex-col items-center">
-        <span className="inline-block text-[#86C232] border border-[#86C232] px-[16px] py-[6px] rounded-[5px] text-[11px] font-extrabold tracking-[2px] uppercase mb-[20px]">
+      {/* HEADER WITH REDUCED GAPS & BOLD BADGE */}
+      <div className="pt-12 md:pt-16 pb-6 md:pb-8 text-center px-6 flex flex-col items-center">
+        <span className="inline-block text-[#86C232] border border-[#86C232]/80 px-[14px] py-[4px] rounded-[4px] text-[11px] md:text-[15px] font-extrabold tracking-[0.3em] uppercase mb-3 md:mb-4">
           Services
         </span>
 
-        <h2 className="text-[#222629] text-4xl md:text-5xl lg:text-[4rem] font-extrabold tracking-tight max-w-4xl leading-[1.1] mb-5">
+        <h2 className="text-[#222629] text-4xl md:text-5xl lg:text-[4rem] font-extrabold tracking-tight max-w-4xl leading-[1.1]">
           Our ways to move fast
         </h2>
-
-        
       </div>
 
       <div
@@ -159,12 +156,11 @@ export default function ServiceSection() {
         className="relative"
         style={{ height: `${services.length * 82}vh` }}
       >
-        {/* 3. Changed inner scroll layer background to white */}
         <div style={layerStyle} className="overflow-hidden bg-white">
           {services.map((service, index) => {
             const Icon = service.icon;
             
-            // ANIMATION MATH (UNTOUCHED)
+            // ANIMATION MATH
             const total = services.length - 1;
             const start = index === 0 ? 0 : (index - 1) / total;
             const end = index === 0 ? 0 : index / total;
@@ -201,7 +197,6 @@ export default function ServiceSection() {
                   willChange: "transform, opacity",
                 }}
               >
-                {/* 4. The dark cards remain completely identical */}
                 <div
                   className="
                     group
@@ -235,11 +230,11 @@ export default function ServiceSection() {
                     </p>
 
                     <Link
-                      href="/"
+                      href="/navservices"
                       className="group/btn inline-flex items-center gap-3 bg-[#86C232] hover:bg-[#61892F] transition-colors duration-300 rounded-full pl-6 pr-2 py-2 w-fit shadow-lg"
                     >
                       <span className="text-[#222629] font-bold text-sm md:text-[15px]">
-                        Learn More
+                        Let's Build
                       </span>
                       <span className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-[#222629] text-white flex items-center justify-center transition-transform duration-300 group-hover/btn:rotate-45">
                         <ArrowUpRight size={18} strokeWidth={2.5} />

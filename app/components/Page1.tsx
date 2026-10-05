@@ -126,7 +126,7 @@ export default function ServiceDetailsPage(): React.ReactElement {
                 <Home size={16} className="text-[#86C232]" /> Home
               </Link>
               <ChevronRight size={16} className="text-[#6B6E70]" />
-              <Link href="/services" className="hover:text-[#86C232] transition-colors">
+              <Link href="/navservices" className="hover:text-[#86C232] transition-colors">
                 Services
               </Link>
               <ChevronRight size={16} className="text-[#6B6E70]" />
@@ -374,7 +374,7 @@ export default function ServiceDetailsPage(): React.ReactElement {
                   className="inline-flex items-center gap-2 bg-[#86C232] text-[#222629] px-4 py-2.5 rounded-full font-bold text-[13px] transition-colors duration-300 hover:bg-[#61892F] hover:text-white"
                 >
                   <Phone size={14} fill="currentColor" />
-                  +8 (321) 890-6...
+                  (+91) 9360375338 
                 </a>
               </div>
 

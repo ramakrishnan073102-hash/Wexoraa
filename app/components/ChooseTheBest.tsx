@@ -63,15 +63,15 @@ export default function ChooseBestSection(): React.ReactElement {
         
         {/* ── HEADER SECTION ── */}
         <div className="flex flex-col items-center text-center mb-12 sm:mb-16 md:mb-20">
-          {/* Glossy Badge (Shadow Removed) */}
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 border-[1.5px] border-[#86C232]/40 bg-[#86C232]/10 backdrop-blur-md rounded-[6px] px-4 md:px-5 py-2 text-[#86C232] text-[11px] md:text-[12px] font-extrabold uppercase tracking-[0.15em] mb-5 md:mb-6"
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 text-[#86C232] border border-[#86C232]/80 bg-[#86C232]/10 px-[14px] py-[4px] rounded-[4px] text-[11px] md:text-[15px] font-extrabold tracking-[0.3em] uppercase mb-5 md:mb-6 w-fit shadow-sm"
           >
-            <Box size={14} strokeWidth={2.5} /> Choose The Best
+            <Box size={16} strokeWidth={2.5} className="md:w-5 md:h-5 -mt-0.5" /> 
+            Choose The Best
           </motion.div>
           
           <motion.h2 

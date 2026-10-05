@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import page1 from "../components/Page1"
 import {
   Home,
   ChevronRight,
@@ -17,10 +18,10 @@ import {
    DATA
 ────────────────────────────────────────────────────────── */
 const SIDEBAR_SERVICES = [
-  { name: "Web Development", active: true, href: "/page1" },
+  { name: "Web Development", active: false, href: "/page1" },
   { name: "UI/UX Design", active: false, href: "/page2" },
   { name: "Custom Software", active: false, href: "/page3" },
-  { name: "Mobile Apps", active: false, href: "/page4" },
+  { name: "Mobile Apps", active: true, href: "/page4" },
   { name: "Digital Marketing", active: false, href: "/page5" },
   { name: "AI Solutions", active: false, href: "/page6" },
 ];
@@ -93,63 +94,19 @@ const FAQS = [
 ];
 
 /* ──────────────────────────────────────────────────────────
-   SCROLL PROGRESS RING
-────────────────────────────────────────────────────────── */
-function ScrollProgress() {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(
-        docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0
-      );
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const radius = 20;
-  const circ = 2 * Math.PI * radius;
-  const dashOffset = circ - (progress / 100) * circ;
-
-  return (
-    <div className="fixed bottom-8 right-8 z-50 w-14 h-14 flex items-center justify-center bg-white rounded-full shadow-lg">
-      <svg width="56" height="56" className="absolute top-0 left-0 -rotate-90">
-        <circle cx="28" cy="28" r={radius} fill="none" stroke="#e5e7eb" strokeWidth="3" />
-        <circle
-          cx="28" cy="28" r={radius}
-          fill="none" stroke="#86C232" strokeWidth="3"
-          strokeDasharray={circ}
-          strokeDashoffset={dashOffset}
-          strokeLinecap="round"
-          style={{ transition: "stroke-dashoffset 0.2s ease" }}
-        />
-      </svg>
-      <span className="text-[11px] font-black text-[#222629] relative z-10">
-        {progress}%
-      </span>
-    </div>
-  );
-}
-
-/* ──────────────────────────────────────────────────────────
-   MAIN COMPONENT — PAGE 4: TRAINING DEVELOPMENT PROGRAMS
+   MAIN COMPONENT — PAGE 4: MOBILE APPS
 ────────────────────────────────────────────────────────── */
 export default function Page4(): React.ReactElement {
   const [openFaq, setOpenFaq] = useState<number | null>(1);
 
   return (
     <main className="w-full bg-[#eef0ee] font-['Manrope',_sans-serif] min-h-screen pb-20 md:pb-28">
-      <ScrollProgress />
 
       {/* ════════════════════════════════════════
-          1. HERO
+          1. HERO — full-width, no rounded corners
       ════════════════════════════════════════ */}
-      <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-16 md:mb-24">
-        <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[10px] md:rounded-[15px][10px] flex items-center justify-center overflow-hidden shadow-sm">
+       <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-16 md:mb-24">
+        <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[15px] flex items-center justify-center overflow-hidden shadow-sm">
           
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -177,17 +134,18 @@ export default function Page4(): React.ReactElement {
                 <Home size={16} className="text-[#86C232]" /> Home
               </Link>
               <ChevronRight size={16} className="text-[#6B6E70]" />
-              <Link href="/services" className="hover:text-[#86C232] transition-colors">
+              <Link href="/navservices" className="hover:text-[#86C232] transition-colors">
                 Services
               </Link>
               <ChevronRight size={16} className="text-[#6B6E70]" />
               <span className="text-white font-bold truncate max-w-[160px] sm:max-w-[240px]">
-               Mobile Apps...
+                Mobile Apps...
               </span>
             </motion.div>
           </div>
         </div>
       </section>
+      
       {/* ════════════════════════════════════════
           2. TWO-COLUMN LAYOUT
       ════════════════════════════════════════ */}
@@ -205,33 +163,28 @@ export default function Page4(): React.ReactElement {
             <div className="w-full h-[320px] md:h-[440px] rounded-[10px] overflow-hidden shadow-sm">
               <img
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80"
-                alt="Training Programs"
+                alt="Mobile Apps Development"
                 className="w-full h-full object-cover object-center"
               />
             </div>
 
-            {/* Main heading + body */}
+            {/* Main heading + body text */}
             <div>
               <h2 className="text-[2rem] md:text-[2.6rem] font-extrabold text-[#1a1d1f] leading-[1.12] tracking-tight mb-5">
                 Transforming Customer: Tailored Solutions for Experiences.
               </h2>
               <p className="text-[#6B6E70] text-[15px] leading-[1.85] font-medium mb-5">
-                Recognize that exceptional customer experiences are at the heart
-                of every successful business. Our Customer Experience Solutions
-                are crafted to help you transform every interaction your
-                customers have with your brand into a meaningful and positive
-                experience. We believe that understanding the customer journey
-                and providing personalized, seamless experiences can
-                significantly enhance customer loyalty, satisfaction, and
-                lifetime value. Our approach to customer experience is
-                comprehensive and data-driven.
+                Recognize that exceptional customer experiences are at the heart of every successful business.
+                Our Customer Experience Solutions are crafted to help you transform every interaction your
+                customers have with your brand into a meaningful and positive experience. We believe that
+                understanding the customer journey and providing personalized, seamless experiences can
+                significantly enhance customer loyalty, satisfaction, and lifetime value. Our approach to customer
+                experience is comprehensive and data-driven.
               </p>
               <p className="text-[#6B6E70] text-[15px] leading-[1.85] font-medium">
-                Our approach to customer experience is comprehensive and
-                data-driven. We begin by assessing your current customer
-                touchpoints, identifying areas for improvement, and using
-                insights to develop strategies that meet your customers'
-                evolving needs. From optimizing digital platforms.
+                Our approach to customer experience is comprehensive and data-driven. We begin by assessing
+                your current customer touchpoints, identifying areas for improvement, and using insights to
+                develop strategies that meet your customers' evolving needs. From optimizing digital platforms.
               </p>
             </div>
 
@@ -242,9 +195,7 @@ export default function Page4(): React.ReactElement {
                   <div className="w-[26px] h-[26px] rounded-full bg-[#86C232] flex items-center justify-center flex-shrink-0 shadow-sm">
                     <Check size={14} strokeWidth={3} className="text-white" />
                   </div>
-                  <span className="text-[#1a1d1f] text-[15px] font-bold">
-                    {item}
-                  </span>
+                  <span className="text-[#1a1d1f] text-[15px] font-bold">{item}</span>
                 </div>
               ))}
             </div>
@@ -254,42 +205,39 @@ export default function Page4(): React.ReactElement {
               <div className="h-[280px] rounded-[16px] overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=700&q=80"
-                  alt="Training session"
+                  alt="Consulting"
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
               <div className="h-[280px] rounded-[16px] overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&q=80"
-                  alt="Development workshop"
+                  alt="Business Meeting"
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
             </div>
 
-            {/* Secondary section */}
+            {/* Advantage section */}
             <div>
               <h3 className="text-[1.7rem] md:text-[2rem] font-extrabold text-[#1a1d1f] leading-tight mb-4">
-                Our Range of Customer Services
+                The Advantage of Customer Services
               </h3>
               <p className="text-[#6B6E70] text-[15px] leading-[1.85] font-medium mb-10">
-                At Bexon, we don't just focus on solving customer problems—we
-                focus on creating experiences that delight and build lasting
-                relationships. Whether it's through improving customer service
-                operations, leveraging technology, or designing more engaging
-                digital experiences, our team is here to help you exceed your
-                customers' expectations every time. We help you understand your
-                customers deeply, optimize their experience.
+                We don't just focus on solving customer problems—we focus on creating experiences that build
+                long-lasting relationships. Whether it's through improving customer service operations, upgrading
+                technology, or designing more engaging digital experiences, our team is here to help you exceed
+                customers' expectations every time.
               </p>
 
-              {/* Numbered step cards — filled teal circle badges */}
+              {/* Numbered step cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {NUMBERED_STEPS.map((step, idx) => (
                   <div
                     key={idx}
-                    className="bg-white p-7 rounded-[18px] border border-[#e0e3e0] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                    className="bg-white p-7 rounded-[18px] border border-[#e5e7e6] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
                   >
-                    <div className="w-14 h-14 rounded-full bg-[#86C232] flex items-center justify-center text-white font-black text-[16px] mb-5 shadow-sm">
+                    <div className="w-14 h-14 rounded-full bg-[#86C232]/10 flex items-center justify-center text-[#86C232] font-black text-[18px] mb-5">
                       {step.id}
                     </div>
                     <h4 className="text-[16px] font-extrabold text-[#1a1d1f] mb-3 leading-snug">
@@ -308,7 +256,6 @@ export default function Page4(): React.ReactElement {
               <h3 className="text-[1.7rem] md:text-[2rem] font-extrabold text-[#1a1d1f] leading-tight mb-7">
                 Frequently asked questions
               </h3>
-
               <div className="flex flex-col gap-3">
                 {FAQS.map((faq) => {
                   const isOpen = openFaq === faq.id;
@@ -318,7 +265,7 @@ export default function Page4(): React.ReactElement {
                       className={`rounded-[14px] overflow-hidden transition-all duration-300 ${
                         isOpen
                           ? "bg-[#86C232] shadow-lg"
-                          : "bg-white border border-[#e0e3e0] shadow-sm"
+                          : "bg-white border border-[#e5e7e6] shadow-sm"
                       }`}
                     >
                       <button
@@ -327,9 +274,7 @@ export default function Page4(): React.ReactElement {
                       >
                         <h4
                           className={`text-[15px] sm:text-[16px] font-extrabold pr-4 transition-colors duration-300 ${
-                            isOpen
-                              ? "text-white"
-                              : "text-[#1a1d1f] group-hover:text-[#86C232]"
+                            isOpen ? "text-white" : "text-[#1a1d1f] group-hover:text-[#86C232]"
                           }`}
                         >
                           {faq.question}
@@ -341,10 +286,7 @@ export default function Page4(): React.ReactElement {
                               : "border-[#86C232] text-[#86C232] group-hover:bg-[#86C232] group-hover:text-white"
                           }`}
                         >
-                          {isOpen
-                            ? <Minus size={17} strokeWidth={2.5} />
-                            : <Plus size={17} strokeWidth={2.5} />
-                          }
+                          {isOpen ? <Minus size={17} strokeWidth={2.5} /> : <Plus size={17} strokeWidth={2.5} />}
                         </div>
                       </button>
 
@@ -370,15 +312,15 @@ export default function Page4(): React.ReactElement {
               </div>
 
               {/* ── BOTTOM NAV: Previous | Grid | Next ── */}
-              <div className="w-full bg-white rounded-[16px] mt-10 shadow-sm border border-[#e0e3e0]">
+              <div className="w-full bg-white rounded-[16px] mt-10 shadow-sm border border-[#e5e7e6] overflow-hidden">
                 <div className="flex items-center px-6 py-5 relative">
-
+                  
                   {/* Previous */}
                   <Link
                     href="/page3"
                     className="flex items-center gap-3 text-[#1a1d1f] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none"
                   >
-                    <div className="w-11 h-11 rounded-full border border-[#d1d5db] flex items-center justify-center text-[#1a1d1f] transition-all duration-300 group-hover:border-[#86C232] group-hover:bg-[#86C232] group-hover:text-white">
+                    <div className="w-11 h-11 rounded-full border border-[#d1d5db] flex items-center justify-center transition-all duration-300 group-hover:border-[#86C232] group-hover:bg-[#86C232] group-hover:text-white text-[#1a1d1f] group-hover:text-white">
                       <ChevronLeft size={19} strokeWidth={2.5} />
                     </div>
                     Previous
@@ -403,11 +345,10 @@ export default function Page4(): React.ReactElement {
                     className="flex items-center gap-3 text-[#1a1d1f] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none ml-auto"
                   >
                     Next
-                    <div className="w-11 h-11 rounded-full border border-[#d1d5db] flex items-center justify-center text-[#1a1d1f] transition-all duration-300 group-hover:border-[#86C232] group-hover:bg-[#86C232] group-hover:text-white">
+                    <div className="w-11 h-11 rounded-full border border-[#d1d5db] flex items-center justify-center transition-all duration-300 group-hover:border-[#86C232] group-hover:bg-[#86C232] group-hover:text-white text-[#1a1d1f] group-hover:text-white">
                       <ChevronRight size={19} strokeWidth={2.5} />
                     </div>
                   </Link>
-
                 </div>
               </div>
             </div>
@@ -420,7 +361,7 @@ export default function Page4(): React.ReactElement {
             transition={{ duration: 0.55, delay: 0.15 }}
             className="lg:col-span-4 flex flex-col gap-6 lg:sticky lg:top-8"
           >
-            {/* More Services */}
+            {/* More Services list */}
             <div className="bg-[#e4e8e4] rounded-[20px] p-6 md:p-7">
               <h3 className="text-[1.35rem] font-extrabold text-[#1a1d1f] mb-5">
                 More Services
@@ -430,7 +371,7 @@ export default function Page4(): React.ReactElement {
                   <Link
                     key={idx}
                     href={service.href}
-                    className={`flex items-center justify-between px-5 py-4 rounded-[10px] text-[14px] font-extrabold transition-all duration-200 ${
+                    className={`flex items-center justify-between px-5 py-4 rounded-[10px] text-[14px] font-extrabold transition-all duration-250 ${
                       service.active
                         ? "bg-[#86C232] text-white"
                         : "bg-white text-[#1a1d1f] border border-[#dde0dd] hover:bg-[#86C232] hover:text-white hover:border-[#86C232]"
@@ -443,12 +384,13 @@ export default function Page4(): React.ReactElement {
               </div>
             </div>
 
-            {/* Contact CTA card */}
+            {/* Custom Contact Card */}
             <div className="bg-[#1a2826] rounded-[20px] overflow-hidden shadow-xl relative min-h-[270px] flex flex-col justify-end p-8">
+              
               {/* Decorative ring */}
               <div className="absolute top-0 right-0 w-52 h-52 rounded-full border-[40px] border-[#86C232]/15 translate-x-12 -translate-y-12 z-0" />
 
-              {/* Circular portrait — bottom-right, partially cropped */}
+              {/* Portrait image — circular, bottom-right */}
               <div className="absolute bottom-0 right-0 w-44 h-44 rounded-full overflow-hidden border-4 border-[#1a2826] z-10 translate-x-6 translate-y-6 shadow-xl">
                 <img
                   src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80"
@@ -466,11 +408,11 @@ export default function Page4(): React.ReactElement {
                   Home Makeover
                 </p>
                 <a
-                  href="tel:+83218906"
+                  href="tel:+919360375338"
                   className="inline-flex items-center gap-2 bg-[#86C232] text-white px-4 py-2.5 rounded-full font-bold text-[13px] transition-colors duration-300 hover:bg-[#61892F]"
                 >
                   <Phone size={13} fill="currentColor" />
-                  +8 (321) 890-640
+                  +91 9360375338
                 </a>
               </div>
             </div>

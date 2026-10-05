@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, Mail, ArrowUpRight } from "lucide-react";
+import { Phone, Mail, ArrowUpRight, ArrowUp } from "lucide-react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -16,7 +16,7 @@ import {
 interface FooterLinkItem {
   label: string;
   href: string;
-  badge?: string; // FIX: explicitly typed so item.badge is always string | undefined, never a type error
+  badge?: string; 
 }
 
 const FOOTER_LINKS: { services: FooterLinkItem[]; resources: FooterLinkItem[] } = {
@@ -72,12 +72,41 @@ function FooterLink({
 }
 
 /* ─────────────────────────────────────────────
-   MAIN FOOTER
+   MAIN FOOTER COMPONENT
 ───────────────────────────────────────────── */
 export default function Footer(): React.ReactElement {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Listen for scroll events to toggle the button visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show the button when scrolled down 400px from the top
+      if (window.scrollY > 400) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Smooth scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
-      <footer className="relative overflow-hidden bg-[#EEF3EE] font-['Manrope',_sans-serif]">
+      {/* 
+        UPDATED: Changed background from bg-[#EEF3EE] to bg-white 
+        to match the surrounding sections.
+      */}
+      <footer className="relative overflow-hidden bg-white font-['Manrope',_sans-serif]">
         <div className="relative z-10 max-w-[1340px] mx-auto px-5 sm:px-6 lg:px-8 pt-16 md:pt-28 pb-10">
 
           {/* ═══════════════════════════════════════════
@@ -117,7 +146,7 @@ export default function Footer(): React.ReactElement {
 
             {/* Brand */}
             <div className="flex flex-col items-start text-left pr-0 md:pr-8">
-              <Link href="#" className="flex items-center gap-3 mb-5 md:mb-6 group w-fit">
+              <Link href="/" className="flex items-center gap-3 mb-5 md:mb-6 group w-fit">
                 <div className="w-9 h-9 md:w-11 md:h-11 flex items-center justify-center">
                   <img src="/img/logo.png" alt="Wexoraa Logo" className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" />
                 </div>
@@ -157,31 +186,36 @@ export default function Footer(): React.ReactElement {
           </div>
 
           {/* ═══════════════════════════════════════════
-              BOTTOM BAR
+              BOTTOM BAR 
           ═══════════════════════════════════════════ */}
           <div className="pt-8 border-t border-[#474B4F]/15 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-6">
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 lg:gap-8 text-[#474B4F] font-semibold text-[14px] md:text-[15px]">
               <a href="tel:+10095447818" className="flex items-center gap-2.5 hover:text-[#86C232] transition-colors duration-300">
-                <Phone size={18} className="text-[#6B6E70]" /> (+91) 9360375338 <br /> Nava India, Coimbatore, Tamilnadu
+                <Phone size={18} className="text-[#6B6E70]" /> (+91) 9360375338 <br /> STV Nagar, Nava India Peelamedu, Coimbatore - 641004
               </a>
               <a href="mailto:info@wexoraa.com" className="flex items-center gap-2.5 hover:text-[#86C232] transition-colors duration-300">
-                <Mail size={18} className="text-[#6B6E70]" /> info@wexoraa.com
+                <Mail size={18} className="text-[#6B6E70]" /> wexoraainfotech@gmail.com
               </a>
-              
             </div>
 
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 lg:gap-10">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 lg:gap-10 w-full lg:w-auto">
+              {/* Social Links */}
               <div className="flex items-center gap-2.5">
                 {[
-                  { icon: FaFacebookF,  label: "Facebook"  },
-                  { icon: FaInstagram,  label: "Instagram" },
-                  { icon: FaXTwitter,   label: "Twitter"   },
-                  { icon: FaLinkedinIn, label: "LinkedIn"  },
+                  { icon: FaFacebookF,  label: "Facebook",  href: "#" },
+                  { icon: FaInstagram,  label: "Instagram", href: "https://www.instagram.com/wexoraa?stkn=MW5na2dpNDFmMHk1Mg==" },
+                  { icon: FaXTwitter,   label: "Twitter",   href: "#" },
+                  { icon: FaLinkedinIn, label: "LinkedIn",  href: "https://www.linkedin.com/company/wexoraainfotech/" },
                 ].map((social, i) => {
                   const Icon = social.icon;
                   return (
-                    <Link key={i} href="#" aria-label={social.label}
+                    <Link 
+                      key={i} 
+                      href={social.href} 
+                      target={social.href !== "#" ? "_blank" : undefined}
+                      rel={social.href !== "#" ? "noopener noreferrer" : undefined}
+                      aria-label={social.label}
                       className="w-[36px] h-[36px] md:w-[38px] md:h-[38px] rounded-full bg-black/5 text-[#474B4F] flex items-center justify-center hover:bg-[#86C232] hover:text-white transition-all duration-300 hover:scale-110"
                     >
                       <Icon size={15} />
@@ -189,6 +223,8 @@ export default function Footer(): React.ReactElement {
                   );
                 })}
               </div>
+
+              {/* Copyright */}
               <div className="text-[#6B6E70] text-[13px] md:text-[15px] font-medium">
                 © 2026 <span className="text-[#86C232] font-bold">Wexoraa</span> All rights reserved.
               </div>
@@ -197,6 +233,19 @@ export default function Footer(): React.ReactElement {
           </div>
         </div>
       </footer>
+
+      {/* ═══════════════════════════════════════════
+          FLOATING SCROLL TO TOP BUTTON
+      ═══════════════════════════════════════════ */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[100] w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#222629] text-white flex items-center justify-center hover:bg-[#86C232] transition-all duration-500 shadow-lg group ${
+          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
+        }`}
+        aria-label="Scroll to top"
+      >
+        <ArrowUp size={24} strokeWidth={3} className="group-hover:-translate-y-1 transition-transform duration-300" />
+      </button>
     </>
   );
 }

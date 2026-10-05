@@ -65,7 +65,7 @@ const PORTFOLIO_PROJECTS = [
     results: [
       "+40% increase in user engagement",
       "3x faster platform navigation",
-      "Awwwards &quot;Site of the Day&quot; winner",
+      "Awwwards \"Site of the Day\" winner",
     ],
     href: "/portfoliopage3",
   },
@@ -166,7 +166,7 @@ export default function PortfolioPage(): React.ReactElement {
       </section>
 
       {/* ════════════════════════════════════════
-         2. WEXORAA CATEGORY FILTER TABS (Tighter Bottom Margin)
+         2. WEXORAA CATEGORY FILTER TABS
       ════════════════════════════════════════ */}
       <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-16">
         <div className="flex items-center justify-start md:justify-center gap-2 sm:gap-3 overflow-x-auto pb-4 scrollbar-none border-b border-[#474B4F]/15">
@@ -190,10 +190,9 @@ export default function PortfolioPage(): React.ReactElement {
       </section>
 
       {/* ════════════════════════════════════════
-         3. CASE STUDY LIST (Tightened Gaps)
+         3. CASE STUDY LIST
       ════════════════════════════════════════ */}
       <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* CHANGED: gap-20 md:gap-32 -> gap-12 md:gap-16 */}
         <motion.div layout className="flex flex-col gap-12 md:gap-16">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
@@ -204,12 +203,11 @@ export default function PortfolioPage(): React.ReactElement {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.5 }}
-                /* CHANGED: pb-20 md:pb-32 -> pb-12 md:pb-16 */
                 className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start border-b border-[#474B4F]/15 pb-12 md:pb-16 last:border-none last:pb-0"
               >
                 
-                {/* LEFT: Project Showcase Image */}
-                <div className="lg:col-span-6 w-full h-[280px] sm:h-[400px] md:h-[460px] rounded-[16px] overflow-hidden bg-[#EEF3EE] border border-[#474B4F]/10 relative group shadow-sm">
+                {/* LEFT: Project Showcase Image (Added lg:mt-8 to move it a little down) */}
+                <div className="lg:col-span-6 w-full h-[280px] sm:h-[400px] md:h-[460px] rounded-[16px] overflow-hidden bg-[#EEF3EE] border border-[#474B4F]/10 relative group shadow-sm lg:mt-8">
                   <img
                     src={project.image}
                     alt={project.title}
