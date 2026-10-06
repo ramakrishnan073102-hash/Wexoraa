@@ -9,7 +9,7 @@ import { ArrowUpRight } from "lucide-react";
    DATA
 ───────────────────────────────────────── */
 const LOGOS = [
-  { name: "Covai Home Tech", src: "/img/1.PNG" },
+  { name: "Covai Home Tech", src: "/img/1.png" },
   { name: "Flomodia", src: "/img/2.png" },
   { name: "Weglot", src: "/img/3.png" },
   { name: "Influence 4 You", src: "/img/4.png" },
