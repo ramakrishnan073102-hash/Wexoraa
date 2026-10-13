@@ -19,6 +19,15 @@ const LOGOS = [
   { name: "Company 8", src: "/img/8.png" },
   { name: "Company 9", src: "/img/9.png" },
   { name: "Company 10", src: "/img/10.png" },
+   { name: "Company 11", src: "/img/11.png" },
+    { name: "Company 12", src: "/img/12.png" },
+     { name: "Company 13", src: "/img/13.jpeg" },
+      { name: "Company 14", src: "/img/14.png" },
+       { name: "Company 15", src: "/img/15.jpeg" },
+        { name: "Company 16", src: "/img/16.png" },
+         { name: "Company 17", src: "/img/17.png" },
+          
+           
 ];
 
 /* ─────────────────────────────────────────

@@ -1,33 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Home, ChevronRight, ArrowUpRight } from "lucide-react";
 
 /* ──────────────────────────────────────────────────────────
-   CATEGORIES & DATA
+   DATA TYPES & CONTENT
 ────────────────────────────────────────────────────────── */
-const CATEGORIES = [
-  "All Projects",
-  "Web App",
-  "Mobile App",
-  "Website",
-  "Digital Marketing",
-  "Custom Software",
-];
+interface PortfolioProject {
+  id: number;
+  title: string;
+  image: string;
+  results: string[];
+  href: string;
+}
 
-const PORTFOLIO_PROJECTS = [
+const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 1,
-    category: "Web App",
-    tags: ["#UX AUDIT", "#PRODUCT REDESIGN", "#WEB DEVELOPMENT"],
-    title: "Isora – optimizing governance, risk & compliance for top institutions",
-    client: "SALTYCLOUD",
-    location: "TEXAS, USA",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-    techStack: "React, Python, AWS, Next.js",
-    timeline: "12 months, ongoing",
+    title: "Travel & Tourism — Travel Websites & Booking Experiences",
+    image: "/img/ourprojects/t&t.jpeg",
     results: [
       "2x faster user workflows",
       "50% shorter time-to-market",
@@ -37,14 +30,8 @@ const PORTFOLIO_PROJECTS = [
   },
   {
     id: 2,
-    category: "Mobile App",
-    tags: ["#PRODUCT REDESIGN", "#MOBILE APP DEVELOPMENT"],
-    title: "MyWisdom – a digital platform for safer, more connected aging",
-    client: "MYWISDOM",
-    location: "USA",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80",
-    techStack: "Flutter, Java, Spring Boot, AWS",
-    timeline: "5 months",
+    title: "E-Commerce — Online Stores & Shopping Platforms",
+    image: "/img/ourprojects/ecom.jpeg",
     results: [
       "$1.3M raised in pre-seed funding",
       "Strategic partnership with Samsung",
@@ -54,31 +41,19 @@ const PORTFOLIO_PROJECTS = [
   },
   {
     id: 3,
-    category: "Website",
-    tags: ["#WEBSITE DESIGN", "#WEBSITE DEVELOPMENT"],
-    title: "Shaga Odyssey – an award-winning web3 gamepad platform",
-    client: "SHAGA.XYZ",
-    location: "USA",
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
-    techStack: "Next.js, Tailwind CSS, Three.js",
-    timeline: "5 months",
+    title: "Cab & Taxi Services — Booking & Lead Generation Websites",
+    image: "/img/ourprojects/cab.jpeg",
     results: [
       "+40% increase in user engagement",
       "3x faster platform navigation",
-      "Awwwards \"Site of the Day\" winner",
+      'Awwwards "Site of the Day" winner',
     ],
     href: "/portfoliopage3",
   },
   {
     id: 4,
-    category: "Digital Marketing",
-    tags: ["#BRANDING", "#GROWTH STRATEGY", "#SEO"],
-    title: "Scrambly – branding for a rewarded discovery platform for games",
-    client: "SCRAMBLY",
-    location: "ITALY",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
-    techStack: "GA4, Semrush, Mixpanel",
-    timeline: "6 months",
+    title: "Laundry Solutions — Laundry Websites & Digital Platforms",
+    image: "/img/ourprojects/laundry.jpeg",
     results: [
       "Clearer brand positioning",
       "Consistent visual system",
@@ -88,14 +63,8 @@ const PORTFOLIO_PROJECTS = [
   },
   {
     id: 5,
-    category: "Custom Software",
-    tags: ["#AI TUTORING", "#CUSTOM ARCHITECTURE", "#EDTECH"],
-    title: "Tailor – interactive AI tutoring architecture for kids and teens",
-    client: "TAILOR",
-    location: "UAE",
-    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
-    techStack: "Python, OpenAI API, Node.js, React",
-    timeline: "8 months",
+    title: "Mobile Applications — Custom Mobile App Development",
+    image: "/img/ourprojects/mobile.jpeg",
     results: [
       "Faster time-to-market",
       "Established credible product presence",
@@ -103,27 +72,41 @@ const PORTFOLIO_PROJECTS = [
     ],
     href: "/portfoliopage5",
   },
+  {
+    id: 6,
+    title: "Business Platforms — CRM, ERP, SaaS & Custom Software",
+    image: "/img/ourprojects/Business.jpeg",
+    results: [
+      "Faster time-to-market",
+      "Established credible product presence",
+      "Built with enterprise scalability in mind",
+    ],
+    href: "/portfoliopage6",
+  },
+  {
+    id: 7,
+    title: "Real-Time Messaging App Mobile Communication Platform",
+    image: "/img/ourprojects/Real.jpeg",
+    results: [
+      "Faster time-to-market",
+      "Established credible product presence",
+      "Built with enterprise scalability in mind",
+    ],
+    href: "/portfoliopage7",
+  },
 ];
 
 /* ──────────────────────────────────────────────────────────
    MAIN COMPONENT — PORTFOLIO PAGE
 ────────────────────────────────────────────────────────── */
 export default function PortfolioPage(): React.ReactElement {
-  const [activeCategory, setActiveCategory] = useState("All Projects");
-
-  // Filter logic
-  const filteredProjects =
-    activeCategory === "All Projects"
-      ? PORTFOLIO_PROJECTS
-      : PORTFOLIO_PROJECTS.filter((p) => p.category === activeCategory);
-
   return (
     <main className="w-full bg-[#f8f9f8] font-['Manrope',_sans-serif] min-h-screen pb-20 md:pb-28 text-[#222629]">
       
       {/* ════════════════════════════════════════
-         1. HERO SECTION (Your Exact Hero)
+         1. HERO SECTION
       ════════════════════════════════════════ */}
-      <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-10 md:mb-14">
+      <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-16 md:mb-20">
         <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[10px] md:rounded-[15px] flex items-center justify-center overflow-hidden shadow-sm">
           <div
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -166,36 +149,12 @@ export default function PortfolioPage(): React.ReactElement {
       </section>
 
       {/* ════════════════════════════════════════
-         2. WEXORAA CATEGORY FILTER TABS
-      ════════════════════════════════════════ */}
-      <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-16">
-        <div className="flex items-center justify-start md:justify-center gap-2 sm:gap-3 overflow-x-auto pb-4 scrollbar-none border-b border-[#474B4F]/15">
-          {CATEGORIES.map((cat) => {
-            const isActive = activeCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2.5 rounded-full font-extrabold text-[13px] sm:text-[14.5px] tracking-wide whitespace-nowrap transition-all duration-300 ${
-                  isActive
-                    ? "bg-[#222629] text-[#86C232] shadow-md scale-105"
-                    : "bg-[#EEF3EE] text-[#474B4F] hover:bg-[#86C232]/20 hover:text-[#222629]"
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════
-         3. CASE STUDY LIST
+         2. CASE STUDY LIST
       ════════════════════════════════════════ */}
       <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div layout className="flex flex-col gap-12 md:gap-16">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
+            {PORTFOLIO_PROJECTS.map((project) => (
               <motion.div
                 layout
                 key={project.id}
@@ -206,7 +165,7 @@ export default function PortfolioPage(): React.ReactElement {
                 className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start border-b border-[#474B4F]/15 pb-12 md:pb-16 last:border-none last:pb-0"
               >
                 
-                {/* LEFT: Project Showcase Image (Added lg:mt-8 to move it a little down) */}
+                {/* LEFT: Project Showcase Image */}
                 <div className="lg:col-span-6 w-full h-[280px] sm:h-[400px] md:h-[460px] rounded-[16px] overflow-hidden bg-[#EEF3EE] border border-[#474B4F]/10 relative group shadow-sm lg:mt-8">
                   <img
                     src={project.image}
@@ -217,54 +176,19 @@ export default function PortfolioPage(): React.ReactElement {
                 </div>
 
                 {/* RIGHT: Project Details */}
-                <div className="lg:col-span-6 flex flex-col justify-between h-full pt-1">
-                  <div>
-                    {/* Top Tags */}
-                    <div className="flex flex-wrap gap-2 mb-3 text-[#86C232] font-extrabold text-[12px] tracking-widest uppercase">
-                      {project.tags.join("  ")}
-                    </div>
-
+                <div className="lg:col-span-6 flex flex-col justify-center h-full pt-1 lg:pt-8">
+                  <div className="mb-10">
                     {/* Title */}
-                    <h2 className="text-2xl sm:text-3xl md:text-[2.2rem] font-black text-[#222629] tracking-tight leading-[1.15] mb-5">
+                    <h2 className="text-2xl sm:text-3xl md:text-[2.2rem] font-black text-[#222629] tracking-tight leading-[1.15] mb-8">
                       {project.title}
                     </h2>
 
-                    {/* Client Badges */}
-                    <div className="flex items-center gap-3 mb-8">
-                      <span className="bg-[#222629] text-[#86C232] px-3.5 py-1 rounded-md font-bold text-xs tracking-wider uppercase shadow-sm">
-                        {project.client}
-                      </span>
-                      <span className="bg-[#EEF3EE] text-[#474B4F] border border-[#474B4F]/10 px-3 py-1 rounded-md font-bold text-xs tracking-wider flex items-center gap-1.5 uppercase">
-                        📍 {project.location}
-                      </span>
-                    </div>
-
-                    {/* Meta Grid: Tech Stack & Timeline */}
-                    <div className="grid grid-cols-2 gap-6 py-5 border-y border-[#474B4F]/15 mb-7 font-medium">
-                      <div>
-                        <span className="block text-xs text-[#6B6E70] font-extrabold uppercase tracking-wider mb-1">
-                          Tech Stack
-                        </span>
-                        <span className="text-sm sm:text-[15px] text-[#222629] font-extrabold">
-                          {project.techStack}
-                        </span>
-                      </div>
-                      <div>
-                        <span className="block text-xs text-[#6B6E70] font-extrabold uppercase tracking-wider mb-1">
-                          Timeline
-                        </span>
-                        <span className="text-sm sm:text-[15px] text-[#222629] font-extrabold">
-                          {project.timeline}
-                        </span>
-                      </div>
-                    </div>
-
                     {/* Results List */}
-                    <div className="mb-8">
-                      <span className="block text-xs text-[#6B6E70] font-extrabold uppercase tracking-wider mb-2.5">
+                    <div>
+                      <span className="block text-xs text-[#6B6E70] font-extrabold uppercase tracking-wider mb-4">
                         Key Results
                       </span>
-                      <ul className="space-y-2">
+                      <ul className="space-y-3">
                         {project.results.map((res, i) => (
                           <li
                             key={i}
@@ -294,7 +218,6 @@ export default function PortfolioPage(): React.ReactElement {
                       </span>
                     </Link>
                   </div>
-
                 </div>
 
               </motion.div>

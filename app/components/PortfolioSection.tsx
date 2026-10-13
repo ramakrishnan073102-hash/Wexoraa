@@ -11,48 +11,54 @@ import { motion } from "framer-motion";
 const PORTFOLIO_ITEMS = [
   {
     id: 1,
-    title: "Event Management Platform",
+    title: "Travel & Tourism — Travel Websites & Booking Experiences ",
     badge: "Connect",
-    img: "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=80",
+    img: "/img/ourprojects/t&t.jpeg",
     href: "#",
   },
   {
     id: 2,
-    title: "Digital Marketing Campaign",
+    title: "E-Commerce — Online Stores & Shopping Platforms ",
     badge: "Empower",
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+    img: "/img/ourprojects/ecom.jpeg",
     href: "#",
   },
   {
     id: 3,
-    title: "Interactive Learning Platform",
+    title: "Cab & Taxi Services — Booking & Lead Generation Websites ",
     badge: "Support",
-    img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+    img: "/img/ourprojects/cab.jpeg",
     href: "#",
   },
   {
     id: 4,
-    title: "Financial Analytics Dashboard",
+    title: "Laundry Solutions — Laundry Websites & Digital Platforms",
     badge: "Growth",
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+    img: "/img/ourprojects/laundry.jpeg",
     href: "#",
   },
   {
     id: 5,
-    title: "E-Commerce Mobile App",
+    title: " Mobile Applications — Custom Mobile App Development ",
     badge: "Commerce",
-    img: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=800&q=80",
+    img: "/img/ourprojects/mobile.jpeg",
     href: "#",
   },
   {
     id: 6,
-    title: "Corporate Identity Rebrand",
+    title: "Business Platforms — CRM, ERP, SaaS & Custom Software ",
     badge: "Brand",
-    img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80",
+    img: "/img/ourprojects/Business.jpeg",
+    href: "#",
+  },
+  {
+    id: 7,
+    title: "Real-Time Messaging App — Mobile Communication Platform",
+    badge: "Brand",
+    img: "/img/ourprojects/Real.jpeg",
     href: "#",
   },
 ];
-
 // Triplicate the array to allow for infinite looping
 const EXTENDED_ITEMS = [...PORTFOLIO_ITEMS, ...PORTFOLIO_ITEMS, ...PORTFOLIO_ITEMS];
 const ITEMS_COUNT = PORTFOLIO_ITEMS.length;

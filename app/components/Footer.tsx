@@ -131,7 +131,7 @@ export default function Footer(): React.ReactElement {
                     <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150" alt="Team 3" className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-[2.5px] lg:border-[3px] border-[#222629] group-hover:border-[#86C232] transition-colors object-cover relative z-10" />
                   </div>
                   <span className="flex items-center gap-1.5 sm:gap-2 text-white font-extrabold text-[1rem] sm:text-[1.1rem] lg:text-[1.2rem] group-hover:text-[#222629] transition-colors tracking-wide">
-                    Lets Talk
+                    Lets Connect
                     <ArrowUpRight size={20} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 sm:w-[22px] sm:h-[22px]" />
                   </span>
                 </Link>
@@ -155,7 +155,7 @@ export default function Footer(): React.ReactElement {
                 </span>
               </Link>
               <p className="text-[#6B6E70] leading-[1.7] md:leading-[1.8] text-[14px] md:text-[15px] max-w-[320px] font-medium">
-                Personalize our developing custom ways to increase satisfaction and loyalty of our customer.
+               We build digital solutions that help businesses grow. From websites and apps to software and digital marketing, we’re your complete growth partner.
               </p>
             </div>
 

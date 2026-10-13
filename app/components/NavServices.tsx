@@ -26,42 +26,42 @@ const SERVICES_DATA = [
   {
     id: 1,
     title: "Web Development",
-    desc: "Fast, responsive websites built to convert visitors into enquiries and help your business look trustworthy online.",
+    desc: "Websites built with purpose to strengthen your brand, generate leads, and grow your business. ",
     icon: Target,
     href: "/page1"
   },
   {
     id: 2,
     title: "UI/UX Design",
-    desc: "Customer Experience Solutions are designed to enhance every touchpoint of your customer journey, from first interaction.",
+    desc: "Thoughtful design that turns every click into a better experience. ",
     icon: PieChart,
     href: "/page2"
   },
   {
     id: 3,
     title: "Custom Software",
-    desc: "Provide tailored strategies that not only drive long-term value but also build trust with stakeholders, investors.",
+    desc: "Custom-built solutions that simplify, automate, and scale your business. ",
     icon: Layers,
     href: "/page3"
   },
   {
     id: 4,
     title: "Mobile Apps",
-    desc: "Training and Development Programs designed to empower employees with the skills, knowledge, and tools.",
+    desc: "Powerful, user-friendly mobile apps built to connect with customers and grow your business. ",
     icon: Briefcase,
     href: "/page4"
   },
   {
     id: 5,
     title: "Digital Marketing",
-    desc: "In today's dynamic business environment, to know to success lies strategic planning and operationals business success execution.",
+    desc: "SEO, social media marketing and performance marketing built to reach, engage, and convert. ",
     icon: Cpu,
     href: "/page5"
   },
   {
     id: 6,
     title: "AI Solutions",
-    desc: "In today's dynamic business environment, to know to success lies strategic planning and operationals business success execution.",
+    desc: "Smarter automation and AI-powered solutions designed to save time, simplify operations, and accelerate business growth. ",
     icon: TrendingUp,
     href: "/page6"
   }

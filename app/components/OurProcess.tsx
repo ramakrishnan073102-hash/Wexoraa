@@ -11,24 +11,24 @@ const PROCESS_STEPS = [
   {
     id: "01",
     step: "Step 01",
-    title: "Discovery & Planning",
-    desc: "The first step in our process is understanding your unique business needs, objectives, and our outcomes challenges.",
+    title: "Discover & Strategize",
+    desc: "We understand your business, goals, audience, and challenges to define the right digital solution and growth strategy.",
     margin: "md:mt-12",  
     lineHeight: "md:h-12", 
   },
   {
     id: "02",
     step: "Step 02",
-    title: "Execution & Delivery",
-    desc: "Once the plan is in place, our team moves forward with execution, turning strategies into actions to deliver.",
+    title: " Build & Execute ",
+    desc: "From design and development to marketing and launch, our team turns the strategy into a complete working solution.",
     margin: "md:mt-32",
     lineHeight: "md:h-32",
   },
   {
     id: "03",
     step: "Step 03",
-    title: "Review & Support",
-    desc: "After project completion, we conduct thorough review to ensure everything aligns with your goals and requirements.",
+    title: "Optimize & Grow",
+    desc: "We track performance, refine what matters, provide ongoing support, and help your business scale.",
     margin: "md:mt-[13rem]",
     lineHeight: "md:h-[13rem]",
   },
@@ -103,8 +103,8 @@ export default function OurProcessSection(): React.ReactElement {
               Our Process
             </motion.div>
             
-            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-[#222629] leading-[1.2] tracking-tight max-w-3xl mx-auto drop-shadow-sm">
-              <LetterScrollAnimation text="Seamless Process and Great Results." />
+            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-[#222629] leading-[1.2] tracking-tight max-w-3xl mx-auto">
+              <LetterScrollAnimation text="From Idea to Impact." />
             </h2>
           </div>
           

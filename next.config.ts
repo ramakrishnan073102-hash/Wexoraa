@@ -1,7 +1,9 @@
-import type { NextConfig } from "next";
+const nextConfig = {
+  allowedDevOrigins: ["192.168.0.5"],
 
-const nextConfig: NextConfig = {
-  allowedDevOrigins: ["192.168.31.7"],
+  images: {
+    domains: ["..."],
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

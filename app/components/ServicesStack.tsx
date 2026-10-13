@@ -16,10 +16,10 @@ const services = [
   {
     number: "01",
     title: "Web Development",
-    desc: " Websites built with purpose to strengthen your brand, generate leads, and grow your business. ",
+    desc: "Websites built with purpose to strengthen your brand, generate leads, and grow your business.",
     bg: "#1b1b1f",
     icon: Monitor,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=900",
+    image: "/img/ourservices/web.jpeg",
   },
   {
     number: "02",
@@ -27,41 +27,42 @@ const services = [
     desc: "Thoughtful design that turns every click into a better experience.",
     bg: "#20242b",
     icon: Paintbrush,
-    image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&q=80&w=900",
+    image: "/img/ourservices/uiux.jpeg",
   },
   {
     number: "03",
     title: "Custom Software",
-    desc: " Custom-built solutions that simplify, automate, and scale your business. ",
+    desc: "Custom-built solutions that simplify, automate, and scale your business.",
     bg: "#262220",
     icon: Settings,
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=900",
+    image: "/img/ourservices/crm.jpeg",
   },
   {
     number: "04",
     title: "Mobile Apps",
-    desc: "Powerful, user-friendly mobile apps built to connect with customers and grow your business. ",
+    desc: "Powerful, user-friendly mobile apps built to connect with customers and grow your business.",
     bg: "#1f2622",
     icon: Smartphone,
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=900",
+    image: "/img/ourservices/mobileapp.jpeg",
   },
   {
     number: "05",
     title: "Digital Marketing",
-    desc: " SEO, social media marketing and performance marketing built to reach, engage, and convert. ",
+    desc: "SEO, social media marketing and performance marketing built to reach, engage, and convert.",
     bg: "#221f26",
     icon: TrendingUp,
-    image: "https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=80&w=900",
+    image: "/img/ourservices/digital.jpeg",
   },
   {
     number: "06",
     title: "AI Solutions",
-    desc: "Smarter automation and AI-powered solutions designed to save time, simplify operations, and accelerate business growth. ",
+    desc: "Smarter automation and AI-powered solutions designed to save time, simplify operations, and accelerate business growth.",
     bg: "#1a2226",
     icon: Bot,
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=900",
+    image: "/img/ourservices/ai.jpeg",
   },
 ];
+
 
 export default function ServiceSection() {
   const stackRef = useRef<HTMLDivElement>(null);
@@ -147,7 +148,7 @@ export default function ServiceSection() {
         </span>
 
         <h2 className="text-[#222629] text-4xl md:text-5xl lg:text-[4rem] font-extrabold tracking-tight max-w-4xl leading-[1.1]">
-          Our ways to move fast
+         From Ideas to Digital Growth
         </h2>
       </div>
 
@@ -160,7 +161,7 @@ export default function ServiceSection() {
           {services.map((service, index) => {
             const Icon = service.icon;
             
-            // ANIMATION MATH
+            // ANIMATION MATH (Fixed missing operators)
             const total = services.length - 1;
             const start = index === 0 ? 0 : (index - 1) / total;
             const end = index === 0 ? 0 : index / total;
@@ -242,12 +243,12 @@ export default function ServiceSection() {
                     </Link>
                   </div>
 
-                  {/* Right: Image Side */}
-                  <div className="relative h-[250px] sm:h-[350px] lg:h-auto overflow-hidden border-t lg:border-t-0 lg:border-l border-white/5">
+                  {/* Right: Image Side (Updated for perfect centering) */}
+                  <div className="relative h-[250px] sm:h-[350px] lg:h-full overflow-hidden border-t lg:border-t-0 lg:border-l border-white/5 bg-[#111]">
                     <img
                       src={service.image}
                       alt={service.title}
-                      className="absolute inset-0 w-full h-full object-cover scale-100 transition-transform duration-700 group-hover:scale-105"
+                      className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-transparent" />
                   </div>
