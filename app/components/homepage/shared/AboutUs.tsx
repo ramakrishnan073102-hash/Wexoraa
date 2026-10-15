@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import Marquee from "./homepage/Marquee";
+import Marquee from "../Marquee";
 import { 
   Home, 
   ChevronRight, 

@@ -1,12 +1,5 @@
-import aboutus from "../components/AboutUs"
+import AboutUs from "../components/homepage/shared/AboutUs";
 
-function About(){
-
-    return(
-        <>
-        <aboutus/>
-        </>
-    )
+export default function AboutUsRoute() {
+    return <AboutUs />;
 }
-
-export default aboutus

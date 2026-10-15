@@ -17,7 +17,7 @@ import {
   Cpu,
   ChevronsRight
 } from "lucide-react";
-import Marquee from "./homepage/Marquee"; // Adjust path as needed
+import Marquee from "../Marquee";
 
 /* ──────────────────────────────────────────────────────────
    SERVICES DATA (With Individual Links)
