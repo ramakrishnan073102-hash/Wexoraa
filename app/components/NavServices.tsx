@@ -17,7 +17,7 @@ import {
   Cpu,
   ChevronsRight
 } from "lucide-react";
-import Marquee from "../components/Marquee"; // Adjust path as needed
+import Marquee from "./homepage/Marquee"; // Adjust path as needed
 
 /* ──────────────────────────────────────────────────────────
    SERVICES DATA (With Individual Links)
@@ -28,42 +28,42 @@ const SERVICES_DATA = [
     title: "Web Development",
     desc: "Websites built with purpose to strengthen your brand, generate leads, and grow your business. ",
     icon: Target,
-    href: "/page1"
+    href: "/web-development"
   },
   {
     id: 2,
     title: "UI/UX Design",
     desc: "Thoughtful design that turns every click into a better experience. ",
     icon: PieChart,
-    href: "/page2"
+    href: "/ui-ux-design"
   },
   {
     id: 3,
     title: "Custom Software",
     desc: "Custom-built solutions that simplify, automate, and scale your business. ",
     icon: Layers,
-    href: "/page3"
+    href: "/custom-software"
   },
   {
     id: 4,
     title: "Mobile Apps",
     desc: "Powerful, user-friendly mobile apps built to connect with customers and grow your business. ",
     icon: Briefcase,
-    href: "/page4"
+    href: "/mobile-apps"
   },
   {
     id: 5,
     title: "Digital Marketing",
     desc: "SEO, social media marketing and performance marketing built to reach, engage, and convert. ",
     icon: Cpu,
-    href: "/page5"
+    href: "/digital-marketing"
   },
   {
     id: 6,
     title: "AI Solutions",
     desc: "Smarter automation and AI-powered solutions designed to save time, simplify operations, and accelerate business growth. ",
     icon: TrendingUp,
-    href: "/page6"
+    href: "/ai-solutions"
   }
 ];
 
@@ -166,7 +166,7 @@ export default function ServicesPage(): React.ReactElement {
           
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80')" }}
+            style={{ backgroundImage: "url('/assets/images/photo-1552664730-d307ca884978.jpg')" }}
           />
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#222629]/95 via-[#222629]/85 to-[#61892F]/60 mix-blend-multiply" />
           
@@ -320,7 +320,7 @@ export default function ServicesPage(): React.ReactElement {
               className="relative w-full h-[450px] md:h-[550px] rounded-[32px] overflow-hidden group"
             >
               <img 
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80" 
+                src="/assets/images/photo-1600880292203-757bb62b4baf.jpg" 
                 alt="Business Meeting" 
                 className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-105"
               />

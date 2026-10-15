@@ -1,12 +1,5 @@
-import navservices from "../components/NavServices"
+import { redirect } from "next/navigation";
 
-
-function NavServices(){
-    return(
-        <>
-        <navservices/>
-        </>
-    )
+export default function NavServicesPage() {
+  redirect("/services");
 }
-
-export default navservices

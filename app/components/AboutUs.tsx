@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import Marquee from "../components/Marquee";
+import Marquee from "./homepage/Marquee";
 import { 
   Home, 
   ChevronRight, 
@@ -127,7 +127,7 @@ export default function AboutPage(): React.ReactElement {
         <div className="relative w-full max-w-[1400px] mx-auto h-[350px] md:h-[450px] lg:h-[500px] rounded-[15px] flex items-center justify-center overflow-hidden shadow-sm">
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80')" }}
+            style={{ backgroundImage: "url('/assets/images/photo-1552664730-d307ca884978.jpg')" }}
           />
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#222629]/95 via-[#222629]/85 to-[#61892F]/60 mix-blend-multiply" />
           
@@ -239,7 +239,7 @@ export default function AboutPage(): React.ReactElement {
               className="relative w-full h-[450px] md:h-[550px] rounded-[32px] overflow-hidden group"
             >
               <img 
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80" 
+                src="/assets/images/photo-1600880292203-757bb62b4baf.jpg" 
                 alt="Business Meeting" 
                 className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-105"
               />

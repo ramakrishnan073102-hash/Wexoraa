@@ -11,52 +11,59 @@ import { motion } from "framer-motion";
 const PORTFOLIO_ITEMS = [
   {
     id: 1,
-    title: "Travel & Tourism — Travel Websites & Booking Experiences ",
+    title: "Travel & Tourism",
+    subtitle: "Travel Websites & Booking Experiences",
     badge: "Connect",
-    img: "/img/ourprojects/t&t.jpeg",
-    href: "#",
+    img: "/assets/img/ourprojects/t&t.jpeg",
+    href: "/portfolio/travel-tourism",
   },
   {
     id: 2,
-    title: "E-Commerce — Online Stores & Shopping Platforms ",
+    title: "E-Commerce",
+    subtitle: "Online Stores & Shopping Platforms",
     badge: "Empower",
-    img: "/img/ourprojects/ecom.jpeg",
-    href: "#",
+    img: "/assets/img/ourprojects/ecom.jpeg",
+    href: "/portfolio/e-commerce",
   },
   {
     id: 3,
-    title: "Cab & Taxi Services — Booking & Lead Generation Websites ",
+    title: "Cab & Taxi Services",
+    subtitle: "Booking & Lead Generation Websites",
     badge: "Support",
-    img: "/img/ourprojects/cab.jpeg",
-    href: "#",
+    img: "/assets/img/ourprojects/cab.jpeg",
+    href: "/portfolio/cab-taxi-services",
   },
   {
     id: 4,
-    title: "Laundry Solutions — Laundry Websites & Digital Platforms",
+    title: "Laundry Solutions",
+    subtitle: "Laundry Websites & Digital Platforms",
     badge: "Growth",
-    img: "/img/ourprojects/laundry.jpeg",
-    href: "#",
+    img: "/assets/img/ourprojects/laundry.jpeg",
+    href: "/portfolio/laundry-solutions",
   },
   {
     id: 5,
-    title: " Mobile Applications — Custom Mobile App Development ",
+    title: "Mobile Applications",
+    subtitle: "Custom Mobile App Development",
     badge: "Commerce",
-    img: "/img/ourprojects/mobile.jpeg",
-    href: "#",
+    img: "/assets/img/ourprojects/mobile.jpeg",
+    href: "/portfolio/mobile-applications",
   },
   {
     id: 6,
-    title: "Business Platforms — CRM, ERP, SaaS & Custom Software ",
+    title: "Business Platforms",
+    subtitle: "CRM, ERP, SaaS & Custom Software",
     badge: "Brand",
-    img: "/img/ourprojects/Business.jpeg",
-    href: "#",
+    img: "/assets/img/ourprojects/business.jpeg",
+    href: "/portfolio/business-platforms",
   },
   {
     id: 7,
-    title: "Real-Time Messaging App — Mobile Communication Platform",
+    title: "Real-Time Messaging App",
+    subtitle: "Mobile Communication Platform",
     badge: "Brand",
-    img: "/img/ourprojects/Real.jpeg",
-    href: "#",
+    img: "/assets/img/ourprojects/real.jpeg",
+    href: "/portfolio/real-time-messaging-app",
   },
 ];
 // Triplicate the array to allow for infinite looping
@@ -219,6 +226,9 @@ export default function PortfolioSection(): React.ReactElement {
                     <h3 className="text-white text-[1.6rem] sm:text-[2rem] font-bold tracking-[-0.02em] leading-[1.2] mb-[20px] sm:mb-[24px]">
                       {item.title}
                     </h3>
+                    <p className="text-white/85 text-sm sm:text-base font-medium mb-5">
+                      {item.subtitle}
+                    </p>
                     
                     <div className="text-white transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:group-hover/card:translate-x-[6px] lg:group-hover/card:-translate-y-[6px] lg:group-hover/card:text-[#86C232]">
                       <ArrowUpRight size={60} className="sm:w-[80px] sm:h-[80px]" strokeWidth={1} />

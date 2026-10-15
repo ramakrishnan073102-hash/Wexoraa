@@ -59,9 +59,9 @@ const CHECKLIST = [
 ];
 
 const GALLERY_IMAGES = [
-  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+  "/assets/images/photo-1522071820081-009f0129c71c.jpg",
+  "/assets/images/photo-1556761175-5973dc0f32e7.jpg",
+  "/assets/images/photo-1507679799987-c73779587ccf.jpg",
 ];
 
 /* ──────────────────────────────────────────────────────────
@@ -154,7 +154,7 @@ export default function PortfolioPage4(): React.ReactElement {
           <div
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1920&q=80')",
+              backgroundImage: "url('/assets/images/photo-1542744173-8e7e53415bb0.jpg')",
             }}
           />
           {/* Dark overlay */}
@@ -208,7 +208,7 @@ export default function PortfolioPage4(): React.ReactElement {
             {/* Top Project Image */}
             <motion.div variants={fadeUp} className="w-full h-[320px] md:h-[480px] rounded-[16px] overflow-hidden shadow-sm">
               <img
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80"
+                src="/assets/images/photo-1600880292203-757bb62b4baf.jpg"
                 alt="Project Discussion"
                 className="w-full h-full object-cover object-center"
               />
@@ -306,7 +306,7 @@ export default function PortfolioPage4(): React.ReactElement {
 
                      {/* Previous Button */}
                   <Link
-                    href="/portfoliopage3"
+                    href="/portfolio/cab-taxi-services"
                     className="flex items-center gap-3 text-[#222629] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none"
                   >
                     <div className="w-11 h-11 rounded-full border border-[#d1d5db] flex items-center justify-center text-[#222629] transition-all duration-300 group-hover:border-[#86C232] group-hover:bg-[#86C232] group-hover:text-white">
@@ -330,7 +330,7 @@ export default function PortfolioPage4(): React.ReactElement {
 
                   {/* Next */}
                   <Link
-                    href="/portfoliopage5"
+                    href="/portfolio/mobile-applications"
                     className="flex items-center gap-3 text-[#222629] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none ml-auto"
                   >
                     Next
@@ -379,7 +379,7 @@ export default function PortfolioPage4(): React.ReactElement {
               <div className="absolute top-0 right-0 w-52 h-52 rounded-full border-[40px] border-[#86C232]/15 translate-x-12 -translate-y-12 z-0" />
               <div className="absolute bottom-0 right-0 w-44 h-44 rounded-full overflow-hidden border-4 border-[#1a2826] z-10 translate-x-6 translate-y-6 shadow-xl">
                 <img
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80"
+                  src="/assets/images/photo-1560250097-0b93528c311a.jpg"
                   alt="Consultant"
                   className="w-full h-full object-cover object-top"
                 />

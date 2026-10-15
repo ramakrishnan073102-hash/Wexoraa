@@ -11,6 +11,7 @@ import { Home, ChevronRight, ArrowUpRight } from "lucide-react";
 interface PortfolioProject {
   id: number;
   title: string;
+  subtitle: string;
   image: string;
   results: string[];
   href: string;
@@ -19,80 +20,87 @@ interface PortfolioProject {
 const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 1,
-    title: "Travel & Tourism — Travel Websites & Booking Experiences",
-    image: "/img/ourprojects/t&t.jpeg",
+    title: "Travel & Tourism",
+    subtitle: "Travel Websites & Booking Experiences",
+    image: "/assets/img/ourprojects/t&t.jpeg",
     results: [
       "2x faster user workflows",
       "50% shorter time-to-market",
       "Nominated for UX Design Award 2024",
     ],
-    href: "/portfoliopage1",
+    href: "/portfolio/travel-tourism",
   },
   {
     id: 2,
-    title: "E-Commerce — Online Stores & Shopping Platforms",
-    image: "/img/ourprojects/ecom.jpeg",
+    title: "E-Commerce",
+    subtitle: "Online Stores & Shopping Platforms",
+    image: "/assets/img/ourprojects/ecom.jpeg",
     results: [
       "$1.3M raised in pre-seed funding",
       "Strategic partnership with Samsung",
       "UX Design Award nomination",
     ],
-    href: "/portfoliopage2",
+    href: "/portfolio/e-commerce",
   },
   {
     id: 3,
-    title: "Cab & Taxi Services — Booking & Lead Generation Websites",
-    image: "/img/ourprojects/cab.jpeg",
+    title: "Cab & Taxi Services",
+    subtitle: "Booking & Lead Generation Websites",
+    image: "/assets/img/ourprojects/cab.jpeg",
     results: [
       "+40% increase in user engagement",
       "3x faster platform navigation",
       'Awwwards "Site of the Day" winner',
     ],
-    href: "/portfoliopage3",
+    href: "/portfolio/cab-taxi-services",
   },
   {
     id: 4,
-    title: "Laundry Solutions — Laundry Websites & Digital Platforms",
-    image: "/img/ourprojects/laundry.jpeg",
+    title: "Laundry Solutions",
+    subtitle: "Laundry Websites & Digital Platforms",
+    image: "/assets/img/ourprojects/laundry.jpeg",
     results: [
       "Clearer brand positioning",
       "Consistent visual system",
       "Boosted global user retention by 35%",
     ],
-    href: "/portfoliopage4",
+    href: "/portfolio/laundry-solutions",
   },
   {
     id: 5,
-    title: "Mobile Applications — Custom Mobile App Development",
-    image: "/img/ourprojects/mobile.jpeg",
+    title: "Mobile Applications",
+    subtitle: "Custom Mobile App Development",
+    image: "/assets/img/ourprojects/mobile.jpeg",
     results: [
       "Faster time-to-market",
       "Established credible product presence",
       "Built with enterprise scalability in mind",
     ],
-    href: "/portfoliopage5",
+    href: "/portfolio/mobile-applications",
   },
   {
     id: 6,
-    title: "Business Platforms — CRM, ERP, SaaS & Custom Software",
-    image: "/img/ourprojects/Business.jpeg",
+    title: "Business Platforms",
+    subtitle: "CRM, ERP, SaaS & Custom Software",
+    image: "/assets/img/ourprojects/business.jpeg",
     results: [
       "Faster time-to-market",
       "Established credible product presence",
       "Built with enterprise scalability in mind",
     ],
-    href: "/portfoliopage6",
+    href: "/portfolio/business-platforms",
   },
   {
     id: 7,
-    title: "Real-Time Messaging App Mobile Communication Platform",
-    image: "/img/ourprojects/Real.jpeg",
+    title: "Real-Time Messaging App",
+    subtitle: "Mobile Communication Platform",
+    image: "/assets/img/ourprojects/real.jpeg",
     results: [
       "Faster time-to-market",
       "Established credible product presence",
       "Built with enterprise scalability in mind",
     ],
-    href: "/portfoliopage7",
+    href: "/portfolio/real-time-messaging-app",
   },
 ];
 
@@ -112,7 +120,7 @@ export default function PortfolioPage(): React.ReactElement {
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=80')",
+                "url('/assets/images/photo-1600880292203-757bb62b4baf.jpg')",
             }}
           />
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#222629]/95 via-[#222629]/85 to-[#61892F]/60 mix-blend-multiply" />
@@ -179,9 +187,17 @@ export default function PortfolioPage(): React.ReactElement {
                 <div className="lg:col-span-6 flex flex-col justify-center h-full pt-1 lg:pt-8">
                   <div className="mb-10">
                     {/* Title */}
-                    <h2 className="text-2xl sm:text-3xl md:text-[2.2rem] font-black text-[#222629] tracking-tight leading-[1.15] mb-8">
-                      {project.title}
-                    </h2>
+                    <Link
+                      href={project.href}
+                      className="group/title block w-fit mb-8 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#86C232]"
+                    >
+                      <h2 className="text-2xl sm:text-3xl md:text-[2.2rem] font-black text-[#222629] tracking-tight leading-[1.15] mb-3 transition-colors group-hover/title:text-[#61892F]">
+                        {project.title}
+                      </h2>
+                      <p className="text-base sm:text-lg font-semibold text-[#6B6E70] mb-0">
+                        {project.subtitle}
+                      </p>
+                    </Link>
 
                     {/* Results List */}
                     <div>

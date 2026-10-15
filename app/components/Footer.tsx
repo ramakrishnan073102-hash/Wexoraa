@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, Mail, ArrowUpRight, ArrowUp } from "lucide-react";
+import { Phone, Mail, ArrowRight, ArrowUp } from "lucide-react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -21,16 +21,16 @@ interface FooterLinkItem {
 
 const FOOTER_LINKS: { services: FooterLinkItem[]; resources: FooterLinkItem[] } = {
   services: [
-    { label: "Web Development", href: "/page1" },
-    { label: "UI/UX Design",   href: "/page2" },
-    { label: "Custom Software",   href: "/page3" },
-    { label: "Mobile Apps",    href: "/page4" },
-    { label: "Digital Marketing",      href: "/page5" },
-    { label: "AI Solutions",     href: "/page6" },
+    { label: "Web Development", href: "/web-development" },
+    { label: "UI/UX Design",   href: "/ui-ux-design" },
+    { label: "Custom Software",   href: "/custom-software" },
+    { label: "Mobile Apps",    href: "/mobile-apps" },
+    { label: "Digital Marketing",      href: "/digital-marketing" },
+    { label: "AI Solutions",     href: "/ai-solutions" },
   ],
   resources: [
     { label: "Contact us",   href: "/contact" },
-    { label: "About Us",     href: "/about" },
+    { label: "About Us",     href: "/aboutus" },
     { label: "Portfolio",    href: "/portfolio" },
   ],
 };
@@ -102,10 +102,6 @@ export default function Footer(): React.ReactElement {
 
   return (
     <>
-      {/* 
-        UPDATED: Changed background from bg-[#EEF3EE] to bg-white 
-        to match the surrounding sections.
-      */}
       <footer className="relative overflow-hidden bg-white font-['Manrope',_sans-serif]">
         <div className="relative z-10 max-w-[1340px] mx-auto px-5 sm:px-6 lg:px-8 pt-16 md:pt-28 pb-10">
 
@@ -123,16 +119,21 @@ export default function Footer(): React.ReactElement {
               <div className="w-full flex justify-center">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-3 sm:gap-4 lg:gap-6 rounded-full p-2 pr-5 sm:pr-6 lg:pr-8 bg-[#222629] hover:bg-[#86C232] transition-colors duration-300 shadow-md"
+                  className="group inline-flex items-center bg-[#222629] hover:bg-[#86C232] rounded-full transition-colors duration-300 shadow-md pr-2 pl-6 sm:pl-8 py-2 sm:py-2.5"
                 >
-                  <div className="flex -space-x-3 lg:-space-x-4">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=150" alt="Team 1" className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-[2.5px] lg:border-[3px] border-[#222629] group-hover:border-[#86C232] transition-colors object-cover relative z-30" />
-                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150" alt="Team 2" className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-[2.5px] lg:border-[3px] border-[#222629] group-hover:border-[#86C232] transition-colors object-cover relative z-20" />
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150" alt="Team 3" className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-[2.5px] lg:border-[3px] border-[#222629] group-hover:border-[#86C232] transition-colors object-cover relative z-10" />
-                  </div>
-                  <span className="flex items-center gap-1.5 sm:gap-2 text-white font-extrabold text-[1rem] sm:text-[1.1rem] lg:text-[1.2rem] group-hover:text-[#222629] transition-colors tracking-wide">
-                    Lets Connect
-                    <ArrowUpRight size={20} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 sm:w-[22px] sm:h-[22px]" />
+                  {/* Sliding Text Animation */}
+                  <span className="relative block overflow-hidden font-extrabold text-[1rem] sm:text-[1.1rem] lg:text-[1.2rem] text-white group-hover:text-[#222629] mr-4 sm:mr-6 tracking-wide h-[1.3em]">
+                    <span className="block transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:-translate-y-full">
+                      Let's Connect
+                    </span>
+                    <span className="absolute top-full left-0 block transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:-translate-y-full">
+                      Let's Connect
+                    </span>
+                  </span>
+
+                  {/* Rotating Arrow in Circle */}
+                  <span className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 group-hover:bg-[#222629] text-white group-hover:text-[#86C232] transition-colors duration-300 flex-shrink-0">
+                    <ArrowRight size={20} strokeWidth={2.5} className="transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] -rotate-45 group-hover:rotate-0" />
                   </span>
                 </Link>
               </div>
@@ -148,7 +149,7 @@ export default function Footer(): React.ReactElement {
             <div className="flex flex-col items-start text-left pr-0 md:pr-8">
               <Link href="/" className="flex items-center gap-3 mb-5 md:mb-6 group w-fit">
                 <div className="w-9 h-9 md:w-11 md:h-11 flex items-center justify-center">
-                  <img src="/img/logo.png" alt="Wexoraa Logo" className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" />
+                  <img src="/assets/img/wexoraalogo/logo.png" alt="Wexoraa Logo" className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" />
                 </div>
                 <span className="text-[24px] md:text-[28px] font-black tracking-tight text-[#222629] group-hover:text-[#86C232] transition-colors duration-300">
                   Wexoraa
@@ -195,7 +196,7 @@ export default function Footer(): React.ReactElement {
                 <Phone size={18} className="text-[#6B6E70]" /> (+91) 9360375338 <br /> STV Nagar, Nava India Peelamedu, Coimbatore - 641004
               </a>
               <a href="mailto:info@wexoraa.com" className="flex items-center gap-2.5 hover:text-[#86C232] transition-colors duration-300">
-                <Mail size={18} className="text-[#6B6E70]" /> wexoraainfotech@gmail.com
+                <Mail size={18} className="text-[#6B6E70]" /> info@wexoraa4.com
               </a>
             </div>
 

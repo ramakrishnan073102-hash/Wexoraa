@@ -45,7 +45,7 @@ export default function TermsAndConditions(): React.ReactElement {
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1920&q=80')",
+                "url('/assets/images/photo-1557804506-669a67965ba0.jpg')",
             }}
           />
           {/* Gradient Overlay */}

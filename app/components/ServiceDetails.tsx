@@ -91,7 +91,7 @@ export default function ServicesDetailsPage(): React.ReactElement {
           
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80')" }}
+            style={{ backgroundImage: "url('/assets/images/photo-1552664730-d307ca884978.jpg')" }}
           />
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#222629]/95 via-[#222629]/85 to-[#61892F]/60 mix-blend-multiply" />
           
@@ -143,7 +143,7 @@ export default function ServicesDetailsPage(): React.ReactElement {
             {/* Top Image */}
             <div className="w-full h-[400px] md:h-[500px] rounded-[15px] overflow-hidden shadow-sm">
               <img 
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32b7?auto=format&fit=crop&w=1200&q=80" 
+                src="/assets/images/photo-1556761175-5973dc0f32e7.jpg" 
                 alt="Business Strategy" 
                 className="w-full h-full object-cover object-center"
               />
@@ -179,13 +179,13 @@ export default function ServicesDetailsPage(): React.ReactElement {
             {/* Three Image Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               <div className="h-[200px] rounded-[20px] overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=400&q=80" alt="Consulting 1" className="w-full h-full object-cover" />
+                <img src="/assets/images/photo-1600880292203-757bb62b4baf.jpg" alt="Consulting 1" className="w-full h-full object-cover" />
               </div>
               <div className="h-[200px] rounded-[20px] overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&q=80" alt="Consulting 2" className="w-full h-full object-cover" />
+                <img src="/assets/images/photo-1552664730-d307ca884978.jpg" alt="Consulting 2" className="w-full h-full object-cover" />
               </div>
               <div className="h-[200px] rounded-[20px] overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=400&q=80" alt="Consulting 3" className="w-full h-full object-cover" />
+                <img src="/assets/images/photo-1573164713988-8665fc963095.jpg" alt="Consulting 3" className="w-full h-full object-cover" />
               </div>
             </div>
 
@@ -314,7 +314,7 @@ export default function ServicesDetailsPage(): React.ReactElement {
               {/* Card Image */}
               <div className="w-full h-[220px]">
                 <img 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" 
+                  src="/assets/images/photo-1560250097-0b93528c311a.jpg" 
                   alt="Contact Expert" 
                   className="w-full h-full object-cover opacity-80 mix-blend-luminosity"
                 />

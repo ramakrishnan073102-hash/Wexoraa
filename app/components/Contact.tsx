@@ -65,7 +65,7 @@ export default function ContactPage(): React.ReactElement {
           {/* Background Image & Overlay */}
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=80')" }}
+            style={{ backgroundImage: "url('/assets/images/photo-1600880292203-757bb62b4baf.jpg')" }}
           />
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#222629]/95 via-[#222629]/85 to-[#61892F]/60 mix-blend-multiply" />
           

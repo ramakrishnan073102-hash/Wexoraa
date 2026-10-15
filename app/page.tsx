@@ -1,11 +1,11 @@
-import HeroSection from "./components/HeroSection";
-import Marquee from "./components/Marquee";
-import ServiceSection from "./components/ServicesStack";
+import HeroSection from "./components/homepage/HeroSection";
+import Marquee from "./components/homepage/Marquee";
+import ServiceSection from "./components/homepage/ServicesStack";
 import PortfolioSection from "./components/PortfolioSection";
-import OurProcess from "./components/OurProcess";
-import ChooseBest from "./components/ChooseTheBest";
-import TestimonialSection from "./components/TestimonialSection";
-import Homeabout from "./components/HomeAbout";
+import OurProcess from "./components/homepage/OurProcess";
+import ChooseBest from "./components/homepage/ChooseTheBest";
+import TestimonialSection from "./components/homepage/TestimonialSection";
+import Homeabout from "./components/homepage/HomeAbout";
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
         <ServiceSection />
       </div>
       <Homeabout />
-      <PortfolioSection />
+      
       <OurProcess />
       <ChooseBest />
       <TestimonialSection />
