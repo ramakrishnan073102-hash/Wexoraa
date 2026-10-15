@@ -1,11 +1,5 @@
-import contact from '../components/Contact'
+import Contact from "../components/homepage/shared/Contact";
 
-function Contact(){
-    return(
-        <>
-        <contact/>
-        </>
-    )
+export default function ContactRoute() {
+    return <Contact />;
 }
-
-export default contact

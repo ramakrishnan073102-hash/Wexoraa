@@ -1,11 +1,5 @@
-import portfolio from "../components/Portfolio"
+import Portfolio from "../components/portfolio/Portfolio";
 
-function Portfolio(){
-    return(
-        <>
-        <portfolio/>
-        </>
-    )
+export default function PortfolioRoute() {
+    return <Portfolio />;
 }
-
-export default portfolio
