@@ -1,5 +1,5 @@
-import PortfolioPage3 from "../../components/portfolio/Portfoliopage3";
+import CabTaxiServices from "../../components/portfolio/CabTaxiServices";
 
-export default function Page3() {
-    return <PortfolioPage3 />;
+export default function CabTaxiServicesRoute() {
+    return <CabTaxiServices />;
 }

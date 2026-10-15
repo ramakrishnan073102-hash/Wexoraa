@@ -1,5 +1,5 @@
-import PortfolioPage5 from "../../components/portfolio/Portfoliopage5";
+import MobileApplications from "../../components/portfolio/MobileApplications";
 
-export default function Page5() {
-    return <PortfolioPage5 />;
+export default function MobileApplicationsRoute() {
+    return <MobileApplications />;
 }

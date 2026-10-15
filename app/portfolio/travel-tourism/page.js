@@ -1,5 +1,5 @@
-import PortfolioPage1 from "../../components/portfolio/Protfoliopage1";
+import TravelTourism from "../../components/portfolio/TravelTourism";
 
-export default function Page1() {
-    return <PortfolioPage1 />;
+export default function TravelTourismRoute() {
+    return <TravelTourism />;
 }

@@ -6,7 +6,7 @@ import Link from "next/link";
 import {
   Home,
   ChevronRight,
-   ChevronLeft,
+  ChevronLeft,
   Check,
   Phone,
   User,
@@ -125,9 +125,9 @@ function ScrollProgress() {
 }
 
 /* ──────────────────────────────────────────────────────────
-   MAIN COMPONENT — PORTFOLIO DETAILS PAGE 5
+   MAIN COMPONENT — PORTFOLIO DETAILS PAGE 6
 ────────────────────────────────────────────────────────── */
-export default function PortfolioPage5(): React.ReactElement {
+export default function BusinessPlatforms(): React.ReactElement {
   // STATE: Tracks which image is currently open in the lightbox
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -167,10 +167,10 @@ export default function PortfolioPage5(): React.ReactElement {
               transition={{ duration: 0.55 }}
               className="text-3xl md:text-5xl lg:text-[4rem] font-extrabold text-white mb-2 tracking-tight leading-tight"
             >
-              Mobile Applications
+              Business Platforms
             </motion.h1>
             <p className="text-white/85 text-base sm:text-lg font-medium mb-6">
-              Custom Mobile App Development
+              CRM, ERP, SaaS &amp; Custom Software
             </p>
 
             <motion.div
@@ -188,7 +188,7 @@ export default function PortfolioPage5(): React.ReactElement {
               </Link>
               <ChevronRight size={15} className="text-[#6B6E70]" />
               <span className="text-white font-bold truncate max-w-[180px] sm:max-w-[260px]">
-                Mobile Applications
+                Business Platforms
               </span>
             </motion.div>
           </div>
@@ -307,16 +307,16 @@ export default function PortfolioPage5(): React.ReactElement {
               <div className="w-full bg-white rounded-[16px] mt-10 shadow-sm border border-[#e0e3e0]">
                 <div className="flex items-center px-6 py-5 relative">
 
-                       {/* Previous Button */}
-                  <Link
-                    href="/portfolio/laundry-solutions"
-                    className="flex items-center gap-3 text-[#222629] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none"
-                  >
-                    <div className="w-11 h-11 rounded-full border border-[#d1d5db] flex items-center justify-center text-[#222629] transition-all duration-300 group-hover:border-[#86C232] group-hover:bg-[#86C232] group-hover:text-white">
-                      <ChevronLeft size={19} strokeWidth={2.5} />
-                    </div>
-                    Previous
-                  </Link>
+                           {/* Previous Button */}
+                                      <Link
+                                        href="/portfolio/mobile-applications"
+                                        className="flex items-center gap-3 text-[#222629] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none"
+                                      >
+                                        <div className="w-11 h-11 rounded-full border border-[#d1d5db] flex items-center justify-center text-[#222629] transition-all duration-300 group-hover:border-[#86C232] group-hover:bg-[#86C232] group-hover:text-white">
+                                          <ChevronLeft size={19} strokeWidth={2.5} />
+                                        </div>
+                                        Previous
+                                      </Link>
                   
                   {/* Center: 4-square grid icon */}
                   <Link
@@ -331,9 +331,9 @@ export default function PortfolioPage5(): React.ReactElement {
                     </svg>
                   </Link>
 
-                  {/* Next (Point this to your 6th portfolio page) */}
+                  {/* Next (Point this to your first portfolio page to create a loop) */}
                   <Link
-                    href="/portfolio/business-platforms"
+                    href="/portfolio/real-time-messaging-app"
                     className="flex items-center gap-3 text-[#222629] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none ml-auto"
                   >
                     Next

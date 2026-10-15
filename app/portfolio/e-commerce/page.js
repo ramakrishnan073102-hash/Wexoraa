@@ -1,5 +1,5 @@
-import PortfolioPage2 from "../../components/portfolio/Portfoliopage2";
+import ECommerce from "../../components/portfolio/ECommerce";
 
-export default function Page2() {
-    return <PortfolioPage2 />;
+export default function ECommerceRoute() {
+    return <ECommerce />;
 }

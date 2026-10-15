@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Home } from "lucide-react";
 
-export default function PortfolioPage7(): React.ReactElement {
+export default function RealTimeMessagingApp(): React.ReactElement {
   return (
     <main className="w-full bg-[#eef0ee] font-['Manrope',_sans-serif] min-h-screen pb-20 md:pb-28">
       <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-12 md:mb-20">

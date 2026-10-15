@@ -6,6 +6,7 @@ import Link from "next/link";
 import {
   Home,
   ChevronRight,
+   ChevronLeft,
   Check,
   Phone,
   User,
@@ -14,7 +15,7 @@ import {
   Briefcase,
   Calendar,
   Search,
-  X // Added X icon for the close button
+  X
 } from "lucide-react";
 
 /* ──────────────────────────────────────────────────────────
@@ -24,7 +25,7 @@ const PROJECT_INFO = [
   {
     icon: User,
     label: "Clients",
-    value: "EduTech Global Inc.",
+    value: "Innovate Interiors G...",
   },
   {
     icon: DollarSign,
@@ -39,7 +40,7 @@ const PROJECT_INFO = [
   {
     icon: Briefcase,
     label: "Sector",
-    value: "Education Technology",
+    value: "Corporate Business",
   },
   {
     icon: Calendar,
@@ -124,9 +125,9 @@ function ScrollProgress() {
 }
 
 /* ──────────────────────────────────────────────────────────
-  MAIN COMPONENT — PORTFOLIO DETAILS PAGE 1
+   MAIN COMPONENT — PORTFOLIO DETAILS PAGE 5
 ────────────────────────────────────────────────────────── */
-export default function PortfolioPage1(): React.ReactElement {
+export default function MobileApplications(): React.ReactElement {
   // STATE: Tracks which image is currently open in the lightbox
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -149,12 +150,14 @@ export default function PortfolioPage1(): React.ReactElement {
       ════════════════════════════════════════ */}
       <section className="w-full pt-4 sm:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 mb-12 md:mb-20">
         <div className="relative w-full max-w-[1400px] mx-auto h-[320px] md:h-[420px] lg:h-[480px] rounded-[12px] flex items-center justify-center overflow-hidden">
+          {/* Background Image */}
           <div
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage: "url('/assets/images/photo-1542744173-8e7e53415bb0.jpg')",
             }}
           />
+          {/* Dark overlay */}
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#222629]/95 via-[#222629]/85 to-[#61892F]/60 mix-blend-multiply" />
 
           <div className="relative z-20 flex flex-col items-center text-center px-4 w-full">
@@ -164,10 +167,10 @@ export default function PortfolioPage1(): React.ReactElement {
               transition={{ duration: 0.55 }}
               className="text-3xl md:text-5xl lg:text-[4rem] font-extrabold text-white mb-2 tracking-tight leading-tight"
             >
-              Travel &amp; Tourism
+              Mobile Applications
             </motion.h1>
             <p className="text-white/85 text-base sm:text-lg font-medium mb-6">
-              Travel Websites &amp; Booking Experiences
+              Custom Mobile App Development
             </p>
 
             <motion.div
@@ -185,7 +188,7 @@ export default function PortfolioPage1(): React.ReactElement {
               </Link>
               <ChevronRight size={15} className="text-[#6B6E70]" />
               <span className="text-white font-bold truncate max-w-[180px] sm:max-w-[260px]">
-                Travel &amp; Tourism
+                Mobile Applications
               </span>
             </motion.div>
           </div>
@@ -220,7 +223,7 @@ export default function PortfolioPage1(): React.ReactElement {
                 Designing a Modern Brand Identity for Competitive Edge
               </h2>
               <p className="text-[#6B6E70] text-[15px] leading-[1.85] font-medium mb-5">
-                More than just a logo change or a new color palette; it's about reshaping how your brand is perceived in the marketplace. At Wexoraa, we specialize in crafting robust rebranding strategies that align your business with its evolving goals, values, and audience.
+                More than just a logo change or a new color palette; it's about reshaping how your brand is perceived in the marketplace. At Wexoraa, we specialize in crafting robust rebranding strategies that align your business with its evolving goals, values, and audience. Whether you're launching in new markets, updating your identity for modern aesthetics, or fully reinvigorating a tired brand, we take a holistic approach to ensure your brand connects with customers on a deeper level.
               </p>
               <p className="text-[#6B6E70] text-[15px] leading-[1.85] font-medium">
                 The process is rooted in strategic thinking, market research, and creativity. We work closely to understand your business, vision, and customers, ensuring that every element of your brand—from visual design to messaging—is authentic and impactful. The end result is a unified brand that speaks.
@@ -253,7 +256,7 @@ export default function PortfolioPage1(): React.ReactElement {
                 Project Gallery
               </h3>
               <p className="text-[#6B6E70] text-[15px] leading-[1.85] font-medium mb-8">
-                Click on any image to expand.
+                Strategy for [Client Name] transformed their entire brand identity, from a fresh new logo to updated visual design that resonates with their growing audience.
               </p>
 
               {/* IMAGE GALLERY GRID WITH CLICK HANDLERS */}
@@ -303,6 +306,19 @@ export default function PortfolioPage1(): React.ReactElement {
               {/* ── BOTTOM NAV: Grid | Next ── */}
               <div className="w-full bg-white rounded-[16px] mt-10 shadow-sm border border-[#e0e3e0]">
                 <div className="flex items-center px-6 py-5 relative">
+
+                       {/* Previous Button */}
+                  <Link
+                    href="/portfolio/laundry-solutions"
+                    className="flex items-center gap-3 text-[#222629] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none"
+                  >
+                    <div className="w-11 h-11 rounded-full border border-[#d1d5db] flex items-center justify-center text-[#222629] transition-all duration-300 group-hover:border-[#86C232] group-hover:bg-[#86C232] group-hover:text-white">
+                      <ChevronLeft size={19} strokeWidth={2.5} />
+                    </div>
+                    Previous
+                  </Link>
+                  
+                  {/* Center: 4-square grid icon */}
                   <Link
                     href="/portfolio"
                     className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#222629] hover:text-[#86C232] transition-colors duration-300 outline-none"
@@ -315,8 +331,9 @@ export default function PortfolioPage1(): React.ReactElement {
                     </svg>
                   </Link>
 
+                  {/* Next (Point this to your 6th portfolio page) */}
                   <Link
-                    href="/portfolio/e-commerce"
+                    href="/portfolio/business-platforms"
                     className="flex items-center gap-3 text-[#222629] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none ml-auto"
                   >
                     Next
@@ -419,7 +436,7 @@ export default function PortfolioPage1(): React.ReactElement {
               src={selectedImage}
               alt="Enlarged project view"
               className="max-w-full max-h-[90vh] object-contain rounded-[8px] shadow-2xl"
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image itself
+              onClick={(e) => e.stopPropagation()} 
             />
           </motion.div>
         )}

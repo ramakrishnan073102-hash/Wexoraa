@@ -1,5 +1,5 @@
-import PortfolioPage7 from "../../components/portfolio/PortfolioPage7";
+import RealTimeMessagingApp from "../../components/portfolio/RealTimeMessagingApp";
 
-export default function Page7() {
-  return <PortfolioPage7 />;
+export default function RealTimeMessagingAppRoute() {
+  return <RealTimeMessagingApp />;
 }

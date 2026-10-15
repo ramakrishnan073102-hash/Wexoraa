@@ -1,5 +1,5 @@
-import PortfolioPage6 from "../../components/portfolio/Portfoliopage6";
+import BusinessPlatforms from "../../components/portfolio/BusinessPlatforms";
 
-export default function Page6() {
-    return <PortfolioPage6 />;
+export default function BusinessPlatformsRoute() {
+    return <BusinessPlatforms />;
 }

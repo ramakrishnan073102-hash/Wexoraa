@@ -6,7 +6,7 @@ import Link from "next/link";
 import {
   Home,
   ChevronRight,
-   ChevronLeft, // <-- Added ChevronLeft for the Previous button
+  ChevronLeft, // <-- Added ChevronLeft for the Previous button
   Check,
   Phone,
   User,
@@ -125,9 +125,9 @@ function ScrollProgress() {
 }
 
 /* ──────────────────────────────────────────────────────────
-   MAIN COMPONENT — PORTFOLIO DETAILS PAGE 4
+  MAIN COMPONENT — PORTFOLIO DETAILS PAGE 2
 ────────────────────────────────────────────────────────── */
-export default function PortfolioPage4(): React.ReactElement {
+export default function ECommerce(): React.ReactElement {
   // STATE: Tracks which image is currently open in the lightbox
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -167,10 +167,10 @@ export default function PortfolioPage4(): React.ReactElement {
               transition={{ duration: 0.55 }}
               className="text-3xl md:text-5xl lg:text-[4rem] font-extrabold text-white mb-2 tracking-tight leading-tight"
             >
-              Laundry Solutions
+              E-Commerce
             </motion.h1>
             <p className="text-white/85 text-base sm:text-lg font-medium mb-6">
-              Laundry Websites &amp; Digital Platforms
+              Online Stores &amp; Shopping Platforms
             </p>
 
             <motion.div
@@ -188,7 +188,7 @@ export default function PortfolioPage4(): React.ReactElement {
               </Link>
               <ChevronRight size={15} className="text-[#6B6E70]" />
               <span className="text-white font-bold truncate max-w-[180px] sm:max-w-[260px]">
-                Laundry Solutions
+                E-Commerce
               </span>
             </motion.div>
           </div>
@@ -303,13 +303,13 @@ export default function PortfolioPage4(): React.ReactElement {
 
               </div>
 
-              {/* ── BOTTOM NAV: Grid | Next ── */}
+              {/* ── BOTTOM NAV: Previous | Grid | Next ── */}
               <div className="w-full bg-white rounded-[16px] mt-10 shadow-sm border border-[#e0e3e0]">
                 <div className="flex items-center px-6 py-5 relative">
-
-                     {/* Previous Button */}
+                  
+                  {/* Previous Button */}
                   <Link
-                    href="/portfolio/cab-taxi-services"
+                    href="/portfolio/travel-tourism"
                     className="flex items-center gap-3 text-[#222629] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none"
                   >
                     <div className="w-11 h-11 rounded-full border border-[#d1d5db] flex items-center justify-center text-[#222629] transition-all duration-300 group-hover:border-[#86C232] group-hover:bg-[#86C232] group-hover:text-white">
@@ -317,7 +317,7 @@ export default function PortfolioPage4(): React.ReactElement {
                     </div>
                     Previous
                   </Link>
-                  
+
                   {/* Center: 4-square grid icon */}
                   <Link
                     href="/portfolio"
@@ -331,9 +331,9 @@ export default function PortfolioPage4(): React.ReactElement {
                     </svg>
                   </Link>
 
-                  {/* Next */}
+                  {/* Next Button (Looping back to page 1) */}
                   <Link
-                    href="/portfolio/mobile-applications"
+                    href="/portfolio/cab-taxi-services"
                     className="flex items-center gap-3 text-[#222629] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none ml-auto"
                   >
                     Next
@@ -341,6 +341,7 @@ export default function PortfolioPage4(): React.ReactElement {
                       <ChevronRight size={19} strokeWidth={2.5} />
                     </div>
                   </Link>
+
                 </div>
               </div>
             </motion.div>
@@ -436,7 +437,7 @@ export default function PortfolioPage4(): React.ReactElement {
               src={selectedImage}
               alt="Enlarged project view"
               className="max-w-full max-h-[90vh] object-contain rounded-[8px] shadow-2xl"
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image itself
+              onClick={(e) => e.stopPropagation()} 
             />
           </motion.div>
         )}

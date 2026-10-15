@@ -6,7 +6,7 @@ import Link from "next/link";
 import {
   Home,
   ChevronRight,
-  ChevronLeft,
+   ChevronLeft, // <-- Added ChevronLeft for the Previous button
   Check,
   Phone,
   User,
@@ -25,7 +25,7 @@ const PROJECT_INFO = [
   {
     icon: User,
     label: "Clients",
-    value: "Innovate Interiors G...",
+    value: "EduTech Global Inc.",
   },
   {
     icon: DollarSign,
@@ -40,7 +40,7 @@ const PROJECT_INFO = [
   {
     icon: Briefcase,
     label: "Sector",
-    value: "Corporate Business",
+    value: "Education Technology",
   },
   {
     icon: Calendar,
@@ -125,21 +125,11 @@ function ScrollProgress() {
 }
 
 /* ──────────────────────────────────────────────────────────
-   MAIN COMPONENT — PORTFOLIO DETAILS PAGE 6
+   MAIN COMPONENT — PORTFOLIO DETAILS PAGE 3
 ────────────────────────────────────────────────────────── */
-export default function PortfolioPage6(): React.ReactElement {
-  // STATE: Tracks which image is currently open in the lightbox
+export default function CabTaxiServices(): React.ReactElement {
+  // State for Image Lightbox
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-  // Prevent background scrolling when modal is open
-  useEffect(() => {
-    if (selectedImage) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => { document.body.style.overflow = 'unset'; }
-  }, [selectedImage]);
 
   return (
     <main className="w-full bg-[#eef0ee] font-['Manrope',_sans-serif] min-h-screen pb-20 md:pb-28">
@@ -167,10 +157,10 @@ export default function PortfolioPage6(): React.ReactElement {
               transition={{ duration: 0.55 }}
               className="text-3xl md:text-5xl lg:text-[4rem] font-extrabold text-white mb-2 tracking-tight leading-tight"
             >
-              Business Platforms
+              Cab &amp; Taxi Services
             </motion.h1>
             <p className="text-white/85 text-base sm:text-lg font-medium mb-6">
-              CRM, ERP, SaaS &amp; Custom Software
+              Booking &amp; Lead Generation Websites
             </p>
 
             <motion.div
@@ -188,7 +178,7 @@ export default function PortfolioPage6(): React.ReactElement {
               </Link>
               <ChevronRight size={15} className="text-[#6B6E70]" />
               <span className="text-white font-bold truncate max-w-[180px] sm:max-w-[260px]">
-                Business Platforms
+                Cab &amp; Taxi Services
               </span>
             </motion.div>
           </div>
@@ -259,10 +249,10 @@ export default function PortfolioPage6(): React.ReactElement {
                 Strategy for [Client Name] transformed their entire brand identity, from a fresh new logo to updated visual design that resonates with their growing audience.
               </p>
 
-              {/* IMAGE GALLERY GRID WITH CLICK HANDLERS */}
+              {/* Image Gallery Grid - WITH LIGHTBOX FUNCTIONALITY */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 
-                {/* Image 1 */}
+                {/* Image 1 - Spans full width on mobile, 1 col on md */}
                 <div 
                   onClick={() => setSelectedImage(GALLERY_IMAGES[0])}
                   className="md:col-span-2 relative group w-full h-[340px] rounded-[16px] overflow-hidden cursor-pointer shadow-sm"
@@ -300,23 +290,26 @@ export default function PortfolioPage6(): React.ReactElement {
                   </div>
                   <img src={GALLERY_IMAGES[2]} alt="Gallery 3" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
-
               </div>
+
+              
+
+              
 
               {/* ── BOTTOM NAV: Grid | Next ── */}
               <div className="w-full bg-white rounded-[16px] mt-10 shadow-sm border border-[#e0e3e0]">
                 <div className="flex items-center px-6 py-5 relative">
 
-                           {/* Previous Button */}
-                                      <Link
-                                        href="/portfolio/mobile-applications"
-                                        className="flex items-center gap-3 text-[#222629] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none"
-                                      >
-                                        <div className="w-11 h-11 rounded-full border border-[#d1d5db] flex items-center justify-center text-[#222629] transition-all duration-300 group-hover:border-[#86C232] group-hover:bg-[#86C232] group-hover:text-white">
-                                          <ChevronLeft size={19} strokeWidth={2.5} />
-                                        </div>
-                                        Previous
-                                      </Link>
+                     {/* Previous Button */}
+                  <Link
+                    href="/portfolio/e-commerce"
+                    className="flex items-center gap-3 text-[#222629] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none"
+                  >
+                    <div className="w-11 h-11 rounded-full border border-[#d1d5db] flex items-center justify-center text-[#222629] transition-all duration-300 group-hover:border-[#86C232] group-hover:bg-[#86C232] group-hover:text-white">
+                      <ChevronLeft size={19} strokeWidth={2.5} />
+                    </div>
+                    Previous
+                  </Link>
                   
                   {/* Center: 4-square grid icon */}
                   <Link
@@ -331,9 +324,9 @@ export default function PortfolioPage6(): React.ReactElement {
                     </svg>
                   </Link>
 
-                  {/* Next (Point this to your first portfolio page to create a loop) */}
+                  {/* Next */}
                   <Link
-                    href="/portfolio/real-time-messaging-app"
+                    href="/portfolio/laundry-solutions"
                     className="flex items-center gap-3 text-[#222629] font-extrabold text-[15px] transition-colors hover:text-[#86C232] group outline-none ml-auto"
                   >
                     Next
@@ -379,7 +372,10 @@ export default function PortfolioPage6(): React.ReactElement {
 
             {/* Contact CTA card */}
             <div className="bg-[#1a2826] rounded-[20px] overflow-hidden shadow-xl relative min-h-[270px] flex flex-col justify-end p-8">
+              {/* Decorative ring */}
               <div className="absolute top-0 right-0 w-52 h-52 rounded-full border-[40px] border-[#86C232]/15 translate-x-12 -translate-y-12 z-0" />
+
+              {/* Circular portrait */}
               <div className="absolute bottom-0 right-0 w-44 h-44 rounded-full overflow-hidden border-4 border-[#1a2826] z-10 translate-x-6 translate-y-6 shadow-xl">
                 <img
                   src="/assets/images/photo-1560250097-0b93528c311a.jpg"
@@ -387,6 +383,8 @@ export default function PortfolioPage6(): React.ReactElement {
                   className="w-full h-full object-cover object-top"
                 />
               </div>
+
+              {/* Text */}
               <div className="relative z-20 w-[62%]">
                 <h3 className="text-[2.8rem] font-extrabold text-white leading-[1] tracking-tight mb-1">
                   Modern
@@ -404,6 +402,7 @@ export default function PortfolioPage6(): React.ReactElement {
               </div>
             </div>
           </motion.div>
+
         </div>
       </section>
 
@@ -436,7 +435,7 @@ export default function PortfolioPage6(): React.ReactElement {
               src={selectedImage}
               alt="Enlarged project view"
               className="max-w-full max-h-[90vh] object-contain rounded-[8px] shadow-2xl"
-              onClick={(e) => e.stopPropagation()} 
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image itself
             />
           </motion.div>
         )}
